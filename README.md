@@ -1,0 +1,1 @@
+# plugins-event-page-templates-addon-for-the-events-calendar
