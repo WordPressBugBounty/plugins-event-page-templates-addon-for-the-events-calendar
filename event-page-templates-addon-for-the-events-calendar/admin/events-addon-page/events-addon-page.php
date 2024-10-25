@@ -3,9 +3,7 @@ if (!defined('ABSPATH')) {
     exit;
 } 
 /**
- * 
- * This is the main class for creating dashbord addon page and all submenu items
- * 
+ * This is the main class for creating dashboard addon page and all submenu items
  * Do not call or initialize this class directly, instead use the function mentioned at the bottom of this file
  */
 if ( !class_exists('cool_plugins_events_addons')) {
@@ -14,7 +12,7 @@ if ( !class_exists('cool_plugins_events_addons')) {
     {
 
         /**
-         * None of these variables should be accessable from the outside of the class
+         * None of these variables should be accessible from the outside of the class
          */
             private static $instance;
             private $pro_plugins = array();
@@ -36,13 +34,10 @@ if ( !class_exists('cool_plugins_events_addons')) {
                     return self::$instance = new self;
                 }
                 return self::$instance;
-
             }
-
 
             /**
              * Initialize the dashboard with specific plugins as per plugin tag
-             * 
              */
             public function show_plugins( $plugin_tag , $menu_slug , $dashboard_heading ){
                 
@@ -93,10 +88,10 @@ if ( !class_exists('cool_plugins_events_addons')) {
                 }
             }
 
-            /**
-             * handle ajax for installing plugin from the dashboard.
-             * This function use the core wordpress functionality of installing a plugin through URL
-             */
+        /**
+         * Handle AJAX for installing plugin from the dashboard.
+         * This function uses the core WordPress functionality of installing a plugin through URL
+         */
             function cool_plugins_install(){
             if(current_user_can('upload_plugins')){
                 $plugin_slug= isset($_POST['ect_slug'])?sanitize_text_field($_POST['ect_slug']):'';
@@ -132,7 +127,6 @@ if ( !class_exists('cool_plugins_events_addons')) {
             }
             }
 
-
             /**
              * This function will initialize the main dashboard page for all plugins
              */
@@ -166,17 +160,16 @@ if ( !class_exists('cool_plugins_events_addons')) {
 
                     foreach($plugins as $plugin ){
 
-                        $plugin_name = $plugin['name'];
-                        $plugin_desc = $plugin['desc'];
-                        $plugin_logo =$this->event_addon_plugins_logo($plugin['slug']);
+                        $plugin_name = esc_html($plugin['name']);
+                        $plugin_desc = esc_html($plugin['desc']);
+                        $plugin_logo = esc_url($this->event_addon_plugins_logo($plugin['slug']));
                         $plugin_url = $plugin['download_link'];
-                        $plugin_slug = $plugin['slug'];
-                        $plugin_version = $plugin['version'];
+                        $plugin_slug = esc_attr($plugin['slug']);
+                        $plugin_version = esc_html($plugin['version']);
  
                         if( file_exists( WP_PLUGIN_DIR . '/' . $plugin_slug ) ){
-                            require $this->addon_dir . '/includes/dashboard-page.php';
-                        }
-
+                        require $this->addon_dir . '/includes/dashboard-page.php';
+                    }
                     }
                     echo "</div>";
 
@@ -186,13 +179,13 @@ if ( !class_exists('cool_plugins_events_addons')) {
                         if( $plugin['download_link'] == null ){
                             continue;
                         }
-                        $plugin_name = $plugin['name'];
-                        $plugin_desc = $plugin['desc'];
-                        $plugin_logo =$this->event_addon_plugins_logo($plugin['slug']);
-                        $plugin_url = $plugin['download_link'];
-                        $plugin_slug = $plugin['slug'];
-                        $plugin_version = $plugin['version'];
-                        
+                    $plugin_name = esc_html($plugin['name']);
+                    $plugin_desc = esc_html($plugin['desc']);
+                    $plugin_logo = esc_url($this->event_addon_plugins_logo($plugin['slug']));
+                    $plugin_url = $plugin['download_link'];
+                    $plugin_slug = esc_attr($plugin['slug']);
+                    $plugin_version = esc_html($plugin['version']);
+
                         if( !file_exists( WP_PLUGIN_DIR . '/' . $plugin_slug ) ){
                             require $this->addon_dir . '/includes/dashboard-page.php';
                         }
@@ -204,19 +197,18 @@ if ( !class_exists('cool_plugins_events_addons')) {
                          * Load this Pro Plugin container only if there are any pro plugins available
                          */
                     echo "<div class='plugins-list pro-addons' data-empty-message='No more Pro plugins available at the moment'><h3>Pro Addons</h3>";
-                        foreach($this->pro_plugins as $plugin ){
-                             $plugin_name = $plugin['name'];
-                            $plugin_desc = $plugin['desc'];
-                            $plugin_logo =$this->event_addon_plugins_logo($plugin['slug']);
-                            $plugin_pro_url = $plugin['buyLink'];
-                            $plugin_url = null;
-                            $plugin_version = null;
-                            $plugin_slug = $plugin['slug'];
-                            
+                    foreach ($this->pro_plugins as $plugin) {
+                        $plugin_name = esc_html($plugin['name']);
+                        $plugin_desc = esc_html($plugin['desc']);
+                        $plugin_logo = esc_url($this->event_addon_plugins_logo($plugin['slug']));
+                        $plugin_pro_url = esc_url($plugin['buyLink']);
+                        $plugin_url = null;
+                        $plugin_version = null;
+                        $plugin_slug = esc_attr($plugin['slug']);
+
                             if( !file_exists( WP_PLUGIN_DIR . '/' . $plugin_slug ) ){
                                 require $this->addon_dir . '/includes/dashboard-page.php';
                             }
-
                         }
                         echo '</div>';
                     endif;
@@ -242,7 +234,6 @@ if ( !class_exists('cool_plugins_events_addons')) {
                 }
             }
 
-
     /**
          * This function will gather all information regarding pro plugins.
          */
@@ -251,11 +242,9 @@ if ( !class_exists('cool_plugins_events_addons')) {
             $trans_name = $this->main_menu_slug . '_pro_api_cache' . $this->plugin_tag;
             $option_name = $this->main_menu_slug . '-' . $this->plugin_tag . '-pro';
             if (get_transient($trans_name) != false) {
-
                 return $this->pro_plugins = get_option($option_name, false);
             }
             $url = $this->plugin_api . 'pro/' . $this->plugin_tag;
-
 
             $pro_api = esc_url($url);
             $response = wp_remote_get($pro_api, array('timeout' => 300));
@@ -265,30 +254,26 @@ if ( !class_exists('cool_plugins_events_addons')) {
             }
             $plugin_info = (array) json_decode($response['body']);
 
-
             foreach ($plugin_info as $plugin) {
 
 
-              // if ($plugin->tag == $tag) {
 
-                    $this->pro_plugins[$plugin->slug] = array(
-                        'name' => $plugin->name,
-                        'logo' => $plugin->image_url,
-                        'desc' => $plugin->info,
-                        'slug' => $plugin->slug,
-                        'buyLink' => $plugin->buy_url,
-                        'version' => $plugin->version,
-                        'download_link' => null,
+                $this->pro_plugins[$plugin->slug] = array(
+                    'name' => sanitize_text_field($plugin->name),
+                    'logo' => esc_url($plugin->image_url),
+                    'desc' => sanitize_text_field($plugin->info),
+                    'slug' => sanitize_text_field($plugin->slug),
+                    'buyLink' => esc_url($plugin->buy_url),
+                    'version' => sanitize_text_field($plugin->version),
+                    'download_link' => null,
                         'incompatible' => $plugin->free_version,
                         'buyLink' => $plugin->buy_url,
                     );
                     if (property_exists($plugin, 'free_version') && $plugin->free_version != null) {
                         $this->disable_plugins[$plugin->free_version] = array('pro' => $plugin->slug);
                     }
-             //   }
 
             }
-
 
             if (!empty($this->pro_plugins) && is_array($this->pro_plugins) && count($this->pro_plugins)) {
                 set_transient($trans_name, $this->pro_plugins, DAY_IN_SECONDS);
@@ -311,8 +296,6 @@ if ( !class_exists('cool_plugins_events_addons')) {
             if (get_transient($this->main_menu_slug . '_api_cache' . $this->plugin_tag) != false) {
                 return get_option($this->main_menu_slug . '-' . $this->plugin_tag, false);
             }
-            // $request = array( 'action' => 'plugin_information', 'timeout' => 300, 'request' => serialize( $args) );
-
              $url = $this->plugin_api . 'free/' . $this->plugin_tag;
 
 
@@ -364,6 +347,7 @@ if ( !class_exists('cool_plugins_events_addons')) {
             'events-search-addon-for-the-events-calendar' => 'events-search-icon.svg',
             'events-widgets-pro'=>'events-widgets-icon.svg',
             'event-single-page-builder-pro' => 'event-single-page-icon.svg',
+            'events-calendar-modules-for-divi'=> 'events-calendar-modules-for-divi.svg',
         ];
         if(isset($logos_arr[$slug])){
             return $logo_url= plugin_dir_url( __FILE__ ).'assets/images/'.$logos_arr[$slug];

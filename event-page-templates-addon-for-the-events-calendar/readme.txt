@@ -3,9 +3,9 @@ Contributors:narinder-singh,satindersingh,coolplugins
 Donate link:https://paypal.me/CoolPlugins/10USD/
 Tags:the events calendar, events, Single Event Page,calendar, events calendar
 Requires at least:5.0
-Tested up to:6.6
+Tested up to:6.6.2
 Requires PHP:7.2
-Stable tag:1.7.3
+Stable tag:1.7.4
 License:GPLv2 or later
 License URI:http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -24,6 +24,7 @@ Using the **Event Single Page Builder addon**, you can showcase your single even
 
 * [🔗 Single event page created by free version.](https://eventscalendaraddons.com/event/boston-biggest-marathon-run/?utm_source=epta_plugin&utm_medium=readme&utm_campaign=demo&utm_content=free_demo)
 * [🔗 Check pro version demos, also supports Elementor.](https://eventscalendaraddons.com/demos/event-single-page-builder-pro/?utm_source=epta_plugin&utm_medium=readme&utm_campaign=demo&utm_content=pro_demo)
+
 
 https://www.youtube.com/watch?v=50FBrcqoB-M
 
@@ -48,6 +49,9 @@ In addition to the Event Single Page Builder plugin, there are more addons avail
 
 * [💪 **Events Shortcodes Pro**](https://eventscalendaraddons.com/plugin/events-shortcodes-pro/?utm_source=epta_plugin&utm_medium=readme&utm_campaign=get_pro&utm_content=ect_plugin), an addon that work as **The Events Calendar shortcode**, you can show events list, grid, events carousel and slider on any page via shortcodes - [🔗 View Demos](https://eventscalendaraddons.com/demos/events-shortcodes-pro/?utm_source=epta_plugin&utm_medium=readme&utm_campaign=demo&utm_content=ect_plugin)
 * [💪 **Events Widgets Pro**](https://eventscalendaraddons.com/plugin/events-widgets-pro/?utm_source=epta_plugin&utm_medium=readme&utm_campaign=get_pro&utm_content=ectbe_plugin), show events list, grid, carousel and more in Elementor pages easily using **The Events Calendar Elementor Widgets** - [🔗 View Demos](https://eventscalendaraddons.com/demos/events-widgets-pro/?utm_source=epta_plugin&utm_medium=readme&utm_campaign=demo&utm_content=ectbe_plugin)
+
+* [💪 **Events Calendar Modules for Divi**](https://wordpress.org/plugins/events-calendar-modules-for-divi) Display The Events Calendar Events in Divi with Customizable List or Grid Layout - [🔗 View Demos](https://eventscalendaraddons.com/divi/?utm_source=epta_plugin&utm_medium=readme&utm_campaign=demo&utm_content=ectbe_plugin)
+
 
 ### 😎 Who's Behind This Plugin
 
@@ -110,7 +114,8 @@ Yes, you can check out the demo for a single event page created with the free ve
 = Why should I upgrade to the pro version? =
 Upgrading to the pro version provides access to more pre-designed templates, advanced settings, and full support for the Elementor page builder, allowing for greater customization and control over your single event page design.
 
-
+= How can I report security bugs? =
+You can report security bugs through the Patchstack Vulnerability Disclosure Program. The Patchstack team help validate, triage and handle any security vulnerabilities. [Report a security vulnerability.](https://patchstack.com/database/vdp/event-page-templates-addon-for-the-events-calendar)
 
 == Screenshots ==
 
@@ -119,6 +124,12 @@ Upgrading to the pro version provides access to more pre-designed templates, adv
 3. Compare Layout - The Events Calendar (Default) vs This Addon
 
 == Changelog ==
+
+Version 1.7.4 || 25 October 2024
+ 
+ - Fixed: Fix security issues.
+ - Tested upto WordPress 6.6.2
+ - Tested upto The Event Calendar 6.7.1
 
 Version 1.7.3 || 23 July 2024
  

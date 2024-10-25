@@ -83,7 +83,7 @@ if (!class_exists('epta_admin_notices')):
                 $this->epta_show_error('message can not be null. You must provide some text for message field');
                 return;
             }
-            $message = (isset($notice['message']) && !empty($notice['message'])) ?  wp_kses( $notice['message'], 'post' ) : null ;
+            $message = (isset($notice['message']) && !empty($notice['message'])) ?  wp_kses_post( $notice['message'], 'post' ) : null ;
             $type = (isset($notice['type']) && !empty($notice['type'])) ? 'notice-' . sanitize_text_field( $notice['type'] ) : 'notice-success' ;
             $class = (isset($notice['class']) && !empty($notice['class'])) ? sanitize_text_field( $notice['class'] ): '';
             $review = (bool)(isset($notice['review'] ) && !empty( $notice['review'] ) ) ? sanitize_text_field( $notice['review'] ) : false;
@@ -177,7 +177,7 @@ if (!class_exists('epta_admin_notices')):
             else{
                 $image_html ='';
             }
-            echo "<div class='".$id."_admin_notice $classes epta-simple-notice' data-ajax-url='".admin_url('admin-ajax.php')."' data-wp-nonce='". $nonce . "' data-plugin-slug='$id'>$image_html<div class='message_container'><p>" . $message['message'] . "</p></div></div>" . $script;
+            echo "<div class='" . esc_attr($id) . "_admin_notice $classes epta-simple-notice' data-ajax-url='" . esc_url(admin_url('admin-ajax.php')) . "' data-wp-nonce='" . esc_attr($nonce) . "' data-plugin-slug='" . esc_attr($id) . "'>$image_html<div class='message_container'><p>" . wp_kses_post($message['message']) . "</p></div></div>" . $script;
         }
 
         /**
@@ -309,8 +309,8 @@ if (!class_exists('epta_admin_notices')):
             $id = isset($_REQUEST['id'])?sanitize_text_field($_REQUEST['id']):'';
             $nonce_key = $id . '_review_nonce' ;
 
-            if ( ! check_ajax_referer($nonce_key,'_nonce', false ) ) {
-                echo wp_json_encode( array("error"=>"nonce verification failed!"));
+            if (!check_ajax_referer($nonce_key, '_nonce', false)) {
+                echo wp_json_encode(array("error" => "nonce verification failed!"));
                 die();
                
             }else{
@@ -336,7 +336,6 @@ if (!class_exists('epta_admin_notices')):
                 $us=update_option( $id . '_remove_notice','yes' );
                 die( 'Admin message removed!' );
             }
-
         }
 
         /**************************************************************

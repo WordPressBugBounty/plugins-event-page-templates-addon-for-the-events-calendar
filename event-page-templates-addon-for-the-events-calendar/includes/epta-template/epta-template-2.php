@@ -13,16 +13,16 @@ if ( ! defined( 'ABSPATH' ) ) {
 	die( '-1' );
 }
 
-
-$get_temp_id           = get_option( 'tecset-single-page-id' );
+$get_temp_id           = intval( get_option( 'tecset-single-page-id' ) );
 $get_temp_cls          = epta_dynamic_class();
 $tecset_custom_styles  = epta_custom_style();
 $tecset_share_button   = epta_share_button( $event_id );
-$tecset_date_format    = get_post_meta( $get_temp_id, 'tecset-date-format', true );
+$tecset_date_format    = sanitize_text_field( get_post_meta( $get_temp_id, 'tecset-date-format', true ) );
 $tecset_event_schedule = epta_event_schedule( $event_id, $tecset_date_format );
 $post_content          = \eptafunctions\epta_get_content( $event_id );
+
 wp_enqueue_style( 'epta-bootstrap-css' );
-wp_add_inline_style( 'epta-template2-css', $tecset_custom_styles );
+wp_add_inline_style( 'epta-template2-css', wp_strip_all_tags( $tecset_custom_styles ) );
 wp_enqueue_style( 'epta-template2-css' );
 wp_enqueue_style( 'epta-frontend-css' );
 ?>
@@ -63,34 +63,30 @@ wp_enqueue_style( 'epta-frontend-css' );
 								<div class="epta-events-meta-group epta-events-meta-group-details">
 									<?php tribe_get_template_part( 'modules/meta/details' ); ?>
 								</div>
-								<?php
-								if ( tribe_has_venue() ) {
-									?>
+								<?php if ( tribe_has_venue() ) : ?>
 								<div class="epta-events-meta-group epta-events-meta-group-venue">
 									<?php tribe_get_template_part( 'modules/meta/venue' ); ?>
 								</div>	
-								<?php } ?>	
+								<?php endif; ?>	
 								<div class="epta-events-meta-group epta-events-meta-group-gmap clearfix">
 									<div class="tribe-events-venue-map">
 										<?php tribe_get_template_part( 'modules/meta/map' ); ?>
 									</div>
 								</div>
-								<?php
-								if ( tribe_has_organizer() ) {
-									?>
+								<?php if ( tribe_has_organizer() ) : ?>
 								<div class="epta-events-meta-group epta-events-meta-group-schedule">
 									<?php tribe_get_template_part( 'modules/meta/organizer' ); ?>     
 								</div>
-								<?php } ?>
+								<?php endif; ?>
 								<div class="epta-events-meta-group epta-share-area">
-									<?php echo $tecset_share_button; ?>
+									<?php echo wp_kses_post( $tecset_share_button ); ?>
 								</div>   
 							</div>
 							<div class="clearfix"></div>
 							<!-- Event footer -->
 							<div id="tribe-events-footer">
 								<!-- Navigation -->
-								<h3 class="tribe-events-visuallyhidden">Event Navigation</h3>
+								<h3 class="tribe-events-visuallyhidden"><?php echo esc_html__( 'Event Navigation', 'epta' ); ?></h3>
 								<ul class="tribe-events-sub-nav">
 									<li class="tribe-events-nav-previous"><?php tribe_the_prev_event_link( '<span>&laquo;</span> %title%' ); ?></li>
 									<li class="tribe-events-nav-next"><?php tribe_the_next_event_link( '%title% <span>&raquo;</span>' ); ?></li>

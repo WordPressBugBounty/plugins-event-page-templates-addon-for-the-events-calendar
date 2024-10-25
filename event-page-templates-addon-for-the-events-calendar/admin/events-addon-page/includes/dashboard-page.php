@@ -32,7 +32,6 @@ if( isset( $this->disable_plugins[ $plugin_slug ] ) ){
 if (file_exists(WP_PLUGIN_DIR . '/' . $plugin_slug)) {
 
     $is_installed = true;
-    $plguin_file = null;
     $installed_plugins = get_plugins();//get_option('active_plugins', false);
     $is_active = false;
     $classes .= ' installed-plugin';

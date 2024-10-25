@@ -1,7 +1,7 @@
 (function( $ ) {
 
 	// Collection of timers for this page.
-	var timers = new Array();
+	var timers = [];
 
 	// Actual timer code, which wakes up every second and updates all the timers on the page.
 	function updateTimers() {
@@ -14,7 +14,7 @@
 
 	// Utility function for adding zero padding.
 	function zeroPad( n ) {
-		n = parseInt( n );
+		n = parseInt( n, 10 ); // Ensure base 10
 		if ( n < 10 ) {
 			return '0' + n;
 		}
@@ -26,7 +26,7 @@
 	// Creates a new timer object.
 	function Timer( id, seconds, format, complete ) {
 		this.id = id;
-		this.seconds = seconds;
+		this.seconds = parseInt(seconds, 10); // Ensure seconds is an integer
 		this.format = format;
 		this.complete = complete;
 	}
@@ -37,13 +37,13 @@
 		var output = t.complete;
 		t.seconds -= 1;
 		if ( t.seconds > 0 ) {
-			var days = zeroPad( ( t.seconds ) / ( 60 * 60 * 24 ) );
-			var hours = zeroPad( ( t.seconds % ( 60 * 60 * 24 ) / (60 * 60)) );
-			var minutes = zeroPad( ( t.seconds % ( 60 * 60 ) ) / ( 60 ) );
-			var seconds = zeroPad( ( t.seconds % 60 ) );
+			var days = zeroPad( Math.floor( t.seconds / ( 60 * 60 * 24 ) ) );
+			var hours = zeroPad( Math.floor( ( t.seconds % ( 60 * 60 * 24 ) ) / ( 60 * 60 ) ) );
+			var minutes = zeroPad( Math.floor( ( t.seconds % ( 60 * 60 ) ) / 60 ) );
+			var seconds = zeroPad( t.seconds % 60 );
 			output = t.format.replace( 'DD', days ).replace( 'HH', hours ).replace( 'MM', minutes ).replace( 'SS', seconds );
 		}
-		$( "#" + t.id ).html( output );
+		$( "#" + $.escapeSelector(t.id) ).html( output ); // Escape the selector
 	}
 
 	$( document ).ready( function() {
@@ -55,7 +55,7 @@
 				var unique_id = 'tribe-countdown-' + Math.floor( Math.random() * 99999 );
 				var seconds = $( value ).find( 'span.epta-countdown-seconds' ).text();
 				var format = $( value ).find( 'span.epta-countdown-format' ).html();
-				var complete = $( 'h3.tribe-countdown-complete' ).show();
+				var complete = $( 'h3.tribe-countdown-complete' ).html(); // Changed to .html() to get the content
 
 				// Wrap the timer in a span with a unique id so we can refer to it
 				// in the timer update code.

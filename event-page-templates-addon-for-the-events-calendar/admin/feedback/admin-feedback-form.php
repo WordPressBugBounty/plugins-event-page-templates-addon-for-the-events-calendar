@@ -162,9 +162,9 @@ class epta_feedback {
 				array(
 					'timeout' => 30,
 					'body'    => array(
-						'plugin_version' => $this->plugin_version,
-						'plugin_name'    => $this->plugin_name,
-						'reason'         => $deativation_reason,
+						'plugin_version' => sanitize_text_field($this->plugin_version),
+						'plugin_name'    => sanitize_text_field($this->plugin_name),
+						'reason'         => sanitize_text_field($deativation_reason),
 						'review'         => $sanitized_message,
 						'email'          => $admin_email,
 						'domain'         => $site_url,

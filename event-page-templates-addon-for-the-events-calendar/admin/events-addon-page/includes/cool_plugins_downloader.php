@@ -6,15 +6,15 @@
  * 
  */
 
- if( !defined( 'ABSPATH' )){
-     die( 'WordPress enviornment not found!');
- }
+if( !defined( 'ABSPATH' )){
+    die( 'WordPress environment not found!');
+}
 
- if( !class_exists( 'Plugin_Upgrader' ) ){
+if( !class_exists( 'Plugin_Upgrader' ) ){
     require_once( ABSPATH . 'wp-admin/includes/class-wp-upgrader.php' );
- }
+}
 
- class cool_plugins_downloader extends Plugin_Upgrader{
+class cool_plugins_downloader extends Plugin_Upgrader{
 
     public function rollback($url = null,$action='install'){
 
@@ -24,13 +24,13 @@
         add_filter( 'upgrader_clear_destination', array( $this, 'delete_old_plugin' ), 10, 4 );
 
         $this->run( array(
-            'package'           => $url,
+            'package'           => esc_url_raw($url),
             'destination'       => WP_PLUGIN_DIR,
             'clear_destination' => true,
             'clear_working'     => true,
             'hook_extra'        => array(
                 'type'   => 'plugin',
-                'action' => $action,
+                'action' => sanitize_text_field($action),
             ),
         ) );
 
@@ -42,4 +42,4 @@
         }
         return 'Events Shortcodes For The Events Calendar rollback successful!';
     }
- }
+}

@@ -18,20 +18,18 @@ $get_temp_id           = intval( get_option( 'tecset-single-page-id' ) );
 $get_temp_cls          = \eptafunctions\epta_dynamic_class();
 $tecset_custom_styles  = \eptafunctions\epta_custom_style();
 $tecset_share_button   = \eptafunctions\epta_share_button( $event_id );
-$tecset_date_format    = get_post_meta( $get_temp_id, 'tecset-date-format', true );
+$tecset_date_format    = sanitize_text_field( get_post_meta( $get_temp_id, 'tecset-date-format', true ) );
 $tecset_event_schedule = \eptafunctions\epta_event_schedule( $event_id, $tecset_date_format );
 
 $post_content      = \eptafunctions\epta_get_content( $event_id );
 $tribe_all_events  = esc_url( tribe_get_events_link() );
-$tecset_all_events = isset( $tecset_url ) && ! empty( $tecset_url ) ? $tecset_url : $tribe_all_events;
+$tecset_all_events = isset( $tecset_url ) && ! empty( $tecset_url ) ? esc_url( $tecset_url ) : $tribe_all_events;
 
-
-wp_add_inline_style( 'epta-frontend-css', $tecset_custom_styles );
+wp_add_inline_style( 'epta-frontend-css', wp_strip_all_tags( $tecset_custom_styles ) );
 wp_enqueue_style( 'epta-frontend-css' );
 wp_enqueue_style( 'epta-bootstrap-css' );
 wp_enqueue_script( 'epta-events-countdown-widget' );
 ?>
-
 
 <div id="epta-template" class="epta-row epta-<?php echo esc_attr( $get_temp_cls ); ?>">
 	<div class="epta-all-events col-md-12">
@@ -45,7 +43,7 @@ wp_enqueue_script( 'epta-events-countdown-widget' );
 				echo tribe_event_featured_image( $event_id, 'full', false );
 				?>
 				<div class="epta-title-date">
-					<h2><?php sanitize_title_with_dashes( the_title() ); ?></h2>
+					<h2><?php the_title(); ?></h2>
 					<?php echo wp_kses_post( $tecset_event_schedule ); ?>
 					<div class="epta-light-bg"></div>
 				</div>
@@ -53,7 +51,7 @@ wp_enqueue_script( 'epta-events-countdown-widget' );
 			} else {
 				?>
 				<div class="epta-title-date no-image">
-					<h2><?php sanitize_title_with_dashes( the_title() ); ?></h2>
+					<h2><?php the_title(); ?></h2>
 					<?php echo wp_kses_post( $tecset_event_schedule ); ?>
 					<div class="epta-light-bg"></div>
 				</div>
@@ -106,15 +104,11 @@ wp_enqueue_script( 'epta-events-countdown-widget' );
 
 		<!-- Share Buttons -->
 		<div class="epta-share-area">
-			<?php echo $tecset_share_button; ?>
+			<?php echo wp_kses_post( $tecset_share_button ); ?>
 		</div>
-
-
-
 
 		<!-- END Tickets -->
 	</div>
-
 
 	<div class="col-md-4">
 		<div class="epta-sidebar-area">
@@ -150,7 +144,7 @@ wp_enqueue_script( 'epta-events-countdown-widget' );
 					ob_start();
 					?>
 					<div class="epta-countdown-timer">
-						<span class="epta-countdown-seconds"><?php echo wp_kses_post( $seconds ); ?></span>
+						<span class="epta-countdown-seconds"><?php echo esc_html( $seconds ); ?></span>
 						<span class="epta-countdown-format"><?php echo wp_kses_post( $hourformat ); ?></span>
 					</div>
 					<?php echo wp_kses_post( ob_get_clean() ); ?>
@@ -169,14 +163,11 @@ wp_enqueue_script( 'epta-events-countdown-widget' );
 			?>
 			</div>
 
-
 			<!-- Event Details Box ...START-->
 			<div class="epta-sidebar-box">
 				<?php tribe_get_template_part( 'modules/meta/details' ); ?>
 			</div>
-
 			<!-- Event Details Box ...END-->
-
 
 			<?php
 			if ( tribe_has_venue() ) {
@@ -189,7 +180,6 @@ wp_enqueue_script( 'epta-events-countdown-widget' );
 				<?php
 			}
 
-
 			if ( tribe_has_organizer() ) {
 				?>
 				<!-- Event Organizer Box ...START-->
@@ -200,7 +190,6 @@ wp_enqueue_script( 'epta-events-countdown-widget' );
 				<?php
 			}
 			?>
-
 
 			<!-- Add To Calendar Buttons ...START-->
 			<div class="epta-sidebar-box">
@@ -224,7 +213,6 @@ wp_enqueue_script( 'epta-events-countdown-widget' );
 			<!-- Registration form end -->
 		</div>
 	</div>
-
 
 	<div class="col-md-12">
 		<?php
@@ -260,7 +248,6 @@ wp_enqueue_script( 'epta-events-countdown-widget' );
 		endif;
 		/**** Related Events ...END */
 		?>
-   
 
 		<!-- Next/Prev ...START -->
 		<div class="ept-next-prev" <?php tribe_events_the_header_attributes(); ?>>
@@ -270,11 +257,12 @@ wp_enqueue_script( 'epta-events-countdown-widget' );
 			</ul>
 		</div>
 		<!-- Next/Prev ...END -->
-<!-- Comment -->
-<?php
-if ( get_post_type() == \Tribe__Events__Main::POSTTYPE && tribe_get_option( 'showComments', false ) ) {
-	comments_template();}
-?>
-<!-- comment end -->
+		<!-- Comment -->
+		<?php
+		if ( get_post_type() == \Tribe__Events__Main::POSTTYPE && tribe_get_option( 'showComments', false ) ) {
+			comments_template();
+		}
+		?>
+		<!-- comment end -->
 	</div>
 </div>

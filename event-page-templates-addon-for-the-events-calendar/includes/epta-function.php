@@ -7,8 +7,8 @@ namespace eptafunctions;
 function epta_dynamic_class() {
 	$tecset_pageid    = get_option( 'tec_tribe_single_event_page' );
 	$get_select_temp  = get_post_meta( $tecset_pageid, 'epta-select-temp', true );
-	$tecset_page_slug = ( ! empty( $get_select_temp ) ) ? $get_select_temp : 'template-1';
-	return $tecset_page_slug;
+	$tecset_page_slug = ( ! empty( $get_select_temp ) ) ? sanitize_text_field( $get_select_temp ) : 'template-1';
+	return esc_attr( $tecset_page_slug );
 }
 function epta_get_passed_event_notice() {
 	ob_start();
@@ -22,17 +22,17 @@ function epta_get_content( $more_link_text = '(more...)', $stripteaser = 0, $mor
 	$ept_content         = apply_filters( 'the_excerpt', $content );
 		$ept_get_content = str_replace( ']]>', ']]&gt;', $ept_content );
 
-			 return $ept_get_content;
+			 return wp_kses_post( $ept_get_content );
 
 }
 function epta_custom_style() {
 	$get_temp_id                    = get_option( 'tec_tribe_single_event_page' );
 	$tecset_get_primary_color       = get_post_meta( $get_temp_id, 'epta-primary-color', true );
-	$tecset_set_primary_color       = ! empty( $tecset_get_primary_color ) ? $tecset_get_primary_color : '#222222';
+	$tecset_set_primary_color       = ! empty( $tecset_get_primary_color ) ? sanitize_hex_color( $tecset_get_primary_color ) : '#222222';
 	$tecset_get_secondary_color     = get_post_meta( $get_temp_id, 'epta-secondary-alternate-color', true );
-	$tecset_set_secondary_color     = ! empty( $tecset_get_secondary_color ) ? $tecset_get_secondary_color : '#cccccc';
+	$tecset_set_secondary_color     = ! empty( $tecset_get_secondary_color ) ? sanitize_hex_color( $tecset_get_secondary_color ) : '#cccccc';
 	$tecset_primary_alternate_color = get_post_meta( $get_temp_id, 'epta-alternate-primary-color', true );
-	$tecset_set_alternate_color     = ! empty( $tecset_primary_alternate_color ) ? $tecset_primary_alternate_color : '#ffffff';
+	$tecset_set_alternate_color     = ! empty( $tecset_primary_alternate_color ) ? sanitize_hex_color( $tecset_primary_alternate_color ) : '#ffffff';
 
 	$tecset_p_color = "
 	#epta-template.epta-template-1 .epta-light-bg,
@@ -131,7 +131,7 @@ function epta_custom_style() {
 		color:{$tecset_set_alternate_color};
 	}";
 
-	return $tecset_p_color;
+	return esc_html( $tecset_p_color );
 }
 /**
  * This file is used to share events.
@@ -349,7 +349,7 @@ function epta_event_schedule( $event_id, $tecset_date_format ) {
 			 $tecset_event_schedule = '<div class="tecset-date">' . tribe_events_event_schedule_details( $event_id ) . '</div>';
 	}
 	/*Date Format END*/
-	return $tecset_event_schedule;
+	return wp_kses_post( $tecset_event_schedule );
 }
 // grab events time for later use
 function epta_tribe_event_time( $post_id, $display = true ) {
@@ -391,7 +391,7 @@ function epta_tribe_event_time( $post_id, $display = true ) {
 
 
 function ect_get_url_by_slug( $slug ) {
-	$page_url_id   = get_page_by_path( $slug );
+	$page_url_id   = get_page_by_path( sanitize_text_field( $slug ) );
 	$page_url_link = get_permalink( $page_url_id );
-	return $page_url_link;
+	return esc_url( $page_url_link );
 }

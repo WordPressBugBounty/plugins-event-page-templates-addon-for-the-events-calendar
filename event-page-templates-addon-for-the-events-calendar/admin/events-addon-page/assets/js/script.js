@@ -12,7 +12,12 @@ jQuery(document).ready(function($) {
             $.ajax({
                     type: 'POST',
                     url: cp_events.ajax_url,
-                    data: { 'action': 'cool_plugins_install_' + pluginTag, 'wp_nonce': nonce, 'nonce_name': nonceName, 'ect_slug': pluginSlug  },
+                    data: { 
+                        'action': 'cool_plugins_install_' + pluginTag, 
+                        'wp_nonce': nonce, 
+                        'nonce_name': nonceName, 
+                        'ect_slug': pluginSlug 
+                    },
                     beforeSend: function(res) {
                         btn.text('Installing...');
                     }
@@ -22,7 +27,6 @@ jQuery(document).ready(function($) {
                     if (undefined !== res.success && false === res.success) {
                         return;
                     }
-                  
                     window.location.reload();
                 })
         }
@@ -32,13 +36,18 @@ jQuery(document).ready(function($) {
             let pluginFile = $(this).attr('data-plugin-id');
             let pluginTag = $(this).attr('data-plugin-tag');
             let pluginSlug = $(this).attr('data-plugin-slug');
-            let p_url = $(this).attr('data-url');
             let btn = $(this);
             
             $.ajax({
                     type: 'POST',
                     url: cp_events.ajax_url,
-                    data: { 'action': 'cool_plugins_activate_' + pluginTag, 'ect_activate_pluginbase': pluginFile, 'wp_nonce': nonce, 'nonce_name': nonceName, 'ect_activate_slug': pluginSlug },
+                    data: { 
+                        'action': 'cool_plugins_activate_' + pluginTag, 
+                        'ect_activate_pluginbase': pluginFile, 
+                        'wp_nonce': nonce, 
+                        'nonce_name': nonceName, 
+                        'ect_activate_slug': pluginSlug 
+                    },
                     beforeSend: function(res) {
                         btn.text('Activating...');
                     }
@@ -48,12 +57,11 @@ jQuery(document).ready(function($) {
                     if (undefined !== res.success && false === res.success) {
                         return;
                     }
-                 
                  window.location.reload();
                 })
         }
 
-    })
+    });
 
     $('.plugins-list').each(function(el) {
         let $this = $(this);
@@ -63,6 +71,6 @@ jQuery(document).ready(function($) {
             $this.append('<div class="empty-message">' + message + '</div>');
         }
 
-    })
+    });
 
-})
+});

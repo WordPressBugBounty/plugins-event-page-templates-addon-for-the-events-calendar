@@ -1,6 +1,7 @@
 jQuery(document).ready(function ($) {
 	$('#epta-template').on('click', function (event) {
-        $('#epta-template option:not(:first)').attr('disabled', 'disabled');
+        event.preventDefault(); // Prevent default action
+        $('#epta-template option:not(:first)').prop('disabled', true); // Use .prop() instead of .attr()
 	});
 });
 

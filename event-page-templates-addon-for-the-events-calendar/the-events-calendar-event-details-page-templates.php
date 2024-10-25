@@ -3,7 +3,7 @@
 Plugin Name: Event Single Page Builder For The Event Calendar
 Plugin URI: https://eventscalendaraddons.com/plugin/event-single-page-builder-pro/?utm_source=epta_plugin&utm_medium=inside&utm_campaign=get_pro&utm_content=plugin_uri
 Description: <a href="http://wordpress.org/plugins/the-events-calendar/"><b>📅 The Events Calendar Addon</b></a> - Design The Event Calendar plugin event single page template with custom colors and fonts.
-Version: 1.7.3
+Version: 1.7.4
 Author:  Cool Plugins
 Author URI: https://coolplugins.net/about-us/?utm_source=epta_plugin&utm_medium=inside&utm_campaign=coolplugins&utm_content=author_uri
 License:GPL2
@@ -16,7 +16,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit();
 }
 if ( ! defined( 'EPTA_PLUGIN_CURRENT_VERSION' ) ) {
-	define( 'EPTA_PLUGIN_CURRENT_VERSION', '1.7.3' );
+	define( 'EPTA_PLUGIN_CURRENT_VERSION', '1.7.4' );
 }
 define( 'EPTA_PLUGIN_FILE', __FILE__ );
 define( 'EPTA_PLUGIN_URL', plugin_dir_url( EPTA_PLUGIN_FILE ) );
@@ -37,6 +37,7 @@ if ( ! class_exists( 'EventPageTemplatesAddon' ) ) {
 			 add_filter( 'plugin_action_links_' . plugin_basename( __FILE__ ), array( $this, 'epta_add_action_links' ) );
 			 add_action( 'plugin_row_meta', array( $this, 'eptaaddMetaLinks' ), 10, 2 );
 			 add_action( 'elementor/widgets/register', array( $this, 'epta_on_widgets_registered' ) );
+			 add_action('admin_head', array( $this, 'epta_hide_preview_button' ) );
 			if ( is_admin() ) {
 				require_once __DIR__ . '/admin/events-addon-page/events-addon-page.php';
 				cool_plugins_events_addon_settings_page( 'the-events-calendar', 'cool-plugins-events-addon', '📅 Events Addons For The Events Calendar' );
@@ -209,8 +210,8 @@ if ( ! class_exists( 'EventPageTemplatesAddon' ) ) {
 		public function eptaaddMetaLinks( $links, $file ) {
 			if ( strpos( $file, basename( __FILE__ ) ) ) {
 				$eptaanchor   = esc_html__( 'Video Tutorials', 'epta' );
-				$eptavideourl = 'https://eventscalendaraddons.com/docs/events-single-page-builder-pro/video-tutorials/?utm_source=espbp_plugin&utm_mediu[%E2%80%A6]ide&utm_campaign=video_tutorial&utm_content=plugins_list';
-				$links[]      = '<a href="' . esc_url( $eptavideourl ) . '" target="_blank">' . $eptaanchor . '</a>';
+				$eptavideourl = esc_url( 'https://youtu.be/50FBrcqoB-M?si=6pMuWooiNCv0aLkC' );
+				$links[]      = '<a href="' . $eptavideourl . '" target="_blank">' . $eptaanchor . '</a>';
 			}
 
 			return $links;
@@ -241,19 +242,19 @@ if ( ! class_exists( 'EventPageTemplatesAddon' ) ) {
 					'review'          => true,     // required and set to be true for review box
 					'review_url'      => esc_url( 'https://wordpress.org/support/plugin/events-widgets-for-elementor-and-the-events-calendar/reviews/?filter=5#new-post' ), // required
 					'plugin_name'     => 'Event Single Page Builder For The Event Calendar',    // required
-					'logo'            => EPTA_PLUGIN_URL . 'assets/images/icon-event-single-page-builder.svg',    // optional: it will display logo
+					'logo'            => esc_url( EPTA_PLUGIN_URL . 'assets/images/icon-event-single-page-builder.svg' ),    // optional: it will display logo
 					'review_interval' => 0,                    // optional: this will display review notice
-													   // after 5 days from the installation_time
-													   // default is 3
+														   // after 5 days from the installation_time
+														   // default is 3
 				)
 			);
 		}
 		// custom links for add widgets in all plugins section
 		public function epta_add_action_links( $links ) {
-			  $epta_settings         = admin_url() . 'edit.php?post_type=epta';
-			   $plugin_visit_website = 'https://eventscalendaraddons.com/plugin/event-single-page-builder-pro/?utm_source=epta_plugin&utm_medium=inside&utm_campaign=get_pro&utm_content=plugins_list';
-			   $links[]              = '<a  style="font-weight:bold" href="' . esc_url( $epta_settings ) . '" target="_self">' . __( 'Template', 'epta' ) . '</a>';
-			   $links[]              = '<a  style="font-weight:bold" href="' . esc_url( $plugin_visit_website ) . '" target="_blank">' . __( 'Get Pro', 'epta' ) . '</a>';
+			  $epta_settings         = esc_url( admin_url( 'edit.php?post_type=epta' ) );
+			   $plugin_visit_website = esc_url( 'https://eventscalendaraddons.com/plugin/event-single-page-builder-pro/?utm_source=epta_plugin&utm_medium=inside&utm_campaign=get_pro&utm_content=plugins_list' );
+			   $links[]              = '<a  style="font-weight:bold" href="' . $epta_settings . '" target="_self">' . __( 'Template', 'epta' ) . '</a>';
+			   $links[]              = '<a  style="font-weight:bold" href="' . $plugin_visit_website . '" target="_blank">' . __( 'Get Pro', 'epta' ) . '</a>';
 			   return $links;
 
 		}
@@ -333,8 +334,8 @@ if ( ! class_exists( 'EventPageTemplatesAddon' ) ) {
 		// notice for installation TEC parent plugin installation
 		public function epta_Install_ECT_Notice() {
 			if ( current_user_can( 'activate_plugins' ) ) {
-				$url         = 'plugin-install.php?tab=plugin-information&plugin=the-events-calendar&TB_iframe=true';
-				$title       = __( 'The Events Calendar', 'tribe-events-ical-importer' );
+				$url         = esc_url( 'plugin-install.php?tab=plugin-information&plugin=the-events-calendar&TB_iframe=true' );
+				$title       = esc_html__( 'The Events Calendar', 'tribe-events-ical-importer' );
 				$plugin_info = get_plugin_data( __FILE__, true, true );
 				printf(
 					'<div class="error CTEC_Msz"><p>' .
@@ -342,12 +343,12 @@ if ( ! class_exists( 'EventPageTemplatesAddon' ) ) {
 					esc_html( __( 'In order to use our plugin, Please first install the latest version of', 'tecc1' ) ),
 					sprintf(
 						'<a href="%s" class="thickbox" title="%s">%s</a>',
-						esc_url( $url ),
-						esc_html( $title ),
-						esc_html( $title )
+						$url,
+					$title,
+					$title
 					) . '</p></div>'
 				);
-				deactivate_plugins( __FILE__ );
+				deactivate_plugins( plugin_basename( __FILE__ ) );
 			}
 		}
 		/*
@@ -499,6 +500,18 @@ if ( ! class_exists( 'EventPageTemplatesAddon' ) ) {
 		}
 
 		/**
+		 * Remove preview changes button
+		 */
+		function epta_hide_preview_button()
+		{
+			$epta_get_post_type = $this->epta_get_post_type_page();
+				if ( $epta_get_post_type == 'epta' ) {
+					echo '<style>#preview-action,.updated a{display:none;}</style>';
+				}
+		}
+
+
+		/**
 		 * Get Pro button on templates page
 		 */
 		function add_pro_button( $which ) {
@@ -509,7 +522,7 @@ if ( ! class_exists( 'EventPageTemplatesAddon' ) ) {
 				}
 				?>
 				<a class="like_it_btn button button-primary" target="_blank"
-				href="https://eventscalendaraddons.com/plugin/event-single-page-builder-pro/?utm_source=epta_plugin&utm_medium=inside&utm_campaign=get_pro&utm_content=top_button">
+				href="<?php echo esc_url( 'https://eventscalendaraddons.com/plugin/event-single-page-builder-pro/?utm_source=epta_plugin&utm_medium=inside&utm_campaign=get_pro&utm_content=top_button' ); ?>">
 					Get Pro ⇗</a>
 				<?php
 			}
@@ -519,7 +532,7 @@ if ( ! class_exists( 'EventPageTemplatesAddon' ) ) {
 		 */
 		public function epta_tc_css() {
 			wp_enqueue_style( 'tecset-sg-icon', plugins_url( '/assets/css/epta-admin.css', __FILE__ ) );
-			wp_enqueue_script( 'tecset-select-temp', plugins_url( '/assets/js/epta-template-preview.js', __FILE__ ) );
+			wp_enqueue_script( 'tecset-select-temp', plugins_url( '/assets/js/epta-template-preview.js', __FILE__ ), array(), false, true );
 		}
 		/**
 		 * register assets
@@ -540,7 +553,7 @@ if ( ! class_exists( 'EventPageTemplatesAddon' ) ) {
 			// global $post;
 			$tecset_pageid     = get_option( 'tec_tribe_single_event_page' );
 			$tecset_custom_css = get_post_meta( $tecset_pageid, 'epta-custom-css', true );
-			return $tecset_custom_css;
+			return wp_strip_all_tags( $tecset_custom_css );
 		}
 
 	}//end class

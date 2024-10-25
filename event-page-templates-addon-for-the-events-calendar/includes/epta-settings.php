@@ -1,6 +1,6 @@
 <?php
 /**
- * This file is used to  create settings in admin side
+ * This file is used to create settings in admin side
  *
  * @package the-events-calendar-single-event-templates-addon-free/includes
  */
@@ -9,59 +9,57 @@ namespace eptssettings;
 if ( ! function_exists( 'tribe_get_events' ) ) {
 	return;
 }
+
 function epta_get_all_temp() {
 	$args     = array(
 		'post_status' => 'publish,private',
 		'post_type'   => 'epta',
 	);
 	$my_pages = get_pages( $args );
-	// var_dump($my_pages);
 	$get_temp_arr = array();
 	foreach ( $my_pages as $my_page ) {
-		$temp_key                  = $my_page->post_title;
-		$get_temp_arr[ $temp_key ] = $my_page->post_title;
-
+		$temp_key                  = sanitize_text_field( $my_page->post_title ); // Sanitize output
+		$get_temp_arr[ $temp_key ] = esc_html( $my_page->post_title ); // Escape output
 	}
-	$temp_title = $get_temp_arr;
-	return $temp_title;
-	// var_dump($title);
+	return $get_temp_arr;
 }
+
 $epta_get_all_temp = epta_get_all_temp();
 
 /**
- * Get all categoery
+ * Get all categories
  */
 function epta_get_all_categoery() {
 	$ect_cat_name = '';
 	$ect_get_cat  = get_terms( 'tribe_events_cat' );
-	if ( $ect_get_cat != '' ) :
+	if ( ! empty( $ect_get_cat ) ) :
 		$ect_tslugs_arr = array();
 		foreach ( $ect_get_cat as $ect_slug_name ) {
-			$tecset_cat_slug                    = $ect_slug_name->slug;
-			$ect_tslugs_arr[ $tecset_cat_slug ] = $ect_slug_name->slug;
-
+			$tecset_cat_slug                    = sanitize_title( $ect_slug_name->slug ); // Sanitize slug
+			$ect_tslugs_arr[ $tecset_cat_slug ] = esc_html( $ect_slug_name->slug ); // Escape output
 		}
 		$ect_cat_name = $ect_tslugs_arr;
-	   endif;
+	endif;
 	return $ect_cat_name;
 }
+
 $tecset_cate = epta_get_all_categoery();
+
 /**
  * Get tag list
  */
 function epta_get_tag() {
 	$tecset_tag_name = '';
 	$tecset_get_tag  = get_terms( 'post_tag' );
-
-	  $tecset_tslugs_arr = array();
+	$tecset_tslugs_arr = array();
 	foreach ( $tecset_get_tag as $tecset_tag_name ) {
-		$tecset_get_tag                       = $tecset_tag_name->slug;
-		$tecset_tslugs_arr[ $tecset_get_tag ] = $tecset_tag_name->slug;
+		$tecset_get_tag                       = sanitize_title( $tecset_tag_name->slug ); // Sanitize slug
+		$tecset_tslugs_arr[ $tecset_get_tag ] = esc_html( $tecset_tag_name->slug ); // Escape output
 	}
-		$tecset_tag_name = $tecset_tslugs_arr;
-		return $tecset_tag_name;
+	return $tecset_tslugs_arr;
 }
-$tecset_admin_url   = admin_url( 'edit.php?page=tec-events-settings&tab=display&post_type=tribe_events#tec-settings-events-settings-display-date' );
+
+$tecset_admin_url   = admin_url( 'edit.php?page=tec-events-settings&tab=display-date-time-tab&post_type=tribe_events' );
 $tecset_date_format = array(
 	'default' => 'default',
 	'DM'      => 'dM (01 Jan)',
@@ -75,29 +73,28 @@ $tecset_date_format = array(
 	'dFY'     => 'dFY(01 January 2019)',
 	'dMY'     => 'dMY(01 Jan 2019)',
 );
- $tecset_tag        = epta_get_tag();
+
+$tecset_tag = epta_get_tag();
+
 /**
  * Get all events
  */
 function epta_get_all_event() {
 	$tecset_events = '';
-
 	$events = tribe_get_events(
 		array(
 			'posts_per_page' => -1,
-
 		)
 	);
-
 	$tecset_tevents_arr = array();
 	foreach ( $events as $event ) {
-		$tecset_all_event                        = $event->post_name;
-		$tecset_tevents_arr[ $tecset_all_event ] = $event->post_title;
+		$tecset_all_event                        = sanitize_title( $event->post_name ); // Sanitize slug
+		$tecset_tevents_arr[ $tecset_all_event ] = esc_html( $event->post_title ); // Escape output
 	}
-	$tecset_events = $tecset_tevents_arr;
-	return $tecset_events;
+	return $tecset_tevents_arr;
 }
- $tecset_get_event_list = epta_get_all_event();
+
+$tecset_get_event_list = epta_get_all_event();
 
 /**
  * Initiate Main Meta box
@@ -125,206 +122,205 @@ $cmb = new_cmb2_box(
 		  ),
 
 		  ) ); */
-	$cmb->add_field(
-		array(
-			'name'    => 'Display On',
-			'desc'    => 'Select a display condition where you want to apply this template.',
-			'id'      => 'epta-apply-on',
-			'type'    => 'select',
-			'options' => array(
-				'none'           => __( 'None', 'cmb2' ),
-				'all-event'      => __( 'All Events', 'cmb2' ),
-				'specific-event' => __( 'Specific Event', 'cmb2' ),
-				'specific-cate'  => __( 'Specific Category', 'cmb2' ),
-				'specific-tag'   => __( 'Specific Tag', 'cmb2' ),
-			),
-		)
-	);
+$cmb->add_field(
+	array(
+		'name'    => 'Display On',
+		'desc'    => 'Select a display condition where you want to apply this template.',
+		'id'      => 'epta-apply-on',
+		'type'    => 'select',
+		'options' => array(
+			'none'           => __( 'None', 'cmb2' ),
+			'all-event'      => __( 'All Events', 'cmb2' ),
+			'specific-event' => __( 'Specific Event', 'cmb2' ),
+			'specific-cate'  => __( 'Specific Category', 'cmb2' ),
+			'specific-tag'   => __( 'Specific Tag', 'cmb2' ),
+		),
+	)
+);
 
-		$cmb->add_field(
-			array(
-				'name'       => 'Select Event',
-				'id'         => 'epta-specific-event',
-				'type'       => 'pw_multiselect',
-				'options'    => $tecset_get_event_list,
-				'attributes' => array(
-					'required'               => true,
-					'data-conditional-id'    => 'epta-apply-on',
-					'data-conditional-value' => 'specific-event',
+$cmb->add_field(
+	array(
+		'name'       => 'Select Event',
+		'id'         => 'epta-specific-event',
+		'type'       => 'pw_multiselect',
+		'options'    => $tecset_get_event_list,
+		'attributes' => array(
+			'required'               => true,
+			'data-conditional-id'    => 'epta-apply-on',
+			'data-conditional-value' => 'specific-event',
+		),
+	)
+);
+
+$cmb->add_field(
+	array(
+		'name'       => 'Select Category',
+		'id'         => 'epta-categoery',
+		'type'       => 'pw_multiselect',
+		'options'    => $tecset_cate,
+		'attributes' => array(
+			'required'               => true,
+			'data-conditional-id'    => 'epta-apply-on',
+			'data-conditional-value' => 'specific-cate',
+		),
+	)
+);
+
+$cmb->add_field(
+	array(
+		'name'       => 'Select Tag</span>',
+		'id'         => 'epta-tag',
+		'type'       => 'pw_multiselect',
+		'options'    => $tecset_tag,
+		'attributes' => array(
+			'required'               => true,
+			'data-conditional-id'    => 'epta-apply-on',
+			'data-conditional-value' => 'specific-tag',
+		),
+	)
+);
+
+$cmb->add_field(
+	array(
+		'name'    => 'Select Template',
+		'desc'    => '<a target="_blank"
+		href="https://eventscalendaraddons.com/plugin/event-single-page-builder-pro/?utm_source=epta_plugin&utm_medium=inside&utm_campaign=get_pro&utm_content=settings">
+		Get Pro ⇗</a> for more templates and also edit a template with Elementor.',
+		'id'      => 'epta-template',
+		'type'    => 'select',
+		'options' => array(
+			'template-1' =>__('Template 1','cmb2'),
+			'template-2' =>__('Template 2 (Pro Only)','cmb2'),
+			'template-3' =>__('Template 3 (Pro Only)','cmb2'),
+			'template-4' =>__('Edit with Elementor (Pro Only)','cmb2'),
+		  ),
+	)
+);
+
+$cmb->add_field(
+	array(
+		'name'    => 'Date Format',
+		'desc'    => 'Select Date Format(Please check TEC settings for Default date format - <a href = "' . $tecset_admin_url . '">Click here </a>).',
+		'id'      => 'tecset-date-format',
+		'options' => $tecset_date_format,
+		'type'    => 'select',
+	)
+);
+
+$cmb->add_field(
+	array(
+		'name' => 'All Events Page Slug',
+		'desc' => 'Enter your all events page slug, like - /events/',
+		'id'   => 'epta-url',
+		'type' => 'text',
+	)
+);
+
+$cmb->add_field(
+	array(
+		'name' => 'Primary Color',
+		'desc' => 'For heading background color.',
+		'id'   => $prefix . 'primary-color',
+		'type' => 'colorpicker',
+	)
+);
+
+$cmb->add_field(
+	array(
+		'name' => 'Primary Alternate Color ',
+		'desc' => 'For text where primary color will background color.',
+		'id'   => $prefix . 'alternate-primary-color',
+		'type' => 'colorpicker',
+	)
+);
+
+$cmb->add_field(
+	array(
+		'name' => 'Secondary Color',
+		'desc' => 'For sidebar background color.',
+		'id'   => $prefix . 'secondary-alternate-color',
+		'type' => 'colorpicker',
+	)
+);
+
+$cmb->add_field(
+	array(
+		'name' => 'Custom CSS',
+		'desc' => 'Enter Custom CSS.',
+		'id'   => 'epta-custom-css',
+		'type' => 'textarea_code',
+		'attributes' => array(
+			'data-codeeditor' => json_encode( array(
+				'codemirror' => array(
+					'mode' => 'css',
 				),
-			)
-		);
-		$cmb->add_field(
-			array(
-				'name'       => 'Select Category',
-				'id'         => 'epta-categoery',
-				'type'       => 'pw_multiselect',
-				'options'    => $tecset_cate,
-				'attributes' => array(
-					'required'               => true,
-					'data-conditional-id'    => 'epta-apply-on',
-					'data-conditional-value' => 'specific-cate',
-				),
-			)
-		);
-		$cmb->add_field(
-			array(
-				'name'       => 'Select Tag</span>',
-				'id'         => 'epta-tag',
-				'type'       => 'pw_multiselect',
-				'options'    => $tecset_tag,
-				'attributes' => array(
-					'required'               => true,
-					'data-conditional-id'    => 'epta-apply-on',
-					'data-conditional-value' => 'specific-tag',
-				),
-			)
-		);
+			) ),
+		),
+	)
+);
 
-		$cmb->add_field(
-			array(
-				'name'    => 'Select Template',
-				'desc'    => '<a target="_blank"
-				href="https://eventscalendaraddons.com/plugin/event-single-page-builder-pro/?utm_source=epta_plugin&utm_medium=inside&utm_campaign=get_pro&utm_content=settings">
-				Get Pro ⇗</a> for more templates and also edit a template with Elementor.',
-				'id'      => 'epta-template',
-				'type'    => 'select',
-				'options' => array(
-					'template-1' =>__('Template 1','cmb2'),
-					'template-2' =>__('Template 2 (Pro Only)','cmb2'),
-					'template-3' =>__('Template 3 (Pro Only)','cmb2'),
-					'template-4' =>__('Edit with Elementor (Pro Only)','cmb2'),
-				  ),
-			)
-		);
-		$cmb->add_field(
-			array(
-				'name'    => 'Date Format',
-				'desc'    => 'Select Date Format(Please check TEC settings for Default date format - <a href = "' . $tecset_admin_url . '">Click here </a>).',
-				'id'      => 'tecset-date-format',
-				'options' => $tecset_date_format,
-				'type'    => 'select',
-			)
-		);
+/**
+ * Initiate Main Meta box
+ */
+$cmbforPro = new_cmb2_box(
+	array(
+		'id'           => 'epta-get-pro',
+		'title'        => __( 'Get Pro Version', 'cmb2' ),
+		'object_types' => array( 'epta' ), // Post type
+		'context'      => 'side',
+		'priority'     => 'low',
+		'show_names'   => true, // Show field names on the left
+	)
+);
 
-		$cmb->add_field(
-			array(
-				'name' => 'All Events Page Slug',
-				'desc' => 'Enter your all events page slug, like - /events/',
-				'id'   => 'epta-url',
-				'type' => 'text',
-			)
-		);
+$cmbforPro->add_field(
+	array(
+		'name' => '',
+		'desc' => '
+<b>Event Single Page Builder Pro</b><br/>
+<hr>
+✅ More pre-desgined templates.<br/>
+✅ Build Single Page templates in Elementor.
+<hr>
+<a class="like_it_btn button button-primary" target="_blank"
+href="https://eventscalendaraddons.com/demos/event-single-page-builder-pro/?utm_source=epta_plugin&utm_medium=inside&utm_campaign=demo&utm_content=sidebar">
+View Demo</a>
+<a class="like_it_btn button button-secondary" target="_blank"
+href="https://eventscalendaraddons.com/plugin/event-single-page-builder-pro/?utm_source=epta_plugin&utm_medium=inside&utm_campaign=get_pro&utm_content=sidebar">
+Get Pro ⇗</a>
+',
+		'type' => 'title',
+		'id'   => 'wiki_test_title',
+	)
+);
 
-		$cmb->add_field(
-			array(
-				'name' => 'Primary Color',
-				'desc' => 'For heading background color.',
-				'id'   => $prefix . 'primary-color',
-				'type' => 'colorpicker',
+/**
+ * Initiate Main Meta box
+ */
+$cmbforReview = new_cmb2_box(
+	array(
+		'id'           => 'epta-share-review',
+		'title'        => __( 'Is it Helpful for you?', 'cmb2' ),
+		'object_types' => array( 'epta' ), // Post type
+		'context'      => 'side',
+		'priority'     => 'low',
+		'show_names'   => true, // Show field names on the left
+	)
+);
 
-			)
-		);
-			$cmb->add_field(
-				array(
-					'name' => 'Primary Alternate Color ',
-					'desc' => 'For text where primary color will background color.',
-					'id'   => $prefix . 'alternate-primary-color',
-					'type' => 'colorpicker',
+$cmbforReview->add_field(
+	array(
+		'name' => '',
+		'desc' => '
+<a href="https://wordpress.org/support/plugin/event-page-templates-addon-for-the-events-calendar/reviews/#new-post" target="_blank">⭐⭐⭐⭐⭐</a><br/>
+If you like this plugin! Please give us a quick rating, it works as a boost for us to keep working on it.<br/><br/>
+A plugin by Coolplugins.net team.<br/><br/>
 
-				)
-			);
-				$cmb->add_field(
-					array(
-						'name' => 'Secondary Color',
-						'desc' => 'For sidebar background color.',
-						'id'   => $prefix . 'secondary-alternate-color',
-						'type' => 'colorpicker',
-
-					)
-				);
-				$cmb->add_field( 
-					array(
-						'name' => 'Custom CSS',
-						'desc' => 'Enter Custom CSS.',
-						'id'   => 'epta-custom-css',
-						'type' => 'textarea_code',
-						'attributes' => array(
-							'data-codeeditor' => json_encode( array(
-								'codemirror' => array(
-									'mode' => 'css',
-								),
-							) ),
-						),
-				) );
-
-
-
-				
-				/**
-				 * Initiate Main Meta box
-				 */
-				$cmbforPro = new_cmb2_box(
-					array(
-						'id'           => 'epta-get-pro',
-						'title'        => __( 'Get Pro Version', 'cmb2' ),
-						'object_types' => array( 'epta' ), // Post type
-						'context'      => 'side',
-						'priority'     => 'low',
-						'show_names'   => true, // Show field names on the left
-					)
-				);
-
-				$cmbforPro->add_field(
-					array(
-						'name' => '',
-						'desc' => '
-    <b>Event Single Page Builder Pro</b><br/>
-    <hr>
-    ✅ More pre-desgined templates.<br/>
-	✅ Build Single Page templates in Elementor.
-   
-	<hr>
-    <a class="like_it_btn button button-primary" target="_blank"
-    href="https://eventscalendaraddons.com/demos/event-single-page-builder-pro/?utm_source=epta_plugin&utm_medium=inside&utm_campaign=demo&utm_content=sidebar">
-    View Demo</a>
-	<a class="like_it_btn button button-secondary" target="_blank"
-    href="https://eventscalendaraddons.com/plugin/event-single-page-builder-pro/?utm_source=epta_plugin&utm_medium=inside&utm_campaign=get_pro&utm_content=sidebar">
-    Get Pro ⇗</a>
-    ',
-						'type' => 'title',
-						'id'   => 'wiki_test_title',
-					)
-				);
-
-				/**
-				 * Initiate Main Meta box
-				 */
-				$cmbforReview = new_cmb2_box(
-					array(
-						'id'           => 'epta-share-review',
-						'title'        => __( 'Is it Helpful for you?', 'cmb2' ),
-						'object_types' => array( 'epta' ), // Post type
-						'context'      => 'side',
-						'priority'     => 'low',
-						'show_names'   => true, // Show field names on the left
-					)
-				);
-				$cmbforReview->add_field(
-					array(
-						'name' => '',
-						'desc' => '
-						<a href="https://wordpress.org/support/plugin/event-page-templates-addon-for-the-events-calendar/reviews/#new-post" target="_blank">⭐⭐⭐⭐⭐</a><br/>
-    If you like this plugin! Please give us a quick rating, it works as a boost for us to keep working on it.<br/><br/>
-	A plugin by Coolplugins.net team.<br/><br/>
-
-    <a href="https://wordpress.org/support/plugin/event-page-templates-addon-for-the-events-calendar/reviews/#new-post" class="like_it_btn button button-primary" target="_new" title="Submit Review">Submit Review</a>
-    
-   
-    ',
-						'type' => 'title',
-						'id'   => 'wiki_test_title',
-					)
-				);
+<a href="https://wordpress.org/support/plugin/event-page-templates-addon-for-the-events-calendar/reviews/#new-post" class="like_it_btn button button-primary" target="_new" title="Submit Review">Submit Review</a>
+',
+		'type' => 'title',
+		'id'   => 'wiki_test_title',
+	)
+);
 
 
