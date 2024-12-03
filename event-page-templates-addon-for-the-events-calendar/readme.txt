@@ -3,9 +3,9 @@ Contributors:narinder-singh,satindersingh,coolplugins
 Donate link:https://paypal.me/CoolPlugins/10USD/
 Tags:the events calendar, events, Single Event Page,calendar, events calendar
 Requires at least:5.0
-Tested up to:6.6.2
+Tested up to:6.7.1
 Requires PHP:7.2
-Stable tag:1.7.4
+Stable tag:1.7.5
 License:GPLv2 or later
 License URI:http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -125,52 +125,57 @@ You can report security bugs through the Patchstack Vulnerability Disclosure Pro
 
 == Changelog ==
 
-Version 1.7.4 || 25 October 2024
+= Version 1.7.5 | 03 Dec 2024 =
  
- - Fixed: Fix security issues.
- - Tested upto WordPress 6.6.2
- - Tested upto The Event Calendar 6.7.1
+* Fixed: Load textdomain issue.
+* Fixed: Issue with color not getting applied.
+* Tested upto WordPress 6.7.1
+* Tested upto The Event Calendar 6.8.2.1
 
-Version 1.7.3 || 23 July 2024
+= Version 1.7.4 | 25 Oct 2024 =
  
- - Tested upto WordPress V6.6 and The Events Calendar V6.6.0
+* Fixed: Fix security issues.
+* Tested upto WordPress 6.6.2
+* Tested upto The Event Calendar 6.7.1
 
-Version 1.7.2 || 16 May 2024
+= Version 1.7.3 | 23 Jul 2024 =
  
- - Fixed: Template Override issue when event is edited in Elementor with TEC 6.4.0.1
- - Tested upto WordPress 6.5.3
- - Tested upto The Event Calendar 6.5.0
+* Tested upto WordPress V6.6 and The Events Calendar V6.6.0
 
-Version 1.7.1 || 17 April 2024
+= Version 1.7.2 | 16 May 2024 =
  
- - Fixed: Related Events showing again when TEC Pro is activated.
- - Tested upto WordPress 6.5.2
- - Tested upto The Event Calendar 6.3.6
+* Fixed: Template Override issue when event is edited in Elementor with TEC 6.4.0.1
+* Tested upto: WordPress 6.5.3
+* Tested upto: The Event Calendar 6.5.0
 
-Version 1.7.0 || 18 January 2024
- 
- - Fixed: Minor issues.
- - Tested upto WordPress 6.4.2
- - Tested upto The Event Calendar 6.2.9
+= Version 1.7.1 | 17 Apr 2024 =
+* Fixed: Related Events showing again when TEC Pro is activated.
+* Tested upto: WordPress 6.5.2
+* Tested upto: The Event Calendar 6.3.6
 
-= Version 1.6.9 | 01 December 2023 =
-* Tested upto Elementor 3.17.3
-* Tested upto WordPress 6.4.1
-* Tested upto The Event Calendar 6.2.8.1
+= Version 1.7.0 | 18 Jan 2024 =
+* Fixed: Minor issues.
+* Tested upto: WordPress 6.4.2
+* Tested upto: The Event Calendar 6.2.9
 
-= Version 1.6.8 | 22 September 2023 =
+= Version 1.6.9 | 01 Dec 2023 =
+* Tested upto: Elementor 3.17.3
+* Tested upto: WordPress 6.4.1
+* Tested upto: The Event Calendar 6.2.8.1
+
+= Version 1.6.8 | 22 Sep 2023 =
 * Fixed: Undefined array key 1 issue at admin side
-* Tested upto Elementor 3.16.4
-* Tested upto WordPress 6.3.1
-* Tested upto The Event Calendar 6.2.2
+* Tested upto: Elementor 3.16.4
+* Tested upto: WordPress 6.3.1
+* Tested upto: The Event Calendar 6.2.2
 
-= Version 1.6.7 | 07 August 2023 =
+= Version 1.6.7 | 07 Aug 2023 =
 * Minor Update.
-* Tested upto Elementor 3.15.1
-* Tested upto WordPress 6.3
-* Tested upto The Event Calendar 6.1.3
+* Tested upto: Elementor 3.15.1
+* Tested upto: WordPress 6.3
+* Tested upto: The Event Calendar 6.1.3
 
-= Version 1.6.6 | Mar 29, 2023 =
+= Version 1.6.6 | 29 Mar 2023 =
 * Improved: Minor textual changes.
 * Improved: Updated links.
 * Improved: Dashboard Code.

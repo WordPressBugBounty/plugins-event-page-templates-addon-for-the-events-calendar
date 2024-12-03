@@ -25,8 +25,9 @@ $post_content      = \eptafunctions\epta_get_content( $event_id );
 $tribe_all_events  = esc_url( tribe_get_events_link() );
 $tecset_all_events = isset( $tecset_url ) && ! empty( $tecset_url ) ? esc_url( $tecset_url ) : $tribe_all_events;
 
+wp_enqueue_style('epta-frontend-css', EPTA_PLUGIN_URL . 'assets/css/epta-style.css', null, null, 'all');
 wp_add_inline_style( 'epta-frontend-css', wp_strip_all_tags( $tecset_custom_styles ) );
-wp_enqueue_style( 'epta-frontend-css' );
+// wp_enqueue_style( 'epta-frontend-css' );
 wp_enqueue_style( 'epta-bootstrap-css' );
 wp_enqueue_script( 'epta-events-countdown-widget' );
 ?>
