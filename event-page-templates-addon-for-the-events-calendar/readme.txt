@@ -3,9 +3,9 @@ Contributors:narinder-singh,satindersingh,coolplugins
 Donate link:https://paypal.me/CoolPlugins/10USD/
 Tags:the events calendar, events, Single Event Page,calendar, events calendar
 Requires at least:5.0
-Tested up to:6.7.1
+Tested up to:6.8.1
 Requires PHP:7.2
-Stable tag:1.7.5
+Stable tag:1.7.6
 License:GPLv2 or later
 License URI:http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -124,6 +124,10 @@ You can report security bugs through the Patchstack Vulnerability Disclosure Pro
 3. Compare Layout - The Events Calendar (Default) vs This Addon
 
 == Changelog ==
+
+= Version 1.7.6 | 06 May 2025 =
+
+* Tested upto WordPress 6.8.1
 
 = Version 1.7.5 | 03 Dec 2024 =
  
