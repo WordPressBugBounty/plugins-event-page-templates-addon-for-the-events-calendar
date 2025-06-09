@@ -3,7 +3,7 @@
 Plugin Name: Event Single Page Builder For The Event Calendar
 Plugin URI: https://eventscalendaraddons.com/plugin/event-single-page-builder-pro/?utm_source=epta_plugin&utm_medium=inside&utm_campaign=get_pro&utm_content=plugin_uri
 Description: <a href="http://wordpress.org/plugins/the-events-calendar/"><b>📅 The Events Calendar Addon</b></a> - Design The Event Calendar plugin event single page template with custom colors and fonts.
-Version: 1.7.6
+Version: 1.7.7
 Author:  Cool Plugins
 Author URI: https://coolplugins.net/about-us/?utm_source=epta_plugin&utm_medium=inside&utm_campaign=coolplugins&utm_content=author_uri
 License:GPL2
@@ -16,11 +16,12 @@ if (!defined('ABSPATH')) {
     exit();
 }
 if (!defined('EPTA_PLUGIN_CURRENT_VERSION')) {
-    define('EPTA_PLUGIN_CURRENT_VERSION', '1.7.6');
+    define('EPTA_PLUGIN_CURRENT_VERSION', '1.7.7');
 }
 define('EPTA_PLUGIN_FILE', __FILE__);
 define('EPTA_PLUGIN_URL', plugin_dir_url(EPTA_PLUGIN_FILE));
 define('EPTA_PLUGIN_DIR', plugin_dir_path(__FILE__));
+define('EPTA_FEEDBACK_API',"https://feedback.coolplugins.net/");
 
 /**
  * Main Class
@@ -35,6 +36,7 @@ if (!class_exists('EventPageTemplatesAddon')) {
         public function __construct()
         {
             register_activation_hook(__FILE__, array($this, 'epta_single_page_builder_activate'));
+            register_deactivation_hook(__FILE__, array($this, 'epta_single_page_builder_deactivate'));
             add_filter('plugin_action_links_' . plugin_basename(__FILE__), array($this, 'epta_add_action_links'));
             add_action('plugin_row_meta', array($this, 'eptaaddMetaLinks'), 10, 2);
             add_action('elementor/widgets/register', array($this, 'epta_on_widgets_registered'));
@@ -45,8 +47,7 @@ if (!class_exists('EventPageTemplatesAddon')) {
                 add_action('admin_menu', array($this, 'epta_reorder_cool_plugins_submenu'), 99);
             }
             add_action('plugins_loaded', array($this, 'epta_init'));
-            // add_action( 'plugins_loaded', array( $this, 'epta_page_include_files' ) );
-
+          
             $this->epta_page_include_files();
             add_action('init', array($this, 'epta_add_text_domain'));
             add_action('init', array($this, 'epta_notice_required_plugin'));
@@ -56,6 +57,24 @@ if (!class_exists('EventPageTemplatesAddon')) {
             add_action('cmb2_admin_init', array($this, 'cmb2_tecsbp_metaboxes'));
             add_action('save_post_epta', array($this, 'save_event_meta_data'), 1, 2);
         }
+
+
+        /**
+         * Initialize cron : MUST USE ON PLUGIN ACTIVATION
+         */
+        public function epta_cron_job_init() {
+            $review_option = get_option("cpfm_opt_in_choice_cool_events");
+
+            if ($review_option === 'yes') {
+                if (!wp_next_scheduled('epta_extra_data_update')) {
+
+                    wp_schedule_event(time(), 'every_30_days', 'epta_extra_data_update');
+
+                }
+            }
+       
+        }
+
 
         /**
          * Function to blacklist Tec widgets
@@ -290,8 +309,7 @@ if (!class_exists('EventPageTemplatesAddon')) {
                 require __DIR__ . '/admin/class-admin-notice.php';
 
                 require_once __DIR__ . '/admin/feedback/admin-feedback-form.php';
-                // require_once __DIR__ . '/includes/epta-feedback-notice.php';
-                // new \eptaFeedbackNotice\eptaFeedbackNotice();
+             
             }
 
         }
@@ -299,6 +317,14 @@ if (!class_exists('EventPageTemplatesAddon')) {
         public function epta_add_text_domain()
         {
             load_plugin_textdomain('epta', false, basename(dirname(__FILE__)) . '/languages/');
+
+             if (!get_option( 'epta_initial_save_version' ) ) {
+                add_option( 'epta_initial_save_version', EPTA_PLUGIN_CURRENT_VERSION );
+            }
+
+            if(!get_option( 'epta-install-date' ) ) {
+                add_option( 'epta-install-date', gmdate('Y-m-d h:i:s') );
+            }
         }
 
         public function save_event_meta_data($post_id, $post)
@@ -407,6 +433,27 @@ if (!class_exists('EventPageTemplatesAddon')) {
         {
             update_option('tecset-installDate', gmdate('Y-m-d h:i:s'));
             update_option('tecset-ratingDiv', 'no');
+            $this->epta_cron_job_init();
+
+            if (!get_option( 'epta_initial_save_version' ) ) {
+                add_option( 'epta_initial_save_version', EPTA_PLUGIN_CURRENT_VERSION );
+            }
+
+            if(!get_option( 'epta-install-date' ) ) {
+                add_option( 'epta-install-date', gmdate('Y-m-d h:i:s') );
+            }
+        }
+
+         /*
+        |--------------------------------------------------------------------------
+        |   on plugin deactivation hook adding page
+        |--------------------------------------------------------------------------
+         */
+        public function epta_single_page_builder_deactivate()
+        {
+            if (wp_next_scheduled('epta_extra_data_update')) {
+                wp_clear_scheduled_hook('epta_extra_data_update');
+            }
         }
 
         // Register Custom Post Type
@@ -502,6 +549,42 @@ if (!class_exists('EventPageTemplatesAddon')) {
             } else {
                 add_action('wp_enqueue_scripts', array($this, 'epta_register_assets'));
             }
+
+            require_once EPTA_PLUGIN_DIR . 'admin/cpfm-feedback/cron/class-cron.php';
+
+            if(!class_exists('CPFM_Feedback_Notice')){
+                require_once EPTA_PLUGIN_DIR . 'admin/cpfm-feedback/cpfm-feedback-notice.php';
+            }
+
+            add_action('cpfm_register_notice', function () {
+            
+                if (!class_exists('CPFM_Feedback_Notice') || !current_user_can('manage_options')) {
+                    return;
+                }
+                $notice = [
+                    'title' => __('Event Single Page Builder For The Event Calendar', 'epta'),
+                    'message' => __('Help us make this plugin more compatible with your site by sharing non-sensitive site data.', 'epta'),
+                    'pages' => ['cool-plugins-events-addon'],
+                    'always_show_on' => ['cool-plugins-events-addon'], // This enables auto-show
+                    'plugin_name'=>'epta',
+                    
+                ];
+
+                \CPFM_Feedback_Notice::cpfm_register_notice('cool_events', $notice);
+
+                    if (!isset($GLOBALS['cool_plugins_feedback'])) {
+                        $GLOBALS['cool_plugins_feedback'] = [];
+                    }
+                
+                    $GLOBALS['cool_plugins_feedback']['cool_events'][] = $notice;
+           
+            });
+            add_action('cpfm_after_opt_in_epta', function($category) {
+
+                if ($category === 'cool_events') {
+                    \EPTA_cronjob::epta_send_data();
+                }
+            });
         }
         /*
         check admin side post type page
