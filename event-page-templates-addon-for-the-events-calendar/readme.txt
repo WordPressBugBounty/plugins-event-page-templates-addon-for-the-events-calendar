@@ -5,7 +5,7 @@ Tags:the events calendar, events, Single Event Page,calendar, events calendar
 Requires at least:5.0
 Tested up to:6.8.1
 Requires PHP:7.2
-Stable tag:1.7.7
+Stable tag:1.7.8
 License:GPLv2 or later
 License URI:http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -124,6 +124,9 @@ You can report security bugs through the Patchstack Vulnerability Disclosure Pro
 3. Compare Layout - The Events Calendar (Default) vs This Addon
 
 == Changelog ==
+
+= Version 1.7.8 | 10 June 2025 =
+* Improvements: Textual Changes.
 
 = Version 1.7.7 | 09 June 2025 =
 * Added: User opt-in option in plugin.

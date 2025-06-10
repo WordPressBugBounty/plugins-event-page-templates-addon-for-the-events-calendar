@@ -3,7 +3,7 @@
 Plugin Name: Event Single Page Builder For The Event Calendar
 Plugin URI: https://eventscalendaraddons.com/plugin/event-single-page-builder-pro/?utm_source=epta_plugin&utm_medium=inside&utm_campaign=get_pro&utm_content=plugin_uri
 Description: <a href="http://wordpress.org/plugins/the-events-calendar/"><b>📅 The Events Calendar Addon</b></a> - Design The Event Calendar plugin event single page template with custom colors and fonts.
-Version: 1.7.7
+Version: 1.7.8
 Author:  Cool Plugins
 Author URI: https://coolplugins.net/about-us/?utm_source=epta_plugin&utm_medium=inside&utm_campaign=coolplugins&utm_content=author_uri
 License:GPL2
@@ -16,7 +16,7 @@ if (!defined('ABSPATH')) {
     exit();
 }
 if (!defined('EPTA_PLUGIN_CURRENT_VERSION')) {
-    define('EPTA_PLUGIN_CURRENT_VERSION', '1.7.7');
+    define('EPTA_PLUGIN_CURRENT_VERSION', '1.7.8');
 }
 define('EPTA_PLUGIN_FILE', __FILE__);
 define('EPTA_PLUGIN_URL', plugin_dir_url(EPTA_PLUGIN_FILE));
@@ -562,7 +562,7 @@ if (!class_exists('EventPageTemplatesAddon')) {
                     return;
                 }
                 $notice = [
-                    'title' => __('Event Single Page Builder For The Event Calendar', 'epta'),
+                    'title' => __('Events Addons By Cool Plugins', 'epta'),
                     'message' => __('Help us make this plugin more compatible with your site by sharing non-sensitive site data.', 'epta'),
                     'pages' => ['cool-plugins-events-addon'],
                     'always_show_on' => ['cool-plugins-events-addon'], // This enables auto-show
