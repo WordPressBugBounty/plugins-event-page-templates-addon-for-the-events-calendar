@@ -224,7 +224,9 @@ class epta_feedback {
 			$response          = wp_remote_post(
 				$feedback_url,
 				array(
-					'timeout' => 30,
+					'timeout' => 15,
+					'redirection' => 3,
+					'sslverify' => true,
 					'body'    => array(
 						'server_info' => serialize($this->cpfm_get_user_info()['server_info']), 
 						'extra_details' => serialize($this->cpfm_get_user_info()['extra_details']),

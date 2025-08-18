@@ -218,6 +218,7 @@
     transition: transform 1s, -webkit-transform 1s;
     object-fit: cover;
     height: 100%;
+    width: 100%;
 }
 
 .epta-related-box:hover .tribe-events-event-image img {

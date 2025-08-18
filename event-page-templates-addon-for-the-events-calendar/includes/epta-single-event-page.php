@@ -25,7 +25,11 @@ if ( ! defined( 'ABSPATH' ) ) {
  */
 	require_once EPTA_PLUGIN_DIR . 'includes/epta-function.php';
 	$select_temp = \eptafunctions\epta_dynamic_class();
-
+	// Whitelist the template selection to prevent unexpected file includes
+	$allowed_templates = array( 'template-1', 'template-2' );
+	if ( ! in_array( $select_temp, $allowed_templates, true ) ) {
+		$select_temp = 'template-1';
+	}
 function epta_tribe_event_page_get_related_posts( $count = 3, $post = false ) {
 	if ( class_exists( 'Tribe__Events__Pro__Main' ) && tribe_get_option( 'hideRelatedEvents', false ) == true ) {
 		return;
@@ -86,9 +90,9 @@ function epta_tribe_event_page_get_related_posts( $count = 3, $post = false ) {
 if ( isset( $tecset_slug ) && ! empty( $tecset_slug ) ) {
 	$tecset_url = esc_url( \eptafunctions\ect_get_url_by_slug( $tecset_slug ) );
 }
-if ( $select_temp == 'template-2' ) {
-		require_once EPTA_PLUGIN_DIR . 'includes/epta-template/epta-template-2.php';
-} else {
+if(in_array($select_temp, $allowed_templates, true)){
+	require_once EPTA_PLUGIN_DIR . 'includes/epta-template/epta-'.$select_temp.'.php';
+}else{
 	require_once EPTA_PLUGIN_DIR . 'includes/epta-template/epta-template-1.php';
 }
 // require_once(EPTA_PLUGIN_DIR .'includes/epta-template/epta-template-2.php');

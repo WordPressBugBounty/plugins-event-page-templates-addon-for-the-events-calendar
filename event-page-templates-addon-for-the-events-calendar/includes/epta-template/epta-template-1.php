@@ -236,7 +236,7 @@ wp_enqueue_script( 'epta-events-countdown-widget' );
 								echo 'no-image';}
 							?>
 							">
-								<h4><a href="<?php echo esc_url( tribe_get_event_link( $post ) ); ?>"><?php echo esc_html( get_the_title( $post->ID ) ); ?></a></h4>
+								<h4><a href="<?php echo esc_url( tribe_get_event_link( $post ) ); ?>"><?php echo wp_kses_post( get_the_title( $post->ID ) ); ?></a></h4>
 								<div class="epta-related-date"><?php echo wp_kses_post( tribe_events_event_schedule_details( $post->ID ) ); ?></div>
 								<div class="epta-light-bg"></div>
 							</div>

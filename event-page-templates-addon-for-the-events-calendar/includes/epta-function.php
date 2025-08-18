@@ -131,7 +131,7 @@ function epta_custom_style() {
 		color:{$tecset_set_alternate_color};
 	}";
 
-	return esc_html( $tecset_p_color );
+	return wp_strip_all_tags( $tecset_p_color );
 }
 /**
  * This file is used to share events.

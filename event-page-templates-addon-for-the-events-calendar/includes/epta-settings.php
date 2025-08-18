@@ -283,10 +283,10 @@ $cmbforPro->add_field(
 ✅ Build Single Page templates in Elementor.
 <hr>
 <a class="like_it_btn button button-primary" target="_blank"
-href="https://eventscalendaraddons.com/demos/event-single-page-builder-pro/?utm_source=epta_plugin&utm_medium=inside&utm_campaign=demo&utm_content=sidebar">
+href="https://eventscalendaraddons.com/demos/event-single-page-builder-pro/?utm_source=epta_plugin&utm_medium=inside&utm_campaign=demo&utm_content=event_page_sidebar">
 View Demo</a>
 <a class="like_it_btn button button-secondary" target="_blank"
-href="https://eventscalendaraddons.com/plugin/event-single-page-builder-pro/?utm_source=epta_plugin&utm_medium=inside&utm_campaign=get_pro&utm_content=sidebar">
+href="https://eventscalendaraddons.com/plugin/event-single-page-builder-pro/?utm_source=epta_plugin&utm_medium=inside&utm_campaign=get_pro&utm_content=event_page_sidebar">
 Get Pro ⇗</a>
 ',
 		'type' => 'title',

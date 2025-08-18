@@ -122,6 +122,8 @@ if (!class_exists('epta_admin_notices')):
     	public function epta_load_script() {    	
             wp_register_style( 'epta-review-css', EPTA_PLUGIN_URL . 'assets/css/epta-admin-notice.css', null, null, 'all' );
             wp_enqueue_style( 'epta-review-css');
+            // Enqueue admin notices JS to handle dismiss actions instead of inline script
+            wp_enqueue_script( 'epta-review-js', EPTA_PLUGIN_URL . 'assets/js/epta-admin-notice.js', array( 'jquery' ), EPTA_PLUGIN_CURRENT_VERSION, true );
 			
         }
 
@@ -152,23 +154,6 @@ if (!class_exists('epta_admin_notices')):
             if( get_option($id . '_remove_notice') ) return;
             
             $classes = 'notice ' . trim( $message['type'] ) . ' is-dismissible ' . trim( $message['class'] );
-            $script = '<script>
-          
-            jQuery(document).ready(function ($) {
-                $(".'.$id.'_admin_notice .notice-dismiss").css("border","2px solid red");
-                
-                $(document).on("click",".'.$id.'_admin_notice button.notice-dismiss", function (event) {
-                    var $this = $(this);
-                    var wrapper=$this.parents(".'.$id.'_admin_notice");
-                    var ajaxURL=wrapper.data("ajax-url");
-                    var id = wrapper.data("plugin-slug");
-                    var wp_nonce = wrapper.data("wp-nonce");
-                    $.post(ajaxURL, { "action":"epta_admin_notice","id":id,"_nonce":wp_nonce }, function( data ) {
-                        wrapper.slideUp("fast");
-                      }, "json");
-                });
-            });
-            </script>';
             $nonce = wp_create_nonce( $id . '_notice_nonce' );
             $img_path= ( isset( $message['logo'] ) && !empty($message['logo'] ) ) ? esc_url($message['logo']) : null;
             if( $img_path != null ){
@@ -177,7 +162,15 @@ if (!class_exists('epta_admin_notices')):
             else{
                 $image_html ='';
             }
-            echo "<div class='" . esc_attr($id) . "_admin_notice $classes epta-simple-notice' data-ajax-url='" . esc_url(admin_url('admin-ajax.php')) . "' data-wp-nonce='" . esc_attr($nonce) . "' data-plugin-slug='" . esc_attr($id) . "'>$image_html<div class='message_container'><p>" . wp_kses_post($message['message']) . "</p></div></div>" . $script;
+            printf( '<div class="%1$s %2$s epta-simple-notice" data-ajax-url="%3$s" data-wp-nonce="%4$s" data-plugin-slug="%5$s">%6$s<div class="message_container"><p>%7$s</p></div></div>', 
+                esc_attr($id . '_admin_notice'), 
+                esc_attr($classes), 
+                esc_url(admin_url('admin-ajax.php')), 
+                esc_attr($nonce), 
+                esc_attr($id), 
+                $image_html, 
+                wp_kses_post($message['message']) 
+            );
         }
 
         /**
@@ -218,7 +211,8 @@ if (!class_exists('epta_admin_notices')):
               
                 // check if installation days is greator then week
               if (isset($diff_days) && $diff_days>= $days ) {
-                    echo $this->epta_create_notice_content( $id, $messageObj );
+                    $content = $this->epta_create_notice_content( $id, $messageObj );
+                    printf('%s', $content);
                 }
         }
 
@@ -229,25 +223,29 @@ if (!class_exists('epta_admin_notices')):
          **/ 
        function epta_create_notice_content( $id, $messageObj ){
 
-        $ajax_url=admin_url( 'admin-ajax.php' );
+        $ajax_url=esc_url( admin_url( 'admin-ajax.php' ) );
         $ajax_callback = 'epta_admin_review_notice_dismiss';
         $wrap_cls="notice notice-info is-dismissible";
         $img_path= ( isset( $messageObj['logo'] ) && !empty($messageObj['logo'] ) ) ? esc_url($messageObj['logo']) : null;
-        $slug = $messageObj['slug'];
-        $plugin_name= $messageObj['plugin_name'];
-        $like_it_text='Rate Now! ★★★★★';
+        $slug = isset( $messageObj['slug'] ) ? sanitize_key( $messageObj['slug'] ) : '';
+        $plugin_name= isset( $messageObj['plugin_name'] ) ? sanitize_text_field( $messageObj['plugin_name'] ) : '';
+        $like_it_text=esc_html__( 'Rate Now! ★★★★★', 'atlt2' );
         $already_rated_text=esc_html__( 'I already rated it', 'atlt2' );
         $not_like_it_text=esc_html__( 'Not Interested', 'atlt2' );
-        $plugin_link=  $messageObj['review_url'] ;
+        $plugin_link=  isset( $messageObj['review_url'] ) ? esc_url( $messageObj['review_url'] ) : '';
         $pro_url=esc_url('https://1.envato.market/calendar');
-        $review_nonce = wp_create_nonce( $id . '_review_nonce' ); 
-        $message="Thanks for using <b>$plugin_name</b> - WordPress plugin.
-        We hope you liked it ! <br/>Please give us a quick rating, it works as a boost for us to keep working on more <a href='https://coolplugins.net/?utm_source=epta_plugin&utm_medium=inside&utm_campaign=coolplugins&utm_content=review_notice' target='_blank'><strong>Cool Plugins</strong></a>!<br/>";
-      
-        $html='<div data-ajax-url="%8$s" data-plugin-slug="%11$s" data-wp-nonce="%12$s" id="%13$s" data-ajax-callback="%9$s" class="%11$s-feedback-notice-wrapper %1$s">';
+        $review_nonce = esc_attr( wp_create_nonce( $id . '_review_nonce' ) );
+        $message = sprintf(
+                __( 'Thanks for using <b>%s</b> - WordPress plugin.<br/>We hope you liked it!<br/>Please give us a quick rating, it works as a boost for us to keep working on more <a href="https://coolplugins.net/?utm_source=ectbe_plugin&utm_medium=inside&utm_campaign=coolplugins&utm_content=review_notice" target="_blank"><strong>Cool Plugins</strong></a>!<br/>', 'atlt2' ),
+                esc_html( $plugin_name )
+            );
+            $message_safe = wp_kses_post( $message );
+        
+            // HTML markup
+            $html  = '<div data-ajax-url="%8$s" data-plugin-slug="%11$s" data-wp-nonce="%12$s" id="%13$s" data-ajax-callback="%9$s" class="%11$s-feedback-notice-wrapper %1$s">';
         
         if( $img_path != null ){
-            $html .='<div class="logo_container"><a href="%5$s"><img src="%2$s" alt="%3$s" style="max-width:80px;"></a></div>';
+            $html .= '<div class="logo_container"><a href="%5$s"><img src="%2$s" alt="%3$s" style="max-width:80px;"></a></div>';
         }
 
         $html .='<div class="message_container">%4$s
@@ -262,42 +260,24 @@ if (!class_exists('epta_admin_notices')):
         </div>
         </div>
         </div>';
-        $script = '<script>
-        jQuery(document).ready(function ($) {
-            $(document).on("click", "#'.$id.' .'.$slug.'_dismiss_notice", function (event) {
-                var $this = $(this);
-                var wrapper=$this.parents(".'.$slug.'-feedback-notice-wrapper");
-                var ajaxURL=wrapper.data("ajax-url");
-                var ajaxCallback=wrapper.data("ajax-callback");
-                var slug = wrapper.data("plugin-slug");
-                var id = wrapper.attr("id");
-                var wp_nonce = wrapper.data("wp-nonce");
-                $.post(ajaxURL, { "action":ajaxCallback,"slug":slug,"id":id,"_nonce":wp_nonce }, function( data ) {
-                    wrapper.slideUp("fast");
-                  })
-            });
-        });
-        </script>';
 
-        $html .= $script;
-      
-
-        return sprintf($html,
-                $wrap_cls,
-                $img_path,
-                $plugin_name,
-                $message,
-                $plugin_link,
-                $like_it_text,
-                $already_rated_text,
-                $ajax_url,// 8
-                $ajax_callback,//9
-                $not_like_it_text,//10
-                $slug, //11
-                $review_nonce, //12
-                $id, //13
-                $pro_url
-        );
+        return sprintf(
+                $html,
+                esc_attr( $wrap_cls ),        // %1$s
+                $img_path,                    // %2$s
+                esc_attr( $plugin_name ),      // %3$s
+                $message_safe,                 // %4$s
+                $plugin_link,                  // %5$s
+                $like_it_text,                  // %6$s
+                $already_rated_text,            // %7$s
+                $ajax_url,                      // %8$s
+                esc_attr( $ajax_callback ),     // %9$s
+                $not_like_it_text,              // %10$s
+                esc_attr( $slug ),               // %11$s
+                $review_nonce,                  // %12$s
+                $id,                       // %13$s
+                $pro_url                        // %14$s
+            );
         
        }
 
@@ -325,9 +305,7 @@ if (!class_exists('epta_admin_notices')):
          * This is called by a wordpress ajax hook                  *
          ************************************************************/
         public function epta_admin_notice_dismiss()
-        {
-           //var_dump("heello");
-           
+        {  
             $id = isset($_REQUEST['id'])?sanitize_text_field($_REQUEST['id']):'';
             $wp_nonce = $id . '_notice_nonce';
             if ( ! check_ajax_referer($wp_nonce,'_nonce', false ) ) {
