@@ -184,7 +184,7 @@ $cmb->add_field(
 	array(
 		'name'    => 'Select Template',
 		'desc'    => '<a target="_blank"
-		href="https://eventscalendaraddons.com/plugin/event-single-page-builder-pro/?utm_source=epta_plugin&utm_medium=inside&utm_campaign=get_pro&utm_content=settings">
+		href="https://eventscalendaraddons.com/plugin/event-single-page-builder-pro/?utm_source=epta_plugin&utm_medium=inside&utm_campaign=get_pro&utm_content=event_page_settings">
 		Get Pro ⇗</a> for more templates and also edit a template with Elementor.',
 		'id'      => 'epta-template',
 		'type'    => 'select',

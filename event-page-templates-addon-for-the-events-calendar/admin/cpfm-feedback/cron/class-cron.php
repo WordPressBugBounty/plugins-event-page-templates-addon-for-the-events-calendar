@@ -67,9 +67,6 @@ if (!class_exists('EPTA_cronjob')) {
             ));
             
             if (is_wp_error($response)) {
-                if ( defined('WP_DEBUG') && WP_DEBUG && defined('WP_DEBUG_LOG') && WP_DEBUG_LOG ) {
-                    error_log('EPTA Feedback Send Failed');
-                }
                 return;
             }
             

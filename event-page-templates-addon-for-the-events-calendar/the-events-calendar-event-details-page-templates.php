@@ -3,9 +3,9 @@
 Plugin Name: Event Single Page Builder For The Event Calendar
 Plugin URI: https://eventscalendaraddons.com/plugin/event-single-page-builder-pro/?utm_source=epta_plugin&utm_medium=inside&utm_campaign=get_pro&utm_content=plugin_uri
 Description: <a href="http://wordpress.org/plugins/the-events-calendar/"><b>📅 The Events Calendar Addon</b></a> - Design The Event Calendar plugin event single page template with custom colors and fonts.
-Version: 1.7.10
+Version: 1.7.11
 Author:  Cool Plugins
-Author URI: https://coolplugins.net/?utm_source=epta_plugin&utm_medium=inside&utm_campaign=author_page&utm_content=dashboard
+Author URI: https://coolplugins.net/?utm_source=epta_plugin&utm_medium=inside&utm_campaign=author_page&utm_content=plugins_list
 License:GPL2
 Text Domain:epta
 Requires Plugins: the-events-calendar
@@ -17,7 +17,7 @@ if (!defined('ABSPATH')) {
     exit();
 }
 if (!defined('EPTA_PLUGIN_CURRENT_VERSION')) {
-    define('EPTA_PLUGIN_CURRENT_VERSION', '1.7.10');
+    define('EPTA_PLUGIN_CURRENT_VERSION', '1.7.11');
 }
 define('EPTA_PLUGIN_FILE', __FILE__);
 define('EPTA_PLUGIN_URL', plugin_dir_url(EPTA_PLUGIN_FILE));
@@ -287,7 +287,7 @@ if (!class_exists('EventPageTemplatesAddon')) {
         public function epta_add_action_links($links)
         {
             $epta_settings = esc_url(admin_url('edit.php?post_type=epta'));
-            $plugin_visit_website = esc_url('https://eventscalendaraddons.com/plugin/event-single-page-builder-pro/?utm_source=epta_plugin&utm_medium=inside&utm_campaign=get_pro&utm_content=plugin_list');
+            $plugin_visit_website = esc_url('https://eventscalendaraddons.com/plugin/event-single-page-builder-pro/?utm_source=epta_plugin&utm_medium=inside&utm_campaign=get_pro&utm_content=plugins_list');
             $links[] = '<a  style="font-weight:bold" href="' . $epta_settings . '" target="_self">' . __('Template', 'epta') . '</a>';
             $links[] = '<a  style="font-weight:bold" href="' . $plugin_visit_website . '" target="_blank">' . __('Get Pro', 'epta') . '</a>';
             return $links;
@@ -605,7 +605,7 @@ if (!class_exists('EventPageTemplatesAddon')) {
                 }
                 ?>
 				<a class="like_it_btn button button-primary" target="_blank"
-				href="<?php echo esc_url('https://eventscalendaraddons.com/plugin/event-single-page-builder-pro/?utm_source=epta_plugin&utm_medium=inside&utm_campaign=get_pro&utm_content=event_page_get_pro'); ?>">
+				href="<?php echo esc_url('https://eventscalendaraddons.com/plugin/event-single-page-builder-pro/?utm_source=epta_plugin&utm_medium=inside&utm_campaign=get_pro&utm_content=event_page_template'); ?>">
 					Get Pro ⇗</a>
 				<?php
 }
