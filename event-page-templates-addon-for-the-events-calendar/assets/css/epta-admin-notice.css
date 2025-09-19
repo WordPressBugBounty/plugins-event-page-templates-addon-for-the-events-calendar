@@ -6,9 +6,7 @@
     max-width: 870px;
     clear: both;
     border-radius: 5px;
-    border: 2px solid #b7bfc7;
     box-sizing: border-box;
-    /* margin: 5px; */
 }
 
 .epta-feedback-notice-wrapper .logo_container,
@@ -29,7 +27,7 @@
 .epta-feedback-notice-wrapper .message_container,
 .epta-simple-notice .message_container {
     display: table-cell;
-    padding: 0px 22px 0px 0px;
+    padding: 5px 22px 5px 5px;
     vertical-align: middle;
 }
 
@@ -38,13 +36,12 @@
     margin: 0px 10px 0 0;
 }
 
-.epta-feedback-notice-wrapper ul li.already_rated a:after {
+.epta-feedback-notice-wrapper ul li.already_rated a:before {
     color: #f12945;
     content: "\f153";
     font: normal 18px/21px dashicons;
     display: inline-block;
-    vertical-align: middle;
-    margin-left: 3px;
+    vertical-align: sub;
 }
 
 .epta-feedback-notice-wrapper ul li .button-primary {

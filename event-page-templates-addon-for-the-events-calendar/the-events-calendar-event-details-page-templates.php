@@ -3,7 +3,7 @@
 Plugin Name: Event Single Page Builder For The Event Calendar
 Plugin URI: https://eventscalendaraddons.com/plugin/event-single-page-builder-pro/?utm_source=epta_plugin&utm_medium=inside&utm_campaign=get_pro&utm_content=plugin_uri
 Description: <a href="http://wordpress.org/plugins/the-events-calendar/"><b>📅 The Events Calendar Addon</b></a> - Design The Event Calendar plugin event single page template with custom colors and fonts.
-Version: 1.7.11
+Version: 1.7.12
 Author:  Cool Plugins
 Author URI: https://coolplugins.net/?utm_source=epta_plugin&utm_medium=inside&utm_campaign=author_page&utm_content=plugins_list
 License:GPL2
@@ -17,7 +17,7 @@ if (!defined('ABSPATH')) {
     exit();
 }
 if (!defined('EPTA_PLUGIN_CURRENT_VERSION')) {
-    define('EPTA_PLUGIN_CURRENT_VERSION', '1.7.11');
+    define('EPTA_PLUGIN_CURRENT_VERSION', '1.7.12');
 }
 define('EPTA_PLUGIN_FILE', __FILE__);
 define('EPTA_PLUGIN_URL', plugin_dir_url(EPTA_PLUGIN_FILE));
@@ -254,29 +254,13 @@ if (!class_exists('EventPageTemplatesAddon')) {
          */
         public function epta_pro_promotion_notice()
         {
-            $pluginList = get_option('active_plugins');
-            $plugin = 'elementor/elementor.php';
-            $plugin1 = 'event-page-templates-addon-for-the-events-calendar/the-events-calendar-event-details-page-templates.php';
-            if (in_array($plugin, $pluginList) && in_array($plugin1, $pluginList)) {
-                $epta_get_post_type = $this->epta_get_post_type_page();
-                if ($epta_get_post_type == 'epta' || $epta_get_post_type == 'cool-plugins-events-addon') {
-                    epta_create_admin_notice(
-                        array(
-                            'id' => 'epta-new-plugin',
-                            'message' => 'Hi! It appears that you are currently using <strong>Elementor</strong>. We suggest you to try <a href="https://eventscalendaraddons.com/plugin/event-single-page-builder-pro/?utm_source=epta_plugin&utm_medium=inside&utm_campaign=get_pro&utm_content=inside_notice" target="_blank"><strong>Event Single Page Builder Pro</strong></a> for designing event single page templates in Elementor.',
-                            'review_interval' => 0,
-                        )
-                    );
-                }
-            }
             epta_create_admin_notice(
                 array(
                     'id' => 'epta-review-box', // required and must be unique
                     'slug' => 'epta', // required in case of review box
                     'review' => true, // required and set to be true for review box
-                    'review_url' => esc_url('https://wordpress.org/support/plugin/events-widgets-for-elementor-and-the-events-calendar/reviews/?filter=5#new-post'), // required
+                    'review_url' => esc_url('https://wordpress.org/support/plugin/event-page-templates-addon-for-the-events-calendar/reviews/#new-post'), // required
                     'plugin_name' => 'Event Single Page Builder For The Event Calendar', // required
-                    'logo' => esc_url(EPTA_PLUGIN_URL . 'assets/images/icon-event-single-page-builder.svg'), // optional: it will display logo
                     'review_interval' => 0, // optional: this will display review notice
                     // after 5 days from the installation_time
                     // default is 3
@@ -305,6 +289,7 @@ if (!class_exists('EventPageTemplatesAddon')) {
             if (is_admin()) {
                 add_action('admin_init', array($this, 'epta_pro_promotion_notice'));
                 require __DIR__ . '/admin/class-admin-notice.php';
+                require_once EPTA_PLUGIN_DIR . 'admin/marketing/epta-marketing.php';
 
                 require_once __DIR__ . '/admin/feedback/admin-feedback-form.php';
              

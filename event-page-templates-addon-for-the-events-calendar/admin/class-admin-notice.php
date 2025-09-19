@@ -229,14 +229,14 @@ if (!class_exists('epta_admin_notices')):
         $img_path= ( isset( $messageObj['logo'] ) && !empty($messageObj['logo'] ) ) ? esc_url($messageObj['logo']) : null;
         $slug = isset( $messageObj['slug'] ) ? sanitize_key( $messageObj['slug'] ) : '';
         $plugin_name= isset( $messageObj['plugin_name'] ) ? sanitize_text_field( $messageObj['plugin_name'] ) : '';
-        $like_it_text=esc_html__( 'Rate Now! ★★★★★', 'atlt2' );
-        $already_rated_text=esc_html__( 'I already rated it', 'atlt2' );
-        $not_like_it_text=esc_html__( 'Not Interested', 'atlt2' );
+        $like_it_text=esc_html__( 'Rate Now! ★★★★★', 'epta2' );
+        $already_rated_text=esc_html__( ' Already Reviewed', 'epta2' );
+        $not_like_it_text=esc_html__( ' Not Interested', 'epta2' );
         $plugin_link=  isset( $messageObj['review_url'] ) ? esc_url( $messageObj['review_url'] ) : '';
         $pro_url=esc_url('https://1.envato.market/calendar');
         $review_nonce = esc_attr( wp_create_nonce( $id . '_review_nonce' ) );
         $message = sprintf(
-                __( 'Thanks for using <b>%s</b> - WordPress plugin.<br/>We hope you liked it!<br/>Please give us a quick rating, it works as a boost for us to keep working on more <a href="https://coolplugins.net/?utm_source=ectbe_plugin&utm_medium=inside&utm_campaign=coolplugins&utm_content=review_notice" target="_blank"><strong>Cool Plugins</strong></a>!<br/>', 'atlt2' ),
+                __( 'Thanks for using <b>%s</b> - WordPress plugin.<br/>We hope you liked it! Please give us a quick rating, it works as a boost for us to keep working on more <a href="https://coolplugins.net/?utm_source=ectbe_plugin&utm_medium=inside&utm_campaign=coolplugins&utm_content=review_notice" target="_blank"><strong>Cool Plugins</strong></a>!<br/>', 'epta2' ),
                 esc_html( $plugin_name )
             );
             $message_safe = wp_kses_post( $message );
