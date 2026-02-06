@@ -3,9 +3,9 @@ Contributors:narinder-singh,satindersingh,coolplugins
 Donate link:https://paypal.me/CoolPlugins/10USD/
 Tags: the events calendar, events, Single Event Page, calendar, events calendar
 Requires at least:5.0
-Tested up to:6.8.2
+Tested up to:6.9
 Requires PHP:7.2
-Stable tag:1.7.12
+Stable tag:1.7.13
 License:GPLv2 or later
 License URI:http://www.gnu.org/licenses/gpl-2.0.html
 The Events Calendar add-on to edit and design event single page templates. Single event page template builder.
@@ -28,7 +28,7 @@ Instead of relying on the default event layout offered by The Events Calendar, t
 * **Primary Color:** Set the main background color, typically used for headings or highlighted sections on the single event layout.
 * **Custom CSS:** Add your own CSS code to customize the appearance of your single event page.
 
-**[🔗 Check free version demos](https://eventscalendaraddons.com/event/boston-biggest-marathon-run/?utm_source=epta_plugin&utm_medium=readme&utm_campaign=demo&utm_content=check_free_demos)
+[🔗 Check free version demos](https://eventscalendaraddons.com/event/blood-donation-camp-in-delhi/?utm_source=epta_plugin&utm_medium=readme&utm_campaign=demo&utm_content=check_free_demos)
 
 ### Why Design an Event Single Page?
 *  **Website’s branding and theme:** Easily change colors, fonts, and section styles according to your website.
@@ -99,6 +99,10 @@ You can report security bugs through the Patchstack Vulnerability Disclosure Pro
 3. Compare Layout - The Events Calendar (Default) vs This Addon
 
 == Changelog ==
+
+= Version 1.7.13 | 18 November 2025 =
+* Removed: Extra Code.
+* Tested upto: The Events Calendar version 6.15.11
 
 = Version 1.7.12 | 19 September 2025 =
 * Improved: plugin recommendations.

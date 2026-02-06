@@ -3,7 +3,7 @@
 Plugin Name: Event Single Page Builder For The Event Calendar
 Plugin URI: https://eventscalendaraddons.com/plugin/event-single-page-builder-pro/?utm_source=epta_plugin&utm_medium=inside&utm_campaign=get_pro&utm_content=plugin_uri
 Description: <a href="http://wordpress.org/plugins/the-events-calendar/"><b>📅 The Events Calendar Addon</b></a> - Design The Event Calendar plugin event single page template with custom colors and fonts.
-Version: 1.7.12
+Version: 1.7.13
 Author:  Cool Plugins
 Author URI: https://coolplugins.net/?utm_source=epta_plugin&utm_medium=inside&utm_campaign=author_page&utm_content=plugins_list
 License:GPL2
@@ -17,7 +17,7 @@ if (!defined('ABSPATH')) {
     exit();
 }
 if (!defined('EPTA_PLUGIN_CURRENT_VERSION')) {
-    define('EPTA_PLUGIN_CURRENT_VERSION', '1.7.12');
+    define('EPTA_PLUGIN_CURRENT_VERSION', '1.7.13');
 }
 define('EPTA_PLUGIN_FILE', __FILE__);
 define('EPTA_PLUGIN_URL', plugin_dir_url(EPTA_PLUGIN_FILE));
@@ -288,7 +288,7 @@ if (!class_exists('EventPageTemplatesAddon')) {
 
             if (is_admin()) {
                 add_action('admin_init', array($this, 'epta_pro_promotion_notice'));
-                require __DIR__ . '/admin/class-admin-notice.php';
+                require EPTA_PLUGIN_DIR . '/admin/feedback-notice/class-admin-notice.php';
                 require_once EPTA_PLUGIN_DIR . 'admin/marketing/epta-marketing.php';
 
                 require_once __DIR__ . '/admin/feedback/admin-feedback-form.php';
