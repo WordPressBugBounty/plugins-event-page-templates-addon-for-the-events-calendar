@@ -5,7 +5,7 @@ Tags: the events calendar, events, Single Event Page, calendar, events calendar
 Requires at least:5.0
 Tested up to:6.9
 Requires PHP:7.2
-Stable tag:1.7.13
+Stable tag:1.7.15
 License:GPLv2 or later
 License URI:http://www.gnu.org/licenses/gpl-2.0.html
 The Events Calendar add-on to edit and design event single page templates. Single event page template builder.
@@ -49,6 +49,7 @@ Fully customize the single event pages of The Events Calendar plugin. Instead of
 
 * **[Events Calendar Modules for Divi](https://wordpress.org/plugins/events-calendar-modules-for-divi/)**- Display The Events Calendar Events directly inside Divi with Customizable List or Grid Layouts.
 
+**Use of 3rd Party Services:** This plugin connects to the Cool Plugins API to display information about related plugins inside the dashboard. It also offers optional usage tracking and optional feedback submission on deactivation. Data is sent only after explicit user consent. No hidden tracking is performed, and no frontend visitor or site user data is collected. For more details, please review our [Data Usage Policy](https://my.coolplugins.net/terms/usage-tracking/), [TOS](https://my.coolplugins.net/terms/), and [Privacy Policy](https://my.coolplugins.net/terms/privacy-policy/).
 
 **DISCLAIMER:** Event Single Page Builder For The Events Calendar plugin is developed by the Cool Plugins team and is not affiliated with or developed by the official team of The Events Calendar plugin, which is a part of StellarWP, the software arm of Liquid Web. Some of the links in this content may be affiliate links, which means we may earn a commission at no extra cost to you if you purchase through these links.
 
@@ -99,6 +100,12 @@ You can report security bugs through the Patchstack Vulnerability Disclosure Pro
 3. Compare Layout - The Events Calendar (Default) vs This Addon
 
 == Changelog ==
+
+= Version 1.7.15 | 12 February 2025 =
+* Updated: Textual Changes.
+
+= Version 1.7.14 | 12 February 2025 =
+* Updated: Blueprints.
 
 = Version 1.7.13 | 18 November 2025 =
 * Removed: Extra Code.
