@@ -1,8 +1,10 @@
 <?php
+//phpcs:disable WordPress.NamingConventions.PrefixAllGlobals.NonPrefixedHooknameFound
 /**
  * Get Template Slug
  */
 namespace eptafunctions;
+if ( ! defined( 'ABSPATH' ) ) exit;
 
 function epta_dynamic_class() {
 	$tecset_pageid    = get_option( 'tec_tribe_single_event_page' );
@@ -141,8 +143,8 @@ function epta_custom_style() {
 
 function epta_share_button( $event_id ) {
 
-	wp_enqueue_script( 'tecset-sharebutton', EPTA_PLUGIN_URL . 'assets/js/epta-sharebutton.js', array( 'jquery' ), null, true );
-	wp_enqueue_style( 'tecset-customicon-css', EPTA_PLUGIN_URL . 'assets/css/epta-custom-icon.css', null, null, 'all' );
+	wp_enqueue_script( 'tecset-sharebutton', EPTA_PLUGIN_URL . 'assets/js/epta-sharebutton.js', array( 'jquery' ), EPTA_PLUGIN_CURRENT_VERSION, true );
+	wp_enqueue_style( 'tecset-customicon-css', EPTA_PLUGIN_URL . 'assets/css/epta-custom-icon.css', null, EPTA_PLUGIN_CURRENT_VERSION, 'all' );
 	$tecset_sharecontent = '';
 	$tecset_get_url      = urlencode( get_permalink( $event_id ) );
 
@@ -154,7 +156,7 @@ function epta_share_button( $event_id ) {
 		$tecset_whatsappURL   = 'https://wa.me/?text=' . $tecset_gettitle . ' ' . $tecset_get_url;
 		$tecset_facebookurl   = 'https://www.facebook.com/sharer/sharer.php?u=' . $tecset_get_url . '';
 		$tecset_emailUrl      = 'mailto:?Subject=' . $subject . '&Body=' . $tecset_get_url . '';
-		$tecset_sharecontent .= '<h3 class="tecset-share-title">' . __( 'Share This Event', 'epta' ) . '</h3>';
+		$tecset_sharecontent .= '<h3 class="tecset-share-title">' . __( 'Share This Event', 'event-page-templates-addon-for-the-events-calendar' ) . '</h3>';
 		$tecset_sharecontent .= '<a class="tecset-share-link" href="' . esc_url( $tecset_facebookurl ) . '" target="_blank" title="Facebook" aria-haspopup="true"><i class="ect-icon-facebook"></i></a>';
 		$tecset_sharecontent .= '<a class="tecset-share-link" href="' . esc_url( $tecset_twitterURL ) . '" target="_blank" title="Twitter" aria-haspopup="true"><i class="ect-icon-twitter"></i></a>';
 		// $tecset_sharecontent .= '<a class="ect-share-link" href="'.$ect_linkedinUrl.'" target="_blank" title="Linkedin" aria-haspopup="true"><i class="ect-icon-linkedin"></i></a>';
@@ -356,9 +358,9 @@ function epta_tribe_event_time( $post_id, $display = true ) {
 			$event = $post_id;
 	if ( tribe_event_is_all_day( $event ) ) { // all day event
 		if ( $display ) {
-					esc_html_e( 'All day', 'the-events-calendar' );
+					esc_html_e( 'All day', 'event-page-templates-addon-for-the-events-calendar' );
 		} else {
-						return esc_html__( 'All day', 'the-events-calendar' );
+						return esc_html__( 'All day', 'event-page-templates-addon-for-the-events-calendar' );
 		}
 	} elseif ( tribe_event_is_multiday( $event ) ) { // multi-date event
 			$tecset_start_date = tribe_get_start_date( $event, false, false );

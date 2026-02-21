@@ -1,0 +1,559 @@
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: Event Single Page Builder For The Events Calendar\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2026-02-21 04:47+0000\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: \n"
+"Language: \n"
+"Plural-Forms: nplurals=INTEGER; plural=EXPRESSION;\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Loco https://localise.biz/\n"
+"X-Loco-Version: 2.8.1; wp-6.9.1; php-8.1.29\n"
+"X-Domain: event-page-templates-addon-for-the-events-calendar"
+
+#: admin/cpfm-feedback/cpfm-feedback-notice.php:202
+msgid " More info"
+msgstr ""
+
+#. %d: number of active addons
+#: admin/events-addon-page/includes/dashboard-page.php:45
+msgid "%d Active Addon"
+msgid_plural "%d Active Addons"
+msgstr[0] ""
+msgstr[1] ""
+
+#. Description of the plugin
+msgid ""
+"<a href=\"http://wordpress.org/plugins/the-events-calendar/\"><b>📅 The "
+"Events Calendar Addon</b></a> - Design The Event Calendar plugin event "
+"single page template with custom colors and fonts."
+msgstr ""
+
+#: admin/events-addon-page/events-addon-page.php:697
+msgid "Activate Now"
+msgstr ""
+
+#: admin/events-addon-page/events-addon-page.php:731
+msgid "Activated"
+msgstr ""
+
+#: admin/events-addon-page/events-addon-page.php:674
+msgid "Active"
+msgstr ""
+
+#: includes/epta-template/epta-template-1.php:200
+#: includes/epta-template/epta-template-2.php:50
+msgid "Add to Google Calendar"
+msgstr ""
+
+#: includes/epta-function.php:361 includes/epta-function.php:363
+msgid "All day"
+msgstr ""
+
+#: the-events-calendar-event-details-page-templates.php:219
+msgid "All Event"
+msgstr ""
+
+#: includes/epta-settings.php:135 includes/epta-template/epta-template-1.php:38
+msgid "All Events"
+msgstr ""
+
+#: admin/feedback-notice/class-admin-notice.php:190
+msgid "Already Reviewed"
+msgstr ""
+
+#: the-events-calendar-event-details-page-templates.php:196
+msgid "Applied On"
+msgstr ""
+
+#: admin/events-addon-page/includes/dashboard-page.php:77
+msgid "Available Addons"
+msgstr ""
+
+#: admin/events-addon-page/events-addon-page.php:708
+msgid "Buy Pro"
+msgstr ""
+
+#: admin/events-addon-page/includes/dashboard-header.php:55
+msgid "Check Docs"
+msgstr ""
+
+#: admin/cpfm-feedback/cpfm-feedback-notice.php:210
+msgid "Click here"
+msgstr ""
+
+#: admin/events-addon-page/includes/dashboard-sidebar.php:41
+msgid "Contact Support"
+msgstr ""
+
+#. Author of the plugin
+msgid "Cool Plugins"
+msgstr ""
+
+#: admin/events-addon-page/includes/dashboard-page.php:43
+msgid "Currently Activated Addons"
+msgstr ""
+
+#: admin/events-addon-page/events-addon-page.php:262
+#: admin/events-addon-page/events-addon-page.php:263
+msgid "Dashboard"
+msgstr ""
+
+#: the-events-calendar-event-details-page-templates.php:197
+msgid "Date"
+msgstr ""
+
+#: includes/epta-template/epta-template-1.php:129
+msgid "DAYS"
+msgstr ""
+
+#: admin/events-addon-page/events-addon-page.php:579
+msgid "Demo"
+msgstr ""
+
+#: admin/events-addon-page/events-addon-page.php:583
+msgid "Docs"
+msgstr ""
+
+#: admin/events-addon-page/events-addon-page.php:581
+msgid "Documentation"
+msgstr ""
+
+#: includes/epta-template/epta-template-1.php:201
+#: includes/epta-template/epta-template-2.php:51
+msgid "Download .ics file"
+msgstr ""
+
+#: includes/epta-settings.php:197
+msgid "Edit with Elementor (Pro Only)"
+msgstr ""
+
+#: includes/epta-template/epta-template-2.php:90
+msgid "Event Navigation"
+msgstr ""
+
+#: the-events-calendar-event-details-page-templates.php:471
+#: the-events-calendar-event-details-page-templates.php:490
+msgid "Event Page Template"
+msgstr ""
+
+#: the-events-calendar-event-details-page-templates.php:466
+#: the-events-calendar-event-details-page-templates.php:467
+msgid "Event Page Templates"
+msgstr ""
+
+#. Name of the plugin
+msgid "Event Single Page Builder For The Events Calendar"
+msgstr ""
+
+#: admin/events-addon-page/events-addon-page.php:252
+#: admin/events-addon-page/events-addon-page.php:253
+msgid "Events Addons"
+msgstr ""
+
+#: the-events-calendar-event-details-page-templates.php:566
+msgid "Events Addons By Cool Plugins"
+msgstr ""
+
+#: admin/events-addon-page/includes/dashboard-header.php:48
+msgid "Events Calendar Addons"
+msgstr ""
+
+#: admin/events-addon-page/includes/dashboard-sidebar.php:66
+msgid "EVENTS CALENDAR PRO"
+msgstr ""
+
+#: the-events-calendar-event-details-page-templates.php:479
+msgid "Featured Image"
+msgstr ""
+
+#: the-events-calendar-event-details-page-templates.php:487
+msgid "Filter items list"
+msgstr ""
+
+#: admin/events-addon-page/includes/dashboard-sidebar.php:70
+msgid "Get Events Calendar Pro"
+msgstr ""
+
+#: the-events-calendar-event-details-page-templates.php:278
+msgid "Get Pro"
+msgstr ""
+
+#: includes/epta-settings.php:270
+msgid "Get Pro Version"
+msgstr ""
+
+#: includes/epta-template/epta-template-1.php:200
+#: includes/epta-template/epta-template-2.php:50
+msgid "Google Calendar"
+msgstr ""
+
+#: admin/cpfm-feedback/cpfm-feedback-notice.php:176
+msgid "Help Improve Plugins"
+msgstr ""
+
+#: the-events-calendar-event-details-page-templates.php:567
+msgid ""
+"Help us make this plugin more compatible with your site by sharing non-"
+"sensitive site data."
+msgstr ""
+
+#: includes/epta-template/epta-template-1.php:133
+msgid "HOURS"
+msgstr ""
+
+#. Author URI of the plugin
+msgid ""
+"https://coolplugins.net/?"
+"utm_source=epta_plugin&utm_medium=inside&utm_campaign=author_page&utm_content=plugins_list"
+msgstr ""
+
+#. URI of the plugin
+msgid ""
+"https://eventscalendaraddons.com/plugin/event-single-page-builder-pro/?"
+"utm_source=epta_plugin&utm_medium=inside&utm_campaign=get_pro&utm_content=plugin_uri"
+msgstr ""
+
+#: admin/feedback/admin-feedback-form.php:109
+msgid ""
+"I agree to share anonymous usage data and basic site details (such as server,"
+" PHP, and WordPress versions) to support Event Single Page Builder For The "
+"Event Calendar improvement efforts. Additionally, I allow Cool Plugins to "
+"store all information provided through this form and to respond to my "
+"inquiry."
+msgstr ""
+
+#: admin/feedback/admin-feedback-form.php:197
+msgid "I found a better plugin"
+msgstr ""
+
+#: admin/feedback/admin-feedback-form.php:56
+msgid "I found a better plugin."
+msgstr ""
+
+#: includes/epta-template/epta-template-1.php:201
+#: includes/epta-template/epta-template-2.php:51
+msgid "iCal Export"
+msgstr ""
+
+#: admin/feedback/admin-feedback-form.php:88
+msgid ""
+"If you have a moment, please share the reason for deactivating this plugin."
+msgstr ""
+
+#: the-events-calendar-event-details-page-templates.php:483
+msgid "Insert into item"
+msgstr ""
+
+#: admin/events-addon-page/events-addon-page.php:697
+msgid "Install Now"
+msgstr ""
+
+#: includes/epta-settings.php:305
+msgid "Is it Helpful for you?"
+msgstr ""
+
+#: admin/feedback/admin-feedback-form.php:64
+#: admin/feedback/admin-feedback-form.php:205
+msgid "It's a temporary deactivation."
+msgstr ""
+
+#: the-events-calendar-event-details-page-templates.php:468
+msgid "Item Archives"
+msgstr ""
+
+#: the-events-calendar-event-details-page-templates.php:469
+msgid "Item Attributes"
+msgstr ""
+
+#: the-events-calendar-event-details-page-templates.php:485
+msgid "Items list"
+msgstr ""
+
+#: the-events-calendar-event-details-page-templates.php:486
+msgid "Items list navigation"
+msgstr ""
+
+#: admin/events-addon-page/includes/dashboard-sidebar.php:49
+msgid "LOVING OUR PLUGINS?"
+msgstr ""
+
+#: includes/epta-settings.php:107
+msgid "Main Settings"
+msgstr ""
+
+#: includes/epta-template/epta-template-1.php:137
+msgid "MIN"
+msgstr ""
+
+#: admin/events-addon-page/events-addon-page.php:74
+msgid "No plugin specified."
+msgstr ""
+
+#: admin/events-addon-page/events-addon-page.php:477
+msgid "No plugins data available at the moment."
+msgstr ""
+
+#: admin/cpfm-feedback/cpfm-feedback-notice.php:217
+msgid "No, Thanks"
+msgstr ""
+
+#: includes/epta-settings.php:134
+msgid "None"
+msgstr ""
+
+#: the-events-calendar-event-details-page-templates.php:477
+msgid "Not found"
+msgstr ""
+
+#: the-events-calendar-event-details-page-templates.php:478
+msgid "Not found in Trash"
+msgstr ""
+
+#: admin/feedback-notice/class-admin-notice.php:191
+msgid "Not Interested"
+msgstr ""
+
+#: admin/cpfm-feedback/cron/class-cron.php:93
+msgid "Once every 30 days"
+msgstr ""
+
+#: admin/cpfm-feedback/cpfm-feedback-notice.php:206
+msgid ""
+"Opt in to receive email updates about security improvements, new features, "
+"helpful tutorials, and occasional special offers. We'll collect:"
+msgstr ""
+
+#: admin/feedback/admin-feedback-form.php:209
+msgid "Other"
+msgstr ""
+
+#: admin/feedback/admin-feedback-form.php:68
+msgid "Other reason."
+msgstr ""
+
+#: admin/events-addon-page/includes/dashboard-sidebar.php:68
+msgid ""
+"Our addons works perfectly with both The Events Calendar free and official "
+"pro version."
+msgstr ""
+
+#: the-events-calendar-event-details-page-templates.php:470
+msgid "Parent Item:"
+msgstr ""
+
+#: admin/events-addon-page/events-addon-page.php:125
+msgid "Permission denied"
+msgstr ""
+
+#: admin/feedback/admin-feedback-form.php:69
+#: admin/feedback/admin-feedback-form.php:210
+msgid "Please share the reason."
+msgstr ""
+
+#: admin/feedback/admin-feedback-form.php:57
+#: admin/feedback/admin-feedback-form.php:198
+msgid "Please share which plugin."
+msgstr ""
+
+#: admin/events-addon-page/events-addon-page.php:139
+msgid "Plugin activated successfully"
+msgstr ""
+
+#: the-events-calendar-event-details-page-templates.php:491
+msgid "Post Type Description"
+msgstr ""
+
+#: the-events-calendar-event-details-page-templates.php:464
+msgctxt "Post Type General Name"
+msgid "Event Page Template"
+msgstr ""
+
+#: the-events-calendar-event-details-page-templates.php:465
+msgctxt "Post Type Singular Name"
+msgid "Event Page Template"
+msgstr ""
+
+#: admin/events-addon-page/includes/dashboard-page.php:61
+msgid "Premium Addons"
+msgstr ""
+
+#: admin/events-addon-page/includes/dashboard-sidebar.php:33
+msgid "PREMIUM SUPPORT"
+msgstr ""
+
+#: admin/events-addon-page/events-addon-page.php:658
+msgid "Pro"
+msgstr ""
+
+#: admin/feedback/admin-feedback-form.php:79
+msgid "Quick Feedback"
+msgstr ""
+
+#: admin/feedback-notice/class-admin-notice.php:189
+msgid "Rate Now! ★★★★★"
+msgstr ""
+
+#: admin/events-addon-page/includes/dashboard-sidebar.php:57
+msgid "Rate us on WP.org"
+msgstr ""
+
+#: includes/epta-template/epta-template-1.php:226
+#: includes/epta-template/epta-template-2.php:107
+msgid "Related Events"
+msgstr ""
+
+#: the-events-calendar-event-details-page-templates.php:481
+msgid "Remove featured image"
+msgstr ""
+
+#: admin/events-addon-page/includes/dashboard-sidebar.php:55
+msgid "Review us on WP.org and share your feedback with the community."
+msgstr ""
+
+#: the-events-calendar-event-details-page-templates.php:476
+msgid "Search Item"
+msgstr ""
+
+#: includes/epta-template/epta-template-1.php:141
+msgid "SEC"
+msgstr ""
+
+#: the-events-calendar-event-details-page-templates.php:480
+msgid "Set featured image"
+msgstr ""
+
+#: includes/epta-function.php:159
+msgid "Share This Event"
+msgstr ""
+
+#: admin/events-addon-page/events-addon-page.php:66
+msgid "Sorry, you are not allowed to install plugins on this site."
+msgstr ""
+
+#: the-events-calendar-event-details-page-templates.php:216
+#: includes/epta-settings.php:137
+msgid "Specific Category"
+msgstr ""
+
+#: the-events-calendar-event-details-page-templates.php:210
+#: includes/epta-settings.php:136
+msgid "Specific Event"
+msgstr ""
+
+#: the-events-calendar-event-details-page-templates.php:213
+#: includes/epta-settings.php:138
+msgid "Specific Tag"
+msgstr ""
+
+#: the-events-calendar-event-details-page-templates.php:277
+msgid "Template"
+msgstr ""
+
+#: includes/epta-settings.php:194
+msgid "Template 1"
+msgstr ""
+
+#: includes/epta-settings.php:195
+msgid "Template 2 (Pro Only)"
+msgstr ""
+
+#: includes/epta-settings.php:196
+msgid "Template 3 (Pro Only)"
+msgstr ""
+
+#. %s: Plugin name.
+#: admin/feedback-notice/class-admin-notice.php:198
+#, php-format
+msgid ""
+"Thanks for using <b>%s</b> - WordPress plugin. We hope you liked it! <br/>"
+"Please give us a quick rating, it works as a boost for us to keep working on "
+"more <a href=\"https://coolplugins.net/?"
+"utm_source=ectbe_plugin&utm_medium=inside&utm_campaign=coolplugins&utm_content=review_notice\""
+" target=\"_blank\"><strong>Cool Plugins</strong></a>!<br/>"
+msgstr ""
+
+#: admin/feedback/admin-feedback-form.php:193
+msgid "The plugin didn't work as expected"
+msgstr ""
+
+#: admin/feedback/admin-feedback-form.php:52
+msgid "The plugin didn't work as expected."
+msgstr ""
+
+#: admin/feedback/admin-feedback-form.php:201
+msgid "The plugin is not working"
+msgstr ""
+
+#: admin/feedback/admin-feedback-form.php:60
+msgid "The plugin is not working."
+msgstr ""
+
+#: admin/events-addon-page/events-addon-page.php:100
+msgid "This plugin cannot be installed from here."
+msgstr ""
+
+#: the-events-calendar-event-details-page-templates.php:195
+msgid "Title"
+msgstr ""
+
+#: admin/cpfm-feedback/cpfm-feedback-notice.php:209
+msgid ""
+"To check plugin compatibility, we will collect the following: list of active "
+"plugins and themes, server type, MySQL version, WordPress version, memory "
+"limit, site language and database prefix. "
+msgstr ""
+
+#: admin/events-addon-page/events-addon-page.php:213
+msgid "Unable to connect to the filesystem. Please confirm your credentials."
+msgstr ""
+
+#: admin/events-addon-page/events-addon-page.php:653
+#: admin/events-addon-page/events-addon-page.php:654
+msgid "Update available"
+msgstr ""
+
+#: the-events-calendar-event-details-page-templates.php:473
+msgid "Update Item"
+msgstr ""
+
+#: the-events-calendar-event-details-page-templates.php:484
+msgid "Uploaded to this item"
+msgstr ""
+
+#: the-events-calendar-event-details-page-templates.php:482
+msgid "Use as featured image"
+msgstr ""
+
+#: the-events-calendar-event-details-page-templates.php:247
+msgid "Video Tutorials"
+msgstr ""
+
+#: admin/events-addon-page/events-addon-page.php:577
+msgid "View Demo"
+msgstr ""
+
+#: admin/events-addon-page/includes/dashboard-header.php:52
+msgid "View Demos"
+msgstr ""
+
+#: the-events-calendar-event-details-page-templates.php:474
+msgid "View Item"
+msgstr ""
+
+#: the-events-calendar-event-details-page-templates.php:475
+msgid "View Items"
+msgstr ""
+
+#: admin/cpfm-feedback/cpfm-feedback-notice.php:216
+msgid "Yes, I Agree"
+msgstr ""
+
+#: admin/cpfm-feedback/cpfm-feedback-notice.php:208
+msgid "Your website home URL and WordPress admin email."
+msgstr ""

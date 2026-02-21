@@ -1,4 +1,5 @@
 <?php
+//phpcs:disable WordPress.NamingConventions.PrefixAllGlobals.NonPrefixedVariableFound, WordPress.NamingConventions.PrefixAllGlobals.NonPrefixedHooknameFound, WordPress.Security.EscapeOutput.OutputNotEscaped
 /**
  * Single Event Template
  * A single event. This displays the event title, description, meta, and
@@ -25,7 +26,7 @@ $post_content      = \eptafunctions\epta_get_content( $event_id );
 $tribe_all_events  = esc_url( tribe_get_events_link() );
 $tecset_all_events = isset( $tecset_url ) && ! empty( $tecset_url ) ? esc_url( $tecset_url ) : $tribe_all_events;
 
-wp_enqueue_style('epta-frontend-css', EPTA_PLUGIN_URL . 'assets/css/epta-style.css', null, null, 'all');
+wp_enqueue_style('epta-frontend-css', EPTA_PLUGIN_URL . 'assets/css/epta-style.css', null, EPTA_PLUGIN_CURRENT_VERSION, 'all');
 wp_add_inline_style( 'epta-frontend-css', wp_strip_all_tags( $tecset_custom_styles ) );
 // wp_enqueue_style( 'epta-frontend-css' );
 wp_enqueue_style( 'epta-bootstrap-css' );
@@ -34,7 +35,7 @@ wp_enqueue_script( 'epta-events-countdown-widget' );
 
 <div id="epta-template" class="epta-row epta-<?php echo esc_attr( $get_temp_cls ); ?>">
 	<div class="epta-all-events col-md-12">
-		<a href="<?php echo esc_url( $tecset_all_events ); ?>"><< <?php echo esc_html__( 'All Events', 'epta' ); ?></a>
+		<a href="<?php echo esc_url( $tecset_all_events ); ?>"><< <?php echo esc_html__( 'All Events', 'event-page-templates-addon-for-the-events-calendar' ); ?></a>
 	</div>
 	<div class="col-md-8">
 
@@ -125,19 +126,19 @@ wp_enqueue_script( 'epta-events-countdown-widget' );
 					<div class="epta-countdown-timer">
 						<div class="epta-countdown-cell">
 							<div class="epta-countdown-number">DD</div>
-							<div class="epta-countdown-under"><?php esc_html_e( 'DAYS', 'epta' ); ?></div>
+							<div class="epta-countdown-under"><?php esc_html_e( 'DAYS', 'event-page-templates-addon-for-the-events-calendar' ); ?></div>
 						</div>
 						<div class="epta-countdown-cell">
 							<div class="epta-countdown-number">HH</div>
-							<div class="epta-countdown-under"><?php esc_html_e( 'HOURS', 'epta' ); ?></div>
+							<div class="epta-countdown-under"><?php esc_html_e( 'HOURS', 'event-page-templates-addon-for-the-events-calendar' ); ?></div>
 						</div>
 						<div class="epta-countdown-cell">
 							<div class="epta-countdown-number">MM</div>
-							<div class="epta-countdown-under"><?php esc_html_e( 'MIN', 'epta' ); ?></div>
+							<div class="epta-countdown-under"><?php esc_html_e( 'MIN', 'event-page-templates-addon-for-the-events-calendar' ); ?></div>
 						</div>
 						<div class="epta-countdown-cell">
 							<div class="epta-countdown-number tecset-countdown-last">SS</div>
-							<div class="epta-countdown-under"><?php esc_html_e( 'SEC', 'epta' ); ?></div>
+							<div class="epta-countdown-under"><?php esc_html_e( 'SEC', 'event-page-templates-addon-for-the-events-calendar' ); ?></div>
 						</div>
 					</div>
 					<?php
@@ -196,8 +197,8 @@ wp_enqueue_script( 'epta-events-countdown-widget' );
 			<div class="epta-sidebar-box">
 				<div class="epta-addto-calendar">
 					<?php
-					echo '<a href="' . esc_url( \Tribe__Events__Main::instance()->esc_gcal_url( tribe_get_gcal_link() ) ) . '" title="' . esc_attr__( 'Add to Google Calendar', 'the-events-calendar' ) . '">+ ' . esc_html__( 'Google Calendar', 'the-events-calendar' ) . '</a>';
-					echo '<a href="' . esc_url( tribe_get_single_ical_link() ) . '" title="' . esc_attr__( 'Download .ics file', 'the-events-calendar' ) . '" >+ ' . esc_html__( 'iCal Export', 'the-events-calendar' ) . '</a>';
+					echo '<a href="' . esc_url( \Tribe__Events__Main::instance()->esc_gcal_url( tribe_get_gcal_link() ) ) . '" title="' . esc_attr__( 'Add to Google Calendar', 'event-page-templates-addon-for-the-events-calendar' ) . '">+ ' . esc_html__( 'Google Calendar', 'event-page-templates-addon-for-the-events-calendar' ) . '</a>';
+					echo '<a href="' . esc_url( tribe_get_single_ical_link() ) . '" title="' . esc_attr__( 'Download .ics file', 'event-page-templates-addon-for-the-events-calendar' ) . '" >+ ' . esc_html__( 'iCal Export', 'event-page-templates-addon-for-the-events-calendar' ) . '</a>';
 					?>
 				</div>
 			</div>
@@ -222,7 +223,7 @@ wp_enqueue_script( 'epta-events-countdown-widget' );
 		if ( is_array( $posts ) && ! empty( $posts ) ) :
 			?>
 			<div class="epta-related-area">
-				<h3 class="epta-related-head"><?php echo esc_html__( 'Related Events', 'epta' ); ?></h3>
+				<h3 class="epta-related-head"><?php echo esc_html__( 'Related Events', 'event-page-templates-addon-for-the-events-calendar' ); ?></h3>
 				<div class="epta-row">
 					<?php foreach ( $posts as $post ) : ?>
 					<div class="col-sm-4">

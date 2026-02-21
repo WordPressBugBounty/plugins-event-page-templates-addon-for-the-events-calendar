@@ -1,4 +1,6 @@
 <?php
+//phpcs:disable WordPress.WP.I18n.TextDomainMismatch, WordPress.WP.I18n.MissingTranslatorsComment
+//phpcs:disable WordPress.Security.EscapeOutput.OutputNotEscaped, WordPress.Security.EscapeOutput.ExceptionNotEscaped
 /**
  * CMB2 Utility classes for handling multi-dimensional array data for options
  *

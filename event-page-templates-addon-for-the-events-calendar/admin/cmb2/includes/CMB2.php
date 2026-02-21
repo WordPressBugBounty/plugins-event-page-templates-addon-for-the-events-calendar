@@ -1,4 +1,6 @@
 <?php
+//phpcs:disable WordPress.WP.I18n.TextDomainMismatch
+//phpcs:disable WordPress.Security.EscapeOutput.OutputNotEscaped
 /**
  * CMB2 - The core metabox object
  *
@@ -18,6 +20,7 @@
 /**
  * The main CMB2 object for storing box data/properties.
  */
+if ( ! defined( 'ABSPATH' ) ) exit;
 class CMB2 extends CMB2_Base {
 
 	/**

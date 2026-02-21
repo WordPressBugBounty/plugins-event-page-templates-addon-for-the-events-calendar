@@ -1,4 +1,5 @@
 <?php
+//phpcs:disable WordPress.WP.EnqueuedResourceParameters.NotInFooter, WordPress.DB.SlowDBQuery.slow_db_query_meta_query
 /**
  * CMB2 Utilities
  *

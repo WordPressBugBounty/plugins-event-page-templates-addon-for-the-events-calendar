@@ -1,4 +1,5 @@
 <?php
+//phpcs:disable WordPress.NamingConventions.PrefixAllGlobals.NonPrefixedVariableFound, WordPress.NamingConventions.PrefixAllGlobals.NonPrefixedHooknameFound, 
 /**
  * Single Event Page Template
  * A single event. This displays the event title, description, meta, and
@@ -47,9 +48,9 @@ function epta_tribe_event_page_get_related_posts( $count = 3, $post = false ) {
 	}
 	$args = array(
 		'posts_per_page' => $count,
-		'post__not_in'   => array( $post_id ),
+		'post__not_in'   => array( $post_id ),//phpcs:ignore WordPressVIPMinimum.Performance.WPQueryParams.PostNotIn_post__not_in, WordPress.DB.SlowDBQuery.slow_db_query_tax_query
 		'eventDisplay'   => 'list',
-		'tax_query'      => array( 'relation' => 'OR' ),
+		'tax_query'      => array( 'relation' => 'OR' ),//phpcs:ignore WordPress.DB.SlowDBQuery.slow_db_query_tax_query
 		
 	);
 	if ( $tags ) {

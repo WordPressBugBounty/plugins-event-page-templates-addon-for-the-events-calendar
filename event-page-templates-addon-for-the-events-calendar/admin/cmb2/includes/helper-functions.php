@@ -1,4 +1,6 @@
 <?php
+//phpcs:disable WordPress.WP.I18n.TextDomainMismatch, WordPress.NamingConventions.PrefixAllGlobals.NonPrefixedFunctionFound
+//phpcs:disable WordPress.Security.EscapeOutput.OutputNotEscaped
 /**
  * CMB2 Helper Functions
  *
@@ -16,6 +18,7 @@
  * @param  string $path Path to append.
  * @return string        Directory with optional path appended
  */
+if ( ! defined( 'ABSPATH' ) ) exit;
 function cmb2_dir( $path = '' ) {
 	return CMB2_DIR . $path;
 }

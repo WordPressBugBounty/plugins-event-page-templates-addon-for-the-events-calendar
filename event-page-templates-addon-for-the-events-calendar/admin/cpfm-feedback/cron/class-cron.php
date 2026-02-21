@@ -1,4 +1,5 @@
 <?php
+//phpcs:disable WordPress.NamingConventions.PrefixAllGlobals.NonPrefixedVariableFound
 if (!defined('ABSPATH')) {
     exit();
 }
@@ -89,7 +90,7 @@ if (!class_exists('EPTA_cronjob')) {
 
                 $schedules['every_30_days'] = array(
                     'interval' => 30 * 24 * 60 * 60, // 2,592,000 seconds
-                    'display'  => __('Once every 30 days'),
+                    'display'  => __('Once every 30 days', 'event-page-templates-addon-for-the-events-calendar'),
                 );
             }
 

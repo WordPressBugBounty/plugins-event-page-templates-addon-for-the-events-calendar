@@ -1,4 +1,5 @@
 <?php
+//phpcs:disable WordPress.WP.I18n.TextDomainMismatch, WordPress.WP.I18n.MissingTranslatorsComment
 /**
  * CMB2 objects/fields endpoint for WordPres REST API.
  * Allows access to fields registered to a specific box.

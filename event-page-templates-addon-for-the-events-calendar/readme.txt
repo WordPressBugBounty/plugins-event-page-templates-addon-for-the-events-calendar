@@ -1,257 +1,343 @@
-﻿=== Event Single Page Builder For The Event Calendar ===
-Contributors:narinder-singh,satindersingh,coolplugins
-Donate link:https://paypal.me/CoolPlugins/10USD/
-Tags: the events calendar, events, Single Event Page, calendar, events calendar
-Requires at least:5.0
-Tested up to:6.9
-Requires PHP:7.2
-Stable tag:1.7.15
-License:GPLv2 or later
-License URI:http://www.gnu.org/licenses/gpl-2.0.html
-The Events Calendar add-on to edit and design event single page templates. Single event page template builder.
+﻿=== Event Single Page Builder For The Events Calendar ===
+Contributors: satindersingh, narinder-singh, coolplugins
+Donate link: https://donate.stripe.com/5kQdR92iBevO75WbPm6c00i
+Tags: the events calendar, event calendar, events, single page, page template
+Requires at least: 5.0
+Tested up to: 6.9
+Requires PHP: 7.2
+Stable tag: 1.8.0
+License: GPLv2 or later
+License URI: https://www.gnu.org/licenses/gpl-2.0.html
+
+The Events Calendar addon to create custom single event page templates and replace the default event single page layout with your own branded design.
 
 == Description ==
 
-### The Events Calendar Single Event Page Template
+**[Event Single Page Builder](https://eventscalendaraddons.com/plugin/event-single-page-builder-pro/?utm_source=epta_plugin&utm_medium=readme&utm_campaign=get_pro&utm_content=top_description)** is an addon for [The Events Calendar](https://stellarwp.pxf.io/tec) plugin that helps you create custom single event page templates. Instead of using the default event layout, you can design a custom event page template that matches your website style and overall theme.
+
+This extension helps you create a modern event calendar layout with full control over layout, colors, template display condition, and date format. You can replace the default single event page layout of The Events Calendar with your own custom design.
 
 https://youtu.be/50FBrcqoB-M
 
-**[Event Single Page Builder](https://eventscalendaraddons.com/plugin/event-single-page-builder-pro/?utm_source=epta_plugin&utm_medium=readme&utm_campaign=get_pro&utm_content=top_description)** is a powerful addon for The Events Calendar Plugin that allows you to design a single event page.
 
-Instead of relying on the default event layout offered by The Events Calendar, this addon gives multiple layout options, allowing you to design event pages according to your website.
+### Live Demos
 
-### Key Features
-* **Display Events:** Choose where you want the single event template to be applied. You can select to display it on all events or specific ones according to your preferences.
-* **Event Templates:** Choose a pre-built template layout for your single event page.
-* **Date Format:** Easily customize how dates should be displayed by choosing from various formats.
-* **Events Page Slug:** Enter the URL slug for your all-events listing page. This helps in linking back to your events from individual event pages.
-* **Primary Color:** Set the main background color, typically used for headings or highlighted sections on the single event layout.
-* **Custom CSS:** Add your own CSS code to customize the appearance of your single event page.
+👉 **View FREE Demo:** [Single Event Page Template](https://eventscalendaraddons.com/event/blood-donation-camp-in-delhi/?utm_source=epta_plugin&utm_medium=readme&utm_campaign=demo_free&utm_content=below_video)
 
-[🔗 Check free version demos](https://eventscalendaraddons.com/event/blood-donation-camp-in-delhi/?utm_source=epta_plugin&utm_medium=readme&utm_campaign=demo&utm_content=check_free_demos)
 
-### Why Design an Event Single Page?
-*  **Website’s branding and theme:** Easily change colors, fonts, and section styles according to your website.
-* **Advanced settings**: Customize layout and visibility of each section on your event page, design, and more.
-* **Dynamic Event Features:** Add a live countdown timer and display related events to your events.
-* **Advance Templates**: Choose from pre-designed templates (Elementor and non-Elementor) or use custom drag-and-drop widgets for more personalized design.
+👉 **View PRO Demos:** Design single event, category, venue, and organizer page layouts.
 
-### Upgrade to Pro
-Fully customize the single event pages of The Events Calendar plugin. Instead of the default layout, choose from pre-designed templates **(Elementor and non-Elementor)** or use **custom drag-and-drop widgets** for more personalized design.
+* **Design page templates in Elementor (PRO)**
+  * [Single Event Page](https://eventscalendaraddons.com/event/ghost-music-band-performance/?utm_source=epta_plugin&utm_medium=readme&utm_campaign=demo_elementor&utm_content=below_video): Create fully custom single event page templates using Elementor.
+  * [Category Page](https://eventscalendaraddons.com/events/category/training/?utm_source=epta_plugin&utm_medium=readme&utm_campaign=demo_elementor&utm_content=below_video): Build stylish event category archive layouts.
+  * [Venue Page](https://eventscalendaraddons.com/venue/rotary-blood-bank-delhi/?utm_source=epta_plugin&utm_medium=readme&utm_campaign=demo_elementor&utm_content=below_video): Customize venue pages and display all events of that venue.
+  * [Organizer Page](https://eventscalendaraddons.com/organizer/xyz-club/?utm_source=epta_plugin&utm_medium=readme&utm_campaign=demo_elementor&utm_content=below_video): Design organizer detail pages and show related events.
 
-**[🔗 Buy Pro Version!](https://eventscalendaraddons.com/plugin/event-single-page-builder-pro/?utm_source=epta_plugin&utm_medium=readme&utm_campaign=get_pro&utm_content=buy_pro_link)**
 
-### More Addons For The Events Calendar
+* **Pre-built templates for Non-Elementor sites (PRO)**
+  * [Single Event Page Template](https://eventscalendaraddons.com/event/womens-marathon-in-london/?utm_source=epta_plugin&utm_medium=readme&utm_campaign=demo_prebuilt&utm_content=below_video): Use ready-made templates for single event pages.
+  * [Category Page Template](https://eventscalendaraddons.com/events/category/wedding/?utm_source=epta_plugin&utm_medium=readme&utm_campaign=demo_prebuilt&utm_content=below_video): Quick setup with pre-designed event category layouts.
+  * [Venue Page Template](https://eventscalendaraddons.com/venue/cc-venue-oakland/?utm_source=epta_plugin&utm_medium=readme&utm_campaign=demo_prebuilt&utm_content=below_video): Ready-to-use venue page design.
+  * [Organizer Page Template](https://eventscalendaraddons.com/organizer/ride-it-up/?utm_source=epta_plugin&utm_medium=readme&utm_campaign=demo_prebuilt&utm_content=below_video): Structured organizer page layout with event listing.
 
-* **[Events Shortcodes Pro](https://eventscalendaraddons.com/plugin/events-shortcodes-pro/?utm_source=epta_plugin&utm_medium=readme&utm_campaign=get_pro&utm_content=ect_more_addons)**- Events Shortcodes Pro For The Events Calendar adds the missing shortcode functionality to The Events Calendar plugin. With this plugin, you can easily display your events on any page or post in a list, grid, carousel, slider, masonry, accordion, or even a timeline format.
+**[View All PRO Demos](https://eventscalendaraddons.com/demos/event-single-page-builder-pro/?utm_source=epta_plugin&utm_medium=readme&utm_campaign=demo_pro&utm_content=below_video)**
 
-* **[Events Widgets Pro](https://eventscalendaraddons.com/plugin/events-widgets-pro/?utm_source=epta_plugin&utm_medium=readme&utm_campaign=get_pro&utm_content=ectbe_more_addons)**- Show events list, grid, carousel, and more in Elementor pages using The Events Calendar Elementor Widgets.
 
-* **[Events Calendar Modules for Divi](https://wordpress.org/plugins/events-calendar-modules-for-divi/)**- Display The Events Calendar Events directly inside Divi with Customizable List or Grid Layouts.
+### Plugin Features
 
-**Use of 3rd Party Services:** This plugin connects to the Cool Plugins API to display information about related plugins inside the dashboard. It also offers optional usage tracking and optional feedback submission on deactivation. Data is sent only after explicit user consent. No hidden tracking is performed, and no frontend visitor or site user data is collected. For more details, please review our [Data Usage Policy](https://my.coolplugins.net/terms/usage-tracking/), [TOS](https://my.coolplugins.net/terms/), and [Privacy Policy](https://my.coolplugins.net/terms/privacy-policy/).
+* **Custom Single Event Page Template:** Replace the default single event page layout of The Events Calendar with a clean and modern event template design.
+* **Apply Template to All Events:** Automatically apply the same custom event page layout to all your published events without editing them individually.
+* **Date & Time Format Control:** Choose how the event date and time should appear on your single event page based on your country format and preference.
+* **Primary Color & Display Conditions:** Select template display condition and colorsto match your website branding and theme style.
+* **Custom CSS Option:** Add your own CSS to further customize the event layout.
+* **Fully Responsive Layout:** The event single page template is fully responsive and works smoothly on mobile, tablet, and desktop devices.
 
-**DISCLAIMER:** Event Single Page Builder For The Events Calendar plugin is developed by the Cool Plugins team and is not affiliated with or developed by the official team of The Events Calendar plugin, which is a part of StellarWP, the software arm of Liquid Web. Some of the links in this content may be affiliate links, which means we may earn a commission at no extra cost to you if you purchase through these links.
+
+### PRO Features
+
+* **[Single Event Page Builder for Elementor](https://eventscalendaraddons.com/doc/elementor-event-page-template/?utm_source=epta_plugin&utm_medium=readme&utm_campaign=docs&utm_content=pro_features):** Design fully custom single event page templates using Elementor’s drag-and-drop editor with dynamic event widgets.
+  * [Events Category Page](https://eventscalendaraddons.com/doc/elementor-event-category-template/?utm_source=epta_plugin&utm_medium=readme&utm_campaign=docs&utm_content=pro_features): Create custom event category archive layouts in Elementor.
+  * [Venue Page](https://eventscalendaraddons.com/doc/elementor-event-venue-template/?utm_source=epta_plugin&utm_medium=readme&utm_campaign=docs&utm_content=pro_features): Design dedicated venue pages and display all events of that venue.
+  * [Organizer Page](https://eventscalendaraddons.com/doc/elementor-event-organizer-template/?utm_source=epta_plugin&utm_medium=readme&utm_campaign=docs&utm_content=pro_features): Build organizer detail pages and dynamically show related events.
+
+  To design category, venue, and organizer layouts in Elementor, the [Events Widgets](https://eventscalendaraddons.com/plugin/events-widgets-pro/?utm_source=epta_plugin&utm_medium=readme&utm_campaign=get_pro&utm_content=pro_features) plugin must be installed along with Event Single Page Builder.
+
+* **[Add Speakers & Sponsors Section](https://eventscalendaraddons.com/doc/elementor-event-speakers-sponsors-template/?utm_source=epta_plugin&utm_medium=readme&utm_campaign=docs&utm_content=pro_features):** Display speakers and sponsors blocks on your event page using the [Events Speakers & Sponsors](https://eventscalendaraddons.com/plugin/events-speakers-and-sponsors/?utm_source=epta_plugin&utm_medium=readme&utm_campaign=get_pro&utm_content=pro_features) plugin.
+
+
+* **Pre-built Templates for Non-Elementor Sites:**
+  * [Single Event Page Template](https://eventscalendaraddons.com/doc/single-event-page-template/?utm_source=epta_plugin&utm_medium=readme&utm_campaign=docs&utm_content=pro_features): Use ready-made templates for single event pages.
+  * [Category Page Template](https://eventscalendaraddons.com/doc/category-page-template/?utm_source=epta_plugin&utm_medium=readme&utm_campaign=docs&utm_content=pro_features): Quickly set up event category archive layouts.
+  * [Organizer Page Template](https://eventscalendaraddons.com/doc/organizer-page-template/?utm_source=epta_plugin&utm_medium=readme&utm_campaign=docs&utm_content=pro_features): Display organizer details along with their events.
+  * [Venue Page Template](https://eventscalendaraddons.com/doc/venue-page-template/?utm_source=epta_plugin&utm_medium=readme&utm_campaign=docs&utm_content=pro_features): Display venue details and all related events.
+
+* **[Apply Multiple Templates to Different Events](https://eventscalendaraddons.com/doc/events-multiple-templates/?utm_source=epta_plugin&utm_medium=readme&utm_campaign=docs&utm_content=pro_features):** Assign different templates based on event category or specific events.
+
+
+### Why Use Event Single Page Builder with The Events Calendar?
+
+If you run an event website, training portal, conference platform, festival site, or community events directory and use The Events Calendar WordPress event plugin to manage your events, you may notice that the default single event page layout has design limitations. This addon helps you create branded and professional single event page templates.
+
+With PRO features, you can also design category, venue, and organizer page layouts to manage a complete event website. Display all events from a specific venue on its own page, show all events by a particular organizer, or organize events by category in a clean and structured format using this powerful WordPress event plugin setup.
+
+
+### Other Extensions For [The Events Calendar](https://stellarwp.pxf.io/tec)
+
+If you are using The Events Calendar WordPress plugin, you can extend its functionality further with these powerful addons:
+
+* [Events Widgets for Elementor & The Events Calendar](https://eventscalendaraddons.com/plugin/events-widgets-pro/?utm_source=epta_plugin&utm_medium=readme&utm_campaign=get_pro&utm_content=more_addons): Display events inside Elementor using list, grid, carousel, slider, and other advanced layouts with full styling control.
+* [Events Shortcodes for The Events Calendar](https://eventscalendaraddons.com/plugin/events-shortcodes-pro/?utm_source=epta_plugin&utm_medium=readme&utm_campaign=get_pro&utm_content=more_addons): Show events anywhere on your website using simple shortcodes in list, grid, timeline, or calendar format.
+* [Events Speakers & Sponsors](https://eventscalendaraddons.com/plugin/events-speakers-and-sponsors/?utm_source=epta_plugin&utm_medium=readme&utm_campaign=get_pro&utm_content=more_addons): Add dedicated speakers and sponsors sections to your event pages with structured layouts.
+* [Events Calendar Modules for Divi](https://eventscalendaraddons.com/plugin/the-events-calendar-modules-for-divi/?utm_source=epta_plugin&utm_medium=readme&utm_campaign=get_pro&utm_content=more_addons): Display The Events Calendar events using custom Divi modules built specifically for Divi Builder pages and layouts.
+
+
+### Other Plugins by [Cool Plugins](https://cooltimeline.com/?utm_source=epta_plugin&utm_medium=readme&utm_campaign=homepage&utm_content=other_plugins)
+
+Cool Plugins has also built many WordPress plugins for different use cases:
+
+* [Cool FormKit](https://coolformkit.com/?utm_source=epta_plugin&utm_medium=readme&utm_campaign=get_pro&utm_content=other_plugins): Advanced Elementor form fields and conditional logic addon.
+* [Cool Timeline](https://cooltimeline.com/plugin/cool-timeline-pro/?utm_source=epta_plugin&utm_medium=readme&utm_campaign=get_pro&utm_content=other_plugins): Create vertical and horizontal timeline layouts.
+* [AutoPoly](https://coolplugins.net/product/autopoly-ai-translation-for-polylang/?utm_source=epta_plugin&utm_medium=readme&utm_campaign=get_pro&utm_content=other_plugins): AI translation addon for Polylang multilingual sites.
+* [LocoAI](https://locoaddon.com/?utm_source=epta_plugin&utm_medium=readme&utm_campaign=get_pro&utm_content=other_plugins): AI-powered translation helper for Loco Translate.
+
+
+**Third-Party Services:** To improve the plugin experience this plugin offers optional usage tracking and an optional feedback form during deactivation. Data is sent only after explicit user consent. No hidden tracking is performed, and no frontend visitor or personal site user data is collected. For complete details, please review our [Data Usage Policy](https://my.coolplugins.net/terms/usage-tracking/), [TOS](https://my.coolplugins.net/terms/), and [Privacy Policy](https://my.coolplugins.net/terms/privacy-policy/). It also uses [CMB2](https://github.com/CMB2/CMB2/tree/develop?tab=GPL-3.0-1-ov-file) for the settings panel (GPL licensed). 
+
+**Disclaimer:** Event Single Page Builder For The Events Calendar is developed by Cool Plugins and is not affiliated with or endorsed by The Events Calendar team (a product of StellarWP, Liquid Web). Some links in this plugin or its readme may be affiliate links, meaning we may earn a commission at no extra cost to you.
 
 == Installation ==
-* Search **"Event single page"** inside your website's **wp-admin dashboard >> Plugins >> Add New** and install Event Single Page Builder plugin. You can also install a plugin by uploading a plugin-zip unzipped folder to the **/wp-content/plugins** directory. You must install **The Events Calendar** free plugin if you want to use this plugin's features.
 
-* Activate the plugin through **Plugins >> Installed Plugins** menu inside your **wp-admin dashboard**.
+Follow the steps below to install and set up Event Single Page Builder for The Events Calendar.
 
-* You can edit the single event template colors and other settings from **Events Addons >> Event Page Template**.
+= 1. Install The Events Calendar Plugin =
+
+This plugin works as an addon for The Events Calendar WordPress event plugin. Make sure The Events Calendar plugin is installed and activated on your website before using this addon.
+
+= 2. Install Event Single Page Builder =
+
+- Go to **Plugins → Add New** in your WordPress dashboard.
+- Search for **Event Single Page Builder For The Events Calendar**.
+- Click **Install Now** and then **Activate**.
+
+You can also install the plugin manually by uploading the plugin ZIP file via **Plugins → Add New → Upload Plugin**.
+
+= 3. Create & Configure Event Page Template =
+
+- After activation, go to **Events Addons → Event Page Template**.
+- Edit the **Single Event Template**.
+- Customize layout settings such as colors, display condition, and date format.
+- Apply the template to all events or assign it to specific events or categories.
+- Save changes to activate your custom single event page layout.
+
+= 4. Are You Using Elementor? =
+
+If you are using Elementor and want advanced design control, you should use the [PRO version](https://eventscalendaraddons.com/plugin/event-single-page-builder-pro/?utm_source=epta_plugin&utm_medium=readme&utm_campaign=get_pro&utm_content=installation)
+
+With the PRO version of this extension, you can:
+
+- Create fully custom single event page templates using Elementor.
+- Design category, venue, and organizer page layouts.
+- Build a complete event website with dynamic layouts.
+
+For detailed steps, please check the premium [plugin documentation](https://eventscalendaraddons.com/docs/event-single-page-builder-pro/?utm_source=epta_plugin&utm_medium=readme&utm_campaign=docs&utm_content=installation).
+
 
 == Frequently Asked Questions ==
 
-= How to show events in a list or grid layout? =
-This addon only designs single event pages. If you want to show your events in a list, grid, or events carousel layout on any page, then you can try our other addons.
-* Events Shortcodes For The Events Calendar, Use shortcodes to show events list, grid, carousel on any page.
-* Events Widgets For Elementor & The Events Calendar, Show events list, grid inside Elementor pages.
+= What is Event Single Page Builder for The Events Calendar? =
+Event Single Page Builder is an addon for [The Events Calendar](https://stellarwp.pxf.io/tec) WordPress event plugin. It helps you customize the single event page by replacing the default layout with your own design, where you can control styling, structure, and event details display.
 
-= Can I select any date format on single event page? =
-Yes, from template settings, you can select any date format that you want to show on a single event page.
+= Can I design category, venue, and organizer pages? =
+Yes (PRO feature). You can create dedicated layouts for event categories, venues, and organizers. This allows you to automatically display all events from a specific venue, organizer, or category in a clean and organized format.
 
-= Can I design a single template using the Gutenberg block editor? =
-No, this addon only provides a pre-designed template, and you can adjust colors and settings inside it.
+= Can I apply different templates to different events? =
+Yes (PRO feature). You can [assign multiple templates](https://eventscalendaraddons.com/doc/events-multiple-templates/?utm_source=epta_plugin&utm_medium=readme&utm_campaign=docs&utm_content=faqs) based on event category or even specific events. This gives you better control over how different events appear on your website.
 
-= What does The Events Calendar Single Event Page Template plugin do? =
-This plugin allows you to edit and design a single event page template using the Event Single Page Builder.
+= Can I design single event pages in Elementor? =
+Yes (PRO feature). The PRO version allows you to design fully [custom single event page templates](https://eventscalendaraddons.com/doc/elementor-event-page-template/?utm_source=epta_plugin&utm_medium=readme&utm_campaign=docs&utm_content=faqs) using Elementor’s drag-and-drop builder along with dynamic event widgets.
 
-= Do I need coding skills to use the Event Single Page Builder? =
-No, you don’t need any coding skills. You can easily create and customize event templates without any HTML, CSS, or technical knowledge. Just follow our documentation to get started quickly!
+= Is the PRO version only useful for Elementor users? =
+No. The PRO version also includes pre-built templates for non-Elementor websites. You can use ready-made layouts for single event, category, venue, and organizer pages without Elementor.
 
-= Can I customize the design of a single event page? =
-Yes, you can showcase your single event page and customize the colors in the Event Page Template settings.
+= Is the event page template fully mobile responsive? =
+Yes. All layouts created with this plugin are responsive and adapt properly to mobile, tablet, and desktop screens.
 
-= Can I use this plugin with Elementor? =
-Yes, the pro version of the plugin provides support for Elementor, allowing you to design the event single-page template in Elementor.
-
-= How do I create a single event template using Elementor? =
-To create an elementor single event template, go to Events Addons → Event Page Templates, click Add New, name it, and choose where and for which events it should appear. Select a pre-made layout or create one using custom widgets according to your preference.
-
-= Is the Event Single Page Builder responsive? =
-Absolutely. Templates created using the Event Single Page Builder are fully mobile-responsive. Your event layouts automatically adapt to all screen sizes—whether it’s mobile, tablet, or desktop.
+= How can I add a speakers & sponsors section on the event page? =
+You can add a [speakers and sponsors section](https://eventscalendaraddons.com/doc/elementor-event-speakers-sponsors-template/?utm_source=epta_plugin&utm_medium=readme&utm_campaign=docs&utm_content=faqs) by using the [Events Speakers & Sponsors](https://eventscalendaraddons.com/plugin/events-speakers-and-sponsors/?utm_source=epta_plugin&utm_medium=readme&utm_campaign=get_pro&utm_content=faqs) plugin along with the PRO version of Event Single Page Builder.
 
 = How can I report security bugs? =
-You can report security bugs through the Patchstack Vulnerability Disclosure Program. The Patchstack team helps validate, triage, and handle any security vulnerabilities. [Report a security vulnerability](https://patchstack.com/database/vdp/template-events-calendar).
+You can report security bugs through the Patchstack Vulnerability Disclosure Program. The Patchstack team helps validate, triage, and handle any security vulnerabilities. [Report a security vulnerability](https://patchstack.com/database/vdp/event-page-templates-addon-for-the-events-calendar).
+
 
 == Screenshots ==
 1. Single Event Page Template
-2. Event Page Template Settings
+2. Event Single Page Template Settings
 3. Compare Layout - The Events Calendar (Default) vs This Addon
+
 
 == Changelog ==
 
-= Version 1.7.15 | 12 February 2025 =
-* Updated: Textual Changes.
+= 1.8.0 | FEB 21, 2026 =
+* Improvements: Improved dashboard design and usability.
+* Improvements: Code optimizations and refinements.
+* Fixed: Issues reported by “Plugin Check” plugin.
+* Updated: readme file.
+* Tested up to: The Events Calendar 6.15.16
 
-= Version 1.7.14 | 12 February 2025 =
-* Updated: Blueprints.
+= 1.7.15 | FEB 12, 2026 =
+* Updated: Minor textual improvements for better clarity.
 
-= Version 1.7.13 | 18 November 2025 =
-* Removed: Extra Code.
-* Tested upto: The Events Calendar version 6.15.11
+= 1.7.14 | FEB 12, 2026 =
+* Updated: Blueprint configuration.
 
-= Version 1.7.12 | 19 September 2025 =
-* Improved: plugin recommendations.
-* Tested upto: The Events Calendar version 6.15.4
+= 1.7.13 | NOV 18, 2025 =
+* Removed: Unnecessary extra code for better performance.
+* Tested up to: The Events Calendar 6.15.11
 
-= Version 1.7.11 | 02 September 2025 =
-* Updated: Internal Links.
-* Updated: Readme.
+= 1.7.12 | SEP 19, 2025 =
+* Improved: Plugin recommendation section.
+* Tested up to: The Events Calendar 6.15.4
 
-= Version 1.7.10 | 18 August 2025 =
-* Fixed: Minor Changes.
+= 1.7.11 | SEP 02, 2025 =
+* Updated: Internal links.
+* Updated: Readme content improvements.
 
-= Version 1.7.9 | 18 August 2025 =
-* Fixed: Security issues.
-* Improved: Minor code improvements.
-* Tested upto: WordPress version 6.8.2
-* Tested upto: The Events Calendar version 6.14.2
+= 1.7.10 | AUG 18, 2025 =
+* Fixed: Minor layout adjustments.
 
-= Version 1.7.8 | 10 June 2025 =
-* Improvements: Textual Changes.
+= 1.7.9 | AUG 18, 2025 =
+* Fixed: Security related issues.
+* Improved: Code optimizations for event page templates.
+* Tested up to: WordPress 6.8.2
+* Tested up to: The Events Calendar 6.14.2
 
-= Version 1.7.7 | 09 June 2025 =
-* Added: User opt-in option in plugin.
-* Tested upto WordPress 6.8.1
-* Tested upto The Event Calendar 6.13.2.1
+= 1.7.8 | JUN 10, 2025 =
+* Improved: Text refinements.
 
-= Version 1.7.6 | 06 May 2025 =
-* Tested upto WordPress 6.8.1
+= 1.7.7 | JUN 09, 2025 =
+* Added: User opt-in option inside plugin settings.
+* Tested up to: WordPress 6.8.1
+* Tested up to: The Events Calendar 6.13.2.1
 
-= Version 1.7.5 | 03 Dec 2024 =
- * Fixed: Load textdomain issue.
-* Fixed: Issue with color not getting applied.
-* Tested upto WordPress 6.7.1
-* Tested upto The Event Calendar 6.8.2.1
+= 1.7.6 | MAY 06, 2025 =
+* Tested up to: WordPress 6.8.1
 
-= Version 1.7.4 | 25 Oct 2024 =
- * Fixed: Fix security issues.
-* Tested upto WordPress 6.6.2
-* Tested upto The Event Calendar 6.7.1
+= 1.7.5 | DEC 03, 2024 =
+* Fixed: Textdomain loading issue.
+* Fixed: Primary color not applying correctly on event layout.
+* Tested up to: WordPress 6.7.1
+* Tested up to: The Events Calendar 6.8.2.1
 
-= Version 1.7.3 | 23 Jul 2024 =
- * Tested upto WordPress V6.6 and The Events Calendar V6.6.0
+= 1.7.4 | OCT 25, 2024 =
+* Fixed: Security improvements.
+* Tested up to: WordPress 6.6.2
+* Tested up to: The Events Calendar 6.7.1
 
-= Version 1.7.2 | 16 May 2024 =
- * Fixed: Template Override issue when event is edited in Elementor with TEC 6.4.0.1
-* Tested upto: WordPress 6.5.3
-* Tested upto: The Event Calendar 6.5.0
+= 1.7.3 | JUL 23, 2024 =
+* Tested up to: WordPress 6.6
+* Tested up to: The Events Calendar 6.6.0
 
-= Version 1.7.1 | 17 Apr 2024 =
-* Fixed: Related Events showing again when TEC Pro is activated.
-* Tested upto: WordPress 6.5.2
-* Tested upto: The Event Calendar 6.3.6
+= 1.7.2 | MAY 16, 2024 =
+* Fixed: Template override issue when editing events with Elementor (TEC 6.4.0.1).
+* Tested up to: WordPress 6.5.3
+* Tested up to: The Events Calendar 6.5.0
 
-= Version 1.7.0 | 18 Jan 2024 =
-* Fixed: Minor issues.
-* Tested upto: WordPress 6.4.2
-* Tested upto: The Event Calendar 6.2.9
+= 1.7.1 | APR 17, 2024 =
+* Fixed: Related events visibility issue when TEC Pro was activated.
+* Tested up to: WordPress 6.5.2
+* Tested up to: The Events Calendar 6.3.6
 
-= Version 1.6.9 | 01 Dec 2023 =
-* Tested upto: Elementor 3.17.3
-* Tested upto: WordPress 6.4.1
-* Tested upto: The Event Calendar 6.2.8.1
+= 1.7.0 | JAN 18, 2024 =
+* Fixed: Minor template related issues.
+* Tested up to: WordPress 6.4.2
+* Tested up to: The Events Calendar 6.2.9
 
-= Version 1.6.8 | 22 Sep 2023 =
-* Fixed: Undefined array key 1 issue at admin side
-* Tested upto: Elementor 3.16.4
-* Tested upto: WordPress 6.3.1
-* Tested upto: The Event Calendar 6.2.2
+= 1.6.9 | DEC 01, 2023 =
+* Tested up to: Elementor 3.17.3
+* Tested up to: WordPress 6.4.1
+* Tested up to: The Events Calendar 6.2.8.1
 
-= Version 1.6.7 | 07 Aug 2023 =
-* Minor Update.
-* Tested upto: Elementor 3.15.1
-* Tested upto: WordPress 6.3
-* Tested upto: The Event Calendar 6.1.3
+= 1.6.8 | SEP 22, 2023 =
+* Fixed: Undefined array key issue in admin area.
+* Tested up to: Elementor 3.16.4
+* Tested up to: WordPress 6.3.1
+* Tested up to: The Events Calendar 6.2.2
 
-= Version 1.6.6 | 29 Mar 2023 =
-* Improved: Minor textual changes.
-* Improved: Updated links.
-* Improved: Dashboard Code.
-* Improved: Feedback Form.
-* Updated: Readme.
+= 1.6.7 | AUG 07, 2023 =
+* Updated: Minor improvements.
+* Tested up to: Elementor 3.15.1
+* Tested up to: WordPress 6.3
+* Tested up to: The Events Calendar 6.1.3
 
-= Version 1.6.5 | 01 Nov 2022 =
-* Fixed: share email button link issue.
-* Fixed: Custom CSS code editor issue.
-* Fixed: Related events issue with The Events Calendar 6.0.2
+= 1.6.6 | MAR 29, 2023 =
+* Improved: Minor text updates.
+* Improved: Updated internal links.
+* Improved: Dashboard enhancements.
+* Improved: Deactivation feedback form.
+* Updated: Readme file.
 
-= Version 1.6.4 | 12 Oct 2022 =
+= 1.6.5 | NOV 01, 2022 =
+* Fixed: Share email button link issue.
+* Fixed: Custom CSS editor issue.
+* Fixed: Related events compatibility issue with The Events Calendar 6.0.2.
+
+= 1.6.4 | OCT 12, 2022 =
 * Fixed: Minor bug fixes.
 
-= Version 1.6.3 | 27 Apr 2022 =
-* Fixed: Images bug.
-* Fixed: Date format issue.
+= 1.6.3 | APR 27, 2022 =
+* Fixed: Image display issue.
+* Fixed: Event date format issue.
 
-= Version 1.6.2 | 14 Apr 2022 =
+= 1.6.2 | APR 14, 2022 =
 * Fixed: Minor bug.
 
-= Version 1.6 | 07 Apr 2022 =
-* Fixed: Minor bug.
+= 1.6.0 | APR 07, 2022 =
+* Fixed: Minor bug fixes.
 
-= Version 1.5 | 23 Oct 2020 =
-* Added: Integrated Events Addon Section
-* Updated: Managed settings under events addon menu.
+= 1.5 | OCT 23, 2020 =
+* Added: Integrated Events Addon section.
+* Updated: Settings moved under Events Addons menu.
 
-= Version 1.4.2 | 12 Mar 2020 =
-* Fixed: Html rendering.
-* Fixed: Fixed deactivation form bug.
-* Updated: Tested up 5.4
-* Improvements: Improved overall code.
+= 1.4.2 | MAR 12, 2020 =
+* Fixed: HTML rendering issue.
+* Fixed: Deactivation form issue.
+* Tested up to: WordPress 5.4
+* Improved: Overall code performance.
 
-= Version 1.4.1 | 22 Nov 2019 =
-* Fixed: Sanitized title and released event title.
-* Fixed: Minor code improvements.
+= 1.4.1 | NOV 22, 2019 =
+* Fixed: Sanitized event title output.
+* Improved: Minor code refinements.
 
-= Version 1.4 | 19 Nov 2019 =
-* Added: Registration button.
-* Added: Display comments.
-* Fixed: Improved code security.
+= 1.4 | NOV 19, 2019 =
+* Added: Event registration button option.
+* Added: Display comments option.
+* Improved: Code security enhancements.
 
-= Version 1.3 | 10 Aug 2019 =
-* Added: Option to add custom link to "View All" events.
-* Added: Feedback on plugin deactivation.
-* Fixed: Wrong RSVP view link.
-* Fixed: Multi day support in all date formats.
-* Improved: Code improvements.
+= 1.3 | AUG 10, 2019 =
+* Added: Custom link option for "View All Events".
+* Added: Deactivation feedback option.
+* Fixed: Incorrect RSVP view link.
+* Fixed: Multi-day event date support.
+* Improved: Code structure improvements.
 
-= Version 1.2.1 | 04 Jun 2019 =
-* Fixed: Events content formatting issues.
+= 1.2.1 | JUN 04, 2019 =
+* Fixed: Event content formatting issues.
 
-= Version 1.2 | 02 Jun 2019 =
-* New: Released stable version. 
+= 1.2 | JUN 02, 2019 =
+* Released: Stable version.
 
-= Version 1.1 | 30 May 2019 =
-* Updated: Integrated CMB2 Version 2.6
+= 1.1 | MAY 30, 2019 =
+* Updated: Integrated CMB2 version 2.6.
 
-= Version 1.0 | 29 May 2019 =
-* New: Plugin released.
+= 1.0 | MAY 29, 2019 =
+* Released: Initial plugin version.
+
+[View changelog for pro version](https://eventscalendaraddons.com/doc/event-single-page-builder-changelog/?utm_source=epta_plugin&utm_medium=readme&utm_campaign=docs&utm_content=changelog)
 
 == Upgrade Notice ==
-= Version 1.6.6 | 29 Mar 2023 =
-* Improved: Minor textual changes.
-* Improved: Updated links.
-* Improved: Dashboard Code.
-* Improved: Feedback Form.
-* Updated: Readme.
+
+= 1.7.2 =
+Resolved template override issue when editing events with Elementor.
+
+= 1.6.6 =
+Improved dashboard experience and minor internal enhancements.

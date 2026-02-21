@@ -1,4 +1,5 @@
 <?php
+//phpcs:disable WordPress.WP.I18n.TextDomainMismatch
 /**
  * CMB file field type
  *

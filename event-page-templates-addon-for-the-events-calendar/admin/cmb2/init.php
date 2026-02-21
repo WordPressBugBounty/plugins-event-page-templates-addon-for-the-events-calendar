@@ -1,5 +1,5 @@
 <?php
-
+//phpcs:disable WordPress.NamingConventions.PrefixAllGlobals.NonPrefixedHooknameFound
 
 /**
  * *********************************************************************
@@ -8,7 +8,7 @@
  *               or things might explode!
  * ***********************************************************************
  */
-
+if ( ! defined( 'ABSPATH' ) ) exit;
 if (! class_exists('CMB2_Bootstrap_2101', false)) {
 
     /**

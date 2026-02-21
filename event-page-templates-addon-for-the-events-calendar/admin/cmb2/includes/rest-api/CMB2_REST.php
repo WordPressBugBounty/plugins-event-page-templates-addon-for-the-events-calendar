@@ -1,4 +1,5 @@
 <?php
+//phpcs:disable WordPress.Security.EscapeOutput.ExceptionNotEscaped
 /**
  * Handles hooking CMB2 objects/fields into the WordPres REST API
  * which can allow fields to be read and/or updated.
@@ -16,6 +17,7 @@
  * @property-read rest_read   Whether CMB2 object is readable via the rest api.
  * @property-read rest_edit   Whether CMB2 object is editable via the rest api.
  */
+if ( ! defined( 'ABSPATH' ) ) exit;
 class CMB2_REST extends CMB2_Hookup_Base {
 
 	/**

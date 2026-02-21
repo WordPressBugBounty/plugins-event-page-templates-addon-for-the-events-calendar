@@ -1,4 +1,5 @@
 <?php
+//phpcs:disable WordPress.NamingConventions.PrefixAllGlobals.NonPrefixedVariableFound
 /**
  * Single Event Template
  * A single event. This displays the event title, description, meta, and
@@ -46,8 +47,8 @@ wp_enqueue_style( 'epta-frontend-css' );
 									<!-- .tribe-events-single-event-description -->
 									<div class="epta-events-cal-links">
 										<?php
-										echo '<a class="tribe-events-gcal tribe-events-button" href="' . esc_url(Tribe__Events__Main::instance()->esc_gcal_url( tribe_get_gcal_link() )) . '" title="' . esc_attr__( 'Add to Google Calendar', 'the-events-calendar' ) . '">+ ' . esc_html__( 'Google Calendar', 'the-events-calendar' ) . '</a>';
-										echo '<a class="tribe-events-ical tribe-events-button" href="' . esc_url( tribe_get_single_ical_link() ) . '" title="' . esc_attr__( 'Download .ics file', 'the-events-calendar' ) . '" >+ ' . esc_html__( 'iCal Export', 'the-events-calendar' ) . '</a>';
+										echo '<a class="tribe-events-gcal tribe-events-button" href="' . esc_url(Tribe__Events__Main::instance()->esc_gcal_url( tribe_get_gcal_link() )) . '" title="' . esc_attr__( 'Add to Google Calendar', 'event-page-templates-addon-for-the-events-calendar' ) . '">+ ' . esc_html__( 'Google Calendar', 'event-page-templates-addon-for-the-events-calendar' ) . '</a>';
+										echo '<a class="tribe-events-ical tribe-events-button" href="' . esc_url( tribe_get_single_ical_link() ) . '" title="' . esc_attr__( 'Download .ics file', 'event-page-templates-addon-for-the-events-calendar' ) . '" >+ ' . esc_html__( 'iCal Export', 'event-page-templates-addon-for-the-events-calendar' ) . '</a>';
 										?>
 									</div><!-- .epta-events-cal-links -->
 								</div> <!-- #post-x -->
@@ -86,7 +87,7 @@ wp_enqueue_style( 'epta-frontend-css' );
 							<!-- Event footer -->
 							<div id="tribe-events-footer">
 								<!-- Navigation -->
-								<h3 class="tribe-events-visuallyhidden"><?php echo esc_html__( 'Event Navigation', 'epta' ); ?></h3>
+								<h3 class="tribe-events-visuallyhidden"><?php echo esc_html__( 'Event Navigation', 'event-page-templates-addon-for-the-events-calendar' ); ?></h3>
 								<ul class="tribe-events-sub-nav">
 									<li class="tribe-events-nav-previous"><?php tribe_the_prev_event_link( '<span>&laquo;</span> %title%' ); ?></li>
 									<li class="tribe-events-nav-next"><?php tribe_the_next_event_link( '%title% <span>&raquo;</span>' ); ?></li>
@@ -103,7 +104,7 @@ wp_enqueue_style( 'epta-frontend-css' );
 							if ( is_array( $posts ) && ! empty( $posts ) ) :
 								?>
 							<div class="epta-related-area">
-								<h3 class="epta-related-head"><?php echo esc_html__( 'Related Events', 'epta' ); ?></h3>
+								<h3 class="epta-related-head"><?php echo esc_html__( 'Related Events', 'event-page-templates-addon-for-the-events-calendar' ); ?></h3>
 								<div class="epta-row"> 
 									<?php foreach ( $posts as $post ) : ?>
 									<div class="col-sm-4">

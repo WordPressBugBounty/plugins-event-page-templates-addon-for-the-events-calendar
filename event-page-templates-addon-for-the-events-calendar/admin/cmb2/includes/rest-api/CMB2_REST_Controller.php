@@ -1,4 +1,6 @@
 <?php
+//phpcs:disable WordPress.WP.I18n.TextDomainMismatch, WordPress.NamingConventions.PrefixAllGlobals.DynamicHooknameFound
+
 if ( ! class_exists( 'WP_REST_Controller' ) ) {
 	// Shim the WP_REST_Controller class if wp-api plugin not installed, & not in core.
 	require_once cmb2_dir( 'includes/shim/WP_REST_Controller.php' );

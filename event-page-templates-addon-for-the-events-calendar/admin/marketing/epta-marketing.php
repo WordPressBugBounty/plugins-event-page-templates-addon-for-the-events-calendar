@@ -71,7 +71,7 @@ if (!class_exists('EPTA_TEC_Notice')) {
                 }
                 $this->epta_enqueue_marketing_scripts();
                 ?>
-                <div class="notice notice-info is-dismissible epta-tec-notice-elementor"
+                <div class="notice notice-info is-dismissible epta-tec-notice-elementor ect-required-plugin-notice"
                     data-notice="epta_notice_elementor"
                     data-nonce="<?php echo esc_attr(wp_create_nonce('epta_dismiss_nonce_elementor')); ?>">
                     <p class="epta-notice-widget">
@@ -99,8 +99,8 @@ if (!class_exists('EPTA_TEC_Notice')) {
                 wp_send_json_error(['message' => 'Permission denied']);
             }
 
-            $notice_type = isset($_POST['notice']) ? sanitize_text_field($_POST['notice']) : '';
-            $nonce       = isset($_POST['nonce']) ? $_POST['nonce'] : '';
+            $notice_type = isset($_POST['notice']) ? sanitize_text_field(wp_unslash($_POST['notice'])) : '';
+            $nonce       = isset($_POST['nonce']) ? sanitize_text_field(wp_unslash($_POST['nonce'])) : '';//phpcs:ignore WordPress.Security.NonceVerification.Missing
 
             if ($notice_type === 'epta_notice_elementor' && wp_verify_nonce($nonce, 'epta_dismiss_nonce_elementor')) {
                 update_option('epta_elementor_notice_dismissed', true);

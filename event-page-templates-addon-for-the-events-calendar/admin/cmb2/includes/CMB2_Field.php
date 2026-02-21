@@ -1,4 +1,6 @@
 <?php
+//phpcs:disable WordPress.WP.I18n.TextDomainMismatch
+//phpcs:disable WordPress.Security.EscapeOutput.OutputNotEscaped
 /**
  * CMB2 field objects
  *
@@ -14,6 +16,7 @@
  * @method string type()
  * @method mixed fields()
  */
+if ( ! defined( 'ABSPATH' ) ) exit;
 class CMB2_Field extends CMB2_Base {
 
 	/**

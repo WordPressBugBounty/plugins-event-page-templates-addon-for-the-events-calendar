@@ -1,8 +1,10 @@
 <?php
-
+//phpcs:disable WordPress.Security.EscapeOutput.OutputNotEscaped, WordPress.WP.EnqueuedResourceParameters.MissingVersion, WordPress.WP.EnqueuedResourceParameters.NotInFooter
+//phpcs:disable WordPress.NamingConventions.PrefixAllGlobals.NonPrefixedClassFound, WordPress.NamingConventions.PrefixAllGlobals.NonPrefixedHooknameFound, WordPress.NamingConventions.PrefixAllGlobals.NonPrefixedVariableFound
 /**
  * Class PW_CMB2_Field_Select2
  */
+if ( ! defined( 'ABSPATH' ) ) exit;
 class PW_CMB2_Field_Select2 {
 
 	/**

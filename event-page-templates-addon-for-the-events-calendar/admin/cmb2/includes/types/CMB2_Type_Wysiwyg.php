@@ -1,4 +1,5 @@
 <?php
+//phpcs:disable WordPress.Security.EscapeOutput.OutputNotEscaped
 /**
  * CMB wysiwyg field type
  *
@@ -13,6 +14,7 @@
  * @method string _id()
  * @method string _desc()
  */
+if ( ! defined( 'ABSPATH' ) ) exit;
 class CMB2_Type_Wysiwyg extends CMB2_Type_Textarea {
 
 	/**

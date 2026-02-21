@@ -1,4 +1,6 @@
 <?php
+//phpcs:disable WordPress.WP.I18n.TextDomainMismatch, WordPress.WP.I18n.MissingTranslatorsComment
+//phpcs:disable WordPress.Security.EscapeOutput.OutputNotEscaped, WordPress.Security.EscapeOutput.ExceptionNotEscaped
 /**
  * Base class for hooking CMB2 into WordPress.
  *
@@ -13,6 +15,7 @@
  * @property-read string $object_type
  * @property-read CMB2   $cmb
  */
+if ( ! defined( 'ABSPATH' ) ) exit;
 abstract class CMB2_Hookup_Base {
 
 	/**

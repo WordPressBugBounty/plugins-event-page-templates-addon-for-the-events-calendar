@@ -1,4 +1,6 @@
 <?php
+//phpcs:disable WordPress.WP.I18n.TextDomainMismatch, WordPress.WP.I18n.MissingTranslatorsComment, 	WordPress.WP.I18n.MissingArgDomain
+//phpcs:disable WordPress.Security.EscapeOutput.OutputNotEscaped, WordPress.WP.EnqueuedResourceParameters.NotInFooter, 	WordPress.WP.EnqueuedResourceParameters.MissingVersion
 /**
  * Handles hooking CMB2 forms/metaboxes into the post/attachement/user screens
  * and handles hooking in and saving those fields.
@@ -11,6 +13,7 @@
  * @license   GPL-2.0+
  * @link      https://cmb2.io
  */
+if ( ! defined( 'ABSPATH' ) ) exit;
 class CMB2_Hookup extends CMB2_Hookup_Base {
 
 	/**

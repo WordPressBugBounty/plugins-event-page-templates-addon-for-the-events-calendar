@@ -1,5 +1,5 @@
 <?php
-
+//phpcs:disable WordPress.WP.I18n.TextDomainMismatch, WordPress.NamingConventions.PrefixAllGlobals.NonPrefixedHooknameFound
 /**
  * CMB2 ajax methods
  * (i.e. a lot of work to get oEmbeds to work with non-post objects)
@@ -11,6 +11,7 @@
  * @author    CMB2 team
  * @license   GPL-2.0+
  */
+if ( ! defined( 'ABSPATH' ) ) exit;
 class CMB2_Ajax {
 
 	// Whether to hijack the oembed cache system.

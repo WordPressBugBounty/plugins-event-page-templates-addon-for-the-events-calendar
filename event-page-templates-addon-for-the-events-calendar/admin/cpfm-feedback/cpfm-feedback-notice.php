@@ -1,5 +1,5 @@
 <?php
-
+//phpcs:disable WordPress.NamingConventions.PrefixAllGlobals.NonPrefixedHooknameFound, WordPress.Security.NonceVerification.Recommended
 if ( ! defined( 'ABSPATH' )) exit;
 
 class CPFM_Feedback_Notice {
@@ -172,8 +172,8 @@ class CPFM_Feedback_Notice {
         }
     
         $output = '';
-        $output .= '<div id="cpfNoticePanel" class="notice-panel"' . ($auto_show ? ' data-auto-show="true"' : '') . '>';
-        $output .= '<div class="notice-panel-header">' . esc_html__('Help Improve Plugins', 'epta') . ' <span class="dashicons dashicons-no" id="cpfm_remove_notice"></span></div>';
+        $output .= '<div id="cpfNoticePanel" class="notice-panel ect-required-plugin-notice"' . ($auto_show ? ' data-auto-show="true"' : '') . '>';
+        $output .= '<div class="notice-panel-header">' . esc_html__('Help Improve Plugins', 'event-page-templates-addon-for-the-events-calendar') . ' <span class="dashicons dashicons-no" id="cpfm_remove_notice"></span></div>';
         $output .= '<div class="notice-panel-content">';
     
         foreach (self::$registered_notices as $key => $notice) {
@@ -199,21 +199,22 @@ class CPFM_Feedback_Notice {
             $output .= '<strong>' . esc_html($notice['title']) . '</strong>';
             
             $output .= '<div class="notice-message-with-toggle">';
-            $output .= '<p>' . esc_html($notice['message']) . '<a href="#" class="cpf-toggle-extra">' . esc_html__(' More info', 'epta') . '</a></p>';
+            $output .= '<p>' . esc_html($notice['message']) . '<a href="#" class="cpf-toggle-extra">' . esc_html__(' More info', 'event-page-templates-addon-for-the-events-calendar') . '</a></p>';
             $output .= '</div>';
             
             $output .= '<div class="cpf-extra-info">';
-            $output .= '<p>' . esc_html__('Opt in to receive email updates about security improvements, new features, helpful tutorials, and occasional special offers. We\'ll collect:', 'epta') . '</p>';
+            $output .= '<p>' . esc_html__('Opt in to receive email updates about security improvements, new features, helpful tutorials, and occasional special offers. We\'ll collect:', 'event-page-templates-addon-for-the-events-calendar') . '</p>';
             $output .= '<ul>';
-            $output .= '<li>' . esc_html__('Your website home URL and WordPress admin email.', 'epta') . '</li>';
-            $output .= '<li>' . esc_html__('To check plugin compatibility, we will collect the following: list of active plugins and themes, server type, MySQL version, WordPress version, memory limit, site language and database prefix.', 'epta') . '</li>';
+            $output .= '<li>' . esc_html__('Your website home URL and WordPress admin email.', 'event-page-templates-addon-for-the-events-calendar') . '</li>';
+            $output .= '<li>' . esc_html__('To check plugin compatibility, we will collect the following: list of active plugins and themes, server type, MySQL version, WordPress version, memory limit, site language and database prefix. ', 'event-page-templates-addon-for-the-events-calendar');
+            $output .= '<a href="https://my.coolplugins.net/terms/usage-tracking/" target="_blank">' . esc_html__('Click here', 'event-page-templates-addon-for-the-events-calendar') . '</a></li>';
             $output .= '</ul>';
             
             $output .= '</div>';
             
             $output .= '<div class="notice-actions">';
-            $output .= '<button class="button button-primary opt-in-yes" data-category="' . esc_attr($key) . '" id="yes-share-data" value="yes">' . esc_html__("Yes, I Agree", 'epta') . '</button>';
-            $output .= '<button class="button opt-in-no" data-category="' . esc_attr($key) . '" id="no-share-data" value="no">' . esc_html__('No, Thanks', 'epta') . '</button>';
+            $output .= '<button class="button button-primary opt-in-yes" data-category="' . esc_attr($key) . '" id="yes-share-data" value="yes">' . esc_html__("Yes, I Agree", 'event-page-templates-addon-for-the-events-calendar') . '</button>';
+            $output .= '<button class="button opt-in-no" data-category="' . esc_attr($key) . '" id="no-share-data" value="no">' . esc_html__('No, Thanks', 'event-page-templates-addon-for-the-events-calendar') . '</button>';
             $output .= '</div>';
             
             $output .= '</div>';

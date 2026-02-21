@@ -1,11 +1,13 @@
 <?php
+//phpcs:disable WordPress.NamingConventions.PrefixAllGlobals.NonPrefixedVariableFound
 /**
  * This file is used to create settings in admin side
  *
  * @package the-events-calendar-single-event-templates-addon-free/includes
  */
-namespace eptssettings;
 
+namespace eptssettings;
+if ( ! defined( 'ABSPATH' ) ) exit; // Exit if accessed directly
 if ( ! function_exists( 'tribe_get_events' ) ) {
 	return;
 }
@@ -102,7 +104,7 @@ $tecset_get_event_list = epta_get_all_event();
 $cmb = new_cmb2_box(
 	array(
 		'id'           => 'epta-generate-shortcode',
-		'title'        => __( 'Main Settings', 'cmb2' ),
+		'title'        => __( 'Main Settings', 'event-page-templates-addon-for-the-events-calendar' ),
 		'object_types' => array( 'epta' ), // Post type
 		'context'      => 'normal',
 		'priority'     => 'high',
@@ -129,11 +131,11 @@ $cmb->add_field(
 		'id'      => 'epta-apply-on',
 		'type'    => 'select',
 		'options' => array(
-			'none'           => __( 'None', 'cmb2' ),
-			'all-event'      => __( 'All Events', 'cmb2' ),
-			'specific-event' => __( 'Specific Event', 'cmb2' ),
-			'specific-cate'  => __( 'Specific Category', 'cmb2' ),
-			'specific-tag'   => __( 'Specific Tag', 'cmb2' ),
+			'none'           => __( 'None', 'event-page-templates-addon-for-the-events-calendar' ),
+			'all-event'      => __( 'All Events', 'event-page-templates-addon-for-the-events-calendar' ),
+			'specific-event' => __( 'Specific Event', 'event-page-templates-addon-for-the-events-calendar' ),
+			'specific-cate'  => __( 'Specific Category', 'event-page-templates-addon-for-the-events-calendar' ),
+			'specific-tag'   => __( 'Specific Tag', 'event-page-templates-addon-for-the-events-calendar' ),
 		),
 	)
 );
@@ -189,10 +191,10 @@ $cmb->add_field(
 		'id'      => 'epta-template',
 		'type'    => 'select',
 		'options' => array(
-			'template-1' =>__('Template 1','cmb2'),
-			'template-2' =>__('Template 2 (Pro Only)','cmb2'),
-			'template-3' =>__('Template 3 (Pro Only)','cmb2'),
-			'template-4' =>__('Edit with Elementor (Pro Only)','cmb2'),
+			'template-1' =>__('Template 1','event-page-templates-addon-for-the-events-calendar'),
+			'template-2' =>__('Template 2 (Pro Only)','event-page-templates-addon-for-the-events-calendar'),
+			'template-3' =>__('Template 3 (Pro Only)','event-page-templates-addon-for-the-events-calendar'),
+			'template-4' =>__('Edit with Elementor (Pro Only)','event-page-templates-addon-for-the-events-calendar'),
 		  ),
 	)
 );
@@ -265,7 +267,7 @@ $cmb->add_field(
 $cmbforPro = new_cmb2_box(
 	array(
 		'id'           => 'epta-get-pro',
-		'title'        => __( 'Get Pro Version', 'cmb2' ),
+		'title'        => __( 'Get Pro Version', 'event-page-templates-addon-for-the-events-calendar' ),
 		'object_types' => array( 'epta' ), // Post type
 		'context'      => 'side',
 		'priority'     => 'low',
@@ -300,7 +302,7 @@ Get Pro ⇗</a>
 $cmbforReview = new_cmb2_box(
 	array(
 		'id'           => 'epta-share-review',
-		'title'        => __( 'Is it Helpful for you?', 'cmb2' ),
+		'title'        => __( 'Is it Helpful for you?', 'event-page-templates-addon-for-the-events-calendar' ),
 		'object_types' => array( 'epta' ), // Post type
 		'context'      => 'side',
 		'priority'     => 'low',

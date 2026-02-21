@@ -1,4 +1,5 @@
 <?php
+//phpcs:disable WordPress.WP.I18n.TextDomainMismatch, PluginCheck.CodeAnalysis.SettingSanitization.register_settingMissing, WordPress.WP.EnqueuedResourceParameters.NotInFooter
 /**
  * Handles the dependencies and enqueueing of the CMB2 JS scripts
  *

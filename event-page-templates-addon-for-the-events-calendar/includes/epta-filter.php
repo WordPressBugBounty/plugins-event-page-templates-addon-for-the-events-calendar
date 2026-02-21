@@ -5,6 +5,7 @@
  * @package the-events-calendar-single-event-templates-addon-free/includes
  */
 namespace EPTAFilterCls;
+if ( ! defined( 'ABSPATH' ) ) exit;
  if(!class_exists('EPTAFilterCls')){
      Class  EPTAFilterCls{
         public function __construct()

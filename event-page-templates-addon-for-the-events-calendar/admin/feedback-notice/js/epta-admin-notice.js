@@ -8,7 +8,9 @@ jQuery(document).ready(function ($) {
       var id = wrapper.attr("id");
       var wp_nonce = wrapper.data("wp-nonce");
       $.post(ajaxURL, { "action":ajaxCallback,"slug":slug,"id":id,"_nonce":wp_nonce }, function( data ) {
-          wrapper.slideUp("fast");
+        wrapper.slideUp('fast', function () {
+            $(this).remove(); // completely remove from DOM
+        });
         })
   });
 
@@ -22,7 +24,9 @@ jQuery(document).ready(function ($) {
         var id = wrapper.data("plugin-slug");
         var wp_nonce = wrapper.data("wp-nonce");
         $.post(ajaxURL, { "action":"epta_admin_notice","id":id,"_nonce":wp_nonce }, function( data ) {
-            wrapper.slideUp("fast");
+          wrapper.slideUp('fast', function () {
+              $(this).remove(); // completely remove from DOM
+          });
           }, "json");
     });
 });

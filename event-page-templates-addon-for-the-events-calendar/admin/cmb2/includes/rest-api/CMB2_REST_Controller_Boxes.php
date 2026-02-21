@@ -1,4 +1,5 @@
 <?php
+//phpcs:disable WordPress.WP.I18n.TextDomainMismatch
 /**
  * CMB2 objects/boxes endpoint for WordPres REST API.
  * Allows access to boxes configuration data.
