@@ -22,7 +22,7 @@ if (!class_exists('EPTA_TEC_Notice')) {
             $all_plugins    = get_plugins();
 
             if (!array_key_exists('event-single-page-builder-pro/event-single-page-builder-pro.php', $all_plugins)) {
-                add_action('admin_notices', [$this, 'show_elementor_epta_notice']);
+                add_action('ect_display_admin_notices', [$this, 'show_elementor_epta_notice']);
             }
             add_action('wp_ajax_epta_dismiss_notice', [$this, 'epta_dismiss_notice']);
         }

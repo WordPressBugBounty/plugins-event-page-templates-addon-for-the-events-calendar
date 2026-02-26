@@ -5,7 +5,7 @@ Tags: the events calendar, event calendar, events, single page, page template
 Requires at least: 5.0
 Tested up to: 6.9
 Requires PHP: 7.2
-Stable tag: 1.8.0
+Stable tag: 1.8.1
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
@@ -101,9 +101,10 @@ Cool Plugins has also built many WordPress plugins for different use cases:
 * [LocoAI](https://locoaddon.com/?utm_source=epta_plugin&utm_medium=readme&utm_campaign=get_pro&utm_content=other_plugins): AI-powered translation helper for Loco Translate.
 
 
-**Third-Party Services:** To improve the plugin experience this plugin offers optional usage tracking and an optional feedback form during deactivation. Data is sent only after explicit user consent. No hidden tracking is performed, and no frontend visitor or personal site user data is collected. For complete details, please review our [Data Usage Policy](https://my.coolplugins.net/terms/usage-tracking/), [TOS](https://my.coolplugins.net/terms/), and [Privacy Policy](https://my.coolplugins.net/terms/privacy-policy/). It also uses [CMB2](https://github.com/CMB2/CMB2/tree/develop?tab=GPL-3.0-1-ov-file) for the settings panel (GPL licensed). 
+**Use of Third-Party Services:** To improve the plugin experience, this plugin connects to the Cool Plugins API to display related plugins information inside its dashboard. It also offers optional usage tracking and an optional feedback form during deactivation. Data is sent only after explicit user consent. No hidden tracking is performed, and no frontend visitor or personal site user data is collected. For complete details, please review our [Data Usage Policy](https://my.coolplugins.net/terms/usage-tracking/), [TOS](https://my.coolplugins.net/terms/), and [Privacy Policy](https://my.coolplugins.net/terms/privacy-policy/). It also uses [CMB2](https://github.com/CMB2/CMB2/tree/develop?tab=GPL-3.0-1-ov-file) for the settings panel (GPL licensed). 
 
 **Disclaimer:** Event Single Page Builder For The Events Calendar is developed by Cool Plugins and is not affiliated with or endorsed by The Events Calendar team (a product of StellarWP, Liquid Web). Some links in this plugin or its readme may be affiliate links, meaning we may earn a commission at no extra cost to you.
+
 
 == Installation ==
 
@@ -177,11 +178,15 @@ You can report security bugs through the Patchstack Vulnerability Disclosure Pro
 
 == Changelog ==
 
+= 1.8.1 | FEB 26, 2026 =
+* Fixed: Minor styling issues for better UI consistency.
+* Improved: Code structure and performance optimization.
+
 = 1.8.0 | FEB 21, 2026 =
 * Improvements: Improved dashboard design and usability.
 * Improvements: Code optimizations and refinements.
 * Fixed: Issues reported by “Plugin Check” plugin.
-* Updated: readme file.
+* Updated: Readme file.
 * Tested up to: The Events Calendar 6.15.16
 
 = 1.7.15 | FEB 12, 2026 =
