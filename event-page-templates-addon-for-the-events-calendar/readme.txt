@@ -1,11 +1,11 @@
 ﻿=== Event Single Page Builder For The Events Calendar ===
-Contributors: satindersingh, narinder-singh, coolplugins
+Contributors: satindersingh, narinder-singh, coolplugins, eventscalendaraddons
 Donate link: https://donate.stripe.com/5kQdR92iBevO75WbPm6c00i
 Tags: the events calendar, event calendar, events, single page, page template
 Requires at least: 5.0
 Tested up to: 6.9
 Requires PHP: 7.2
-Stable tag: 1.8.1
+Stable tag: 1.8.2
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
@@ -177,6 +177,10 @@ You can report security bugs through the Patchstack Vulnerability Disclosure Pro
 
 
 == Changelog ==
+
+= 1.8.2 | MAR 10, 2026 =
+* Improved: Dashboard header usability.
+* Tested up to: The Events Calendar 6.15.17.1
 
 = 1.8.1 | FEB 26, 2026 =
 * Fixed: Minor styling issues for better UI consistency.
