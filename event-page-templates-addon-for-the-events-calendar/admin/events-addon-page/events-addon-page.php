@@ -127,7 +127,7 @@ if ( !class_exists('cool_plugins_events_addons')) {
 
 				$plugin_file = $plugin_slug . '/' . $plugin_slug . '.php';
 
-				$pagenow        = isset($_POST['pagenow']) ? sanitize_key($_POST['pagenow']) : '';
+				$pagenow        = isset($_POST['pagenow']) ? sanitize_key( wp_unslash($_POST['pagenow'])) : '';
 				$network_wide = (is_multisite() && 'import' !== $pagenow);
 				$activation_result = activate_plugin($plugin_file, '', $network_wide);
 
@@ -174,7 +174,7 @@ if ( !class_exists('cool_plugins_events_addons')) {
 					if($skin->result->get_error_message() === 'Destination folder already exists.'){
 							
 						$install_status = install_plugin_install_status( $api );
-						$pagenow        = isset( $_POST['pagenow'] ) ? sanitize_key( $_POST['pagenow'] ) : '';
+						$pagenow        = isset( $_POST['pagenow'] ) ? sanitize_key( wp_unslash($_POST['pagenow']) ) : '';
 
 						if ( current_user_can( 'activate_plugin', $install_status['file'] )) {
 
@@ -220,7 +220,7 @@ if ( !class_exists('cool_plugins_events_addons')) {
 				}
 
 				$install_status = install_plugin_install_status( $api );
-				$pagenow        = isset( $_POST['pagenow'] ) ? sanitize_key( $_POST['pagenow'] ) : '';
+				$pagenow        = isset( $_POST['pagenow'] ) ? sanitize_key( wp_unslash($_POST['pagenow']) ) : '';
 
 				// 🔄 Auto-activate the plugin right after successful install
 				if ( current_user_can( 'activate_plugin', $install_status['file'] ) && is_plugin_inactive( $install_status['file'] ) ) {
@@ -707,7 +707,7 @@ if ( !class_exists('cool_plugins_events_addons')) {
                         <?php elseif ( $type === 'pro' ) : ?>
                             <div class="<?php echo esc_attr($prefix); ?>-card-footer">
                                 <?php $buy_link = ! empty( $plugin['buyLink'] ) ? esc_url( $plugin['buyLink'] ) : '#'; ?>
-                                <a href="<?php echo esc_attr( $buy_link ); ?>"
+                                <a href="<?php echo esc_url( $buy_link ); ?>"
                                    target="_blank"
                                    rel="noopener noreferrer"
                                    class="button <?php echo esc_attr($prefix); ?>-button-primary <?php echo esc_attr($prefix); ?>-btn-buy">

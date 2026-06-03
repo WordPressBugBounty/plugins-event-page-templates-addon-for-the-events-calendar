@@ -152,10 +152,10 @@ function epta_share_button( $event_id ) {
 	$tecset_getthumbnail = wp_get_attachment_image_src( get_post_thumbnail_id( $event_id ), 'full' );
 	$subject             = str_replace( '+', ' ', $tecset_gettitle );
 	// Construct sharing URL
-		$tecset_twitterURL    = 'https://twitter.com/intent/tweet?text=' . $tecset_gettitle . '&amp;url=' . $tecset_get_url . '';
-		$tecset_whatsappURL   = 'https://wa.me/?text=' . $tecset_gettitle . ' ' . $tecset_get_url;
-		$tecset_facebookurl   = 'https://www.facebook.com/sharer/sharer.php?u=' . $tecset_get_url . '';
-		$tecset_emailUrl      = 'mailto:?Subject=' . $subject . '&Body=' . $tecset_get_url . '';
+		$tecset_twitterURL    = add_query_arg(array('text' => $tecset_gettitle, 'url' => $tecset_get_url), 'https://twitter.com/intent/tweet');
+		$tecset_whatsappURL   = add_query_arg(array('text' => $tecset_gettitle . ' ' . $tecset_get_url,), 'https://wa.me/');
+		$tecset_facebookurl   = add_query_arg(array('u' => $tecset_get_url), 'https://www.facebook.com/sharer/sharer.php');
+		$tecset_emailUrl      = add_query_arg( array( 'Subject' => $subject, 'Body' => $tecset_get_url ), 'mailto:' );
 		$tecset_sharecontent .= '<h3 class="tecset-share-title">' . __( 'Share This Event', 'event-page-templates-addon-for-the-events-calendar' ) . '</h3>';
 		$tecset_sharecontent .= '<a class="tecset-share-link" href="' . esc_url( $tecset_facebookurl ) . '" target="_blank" title="Facebook" aria-haspopup="true"><i class="ect-icon-facebook"></i></a>';
 		$tecset_sharecontent .= '<a class="tecset-share-link" href="' . esc_url( $tecset_twitterURL ) . '" target="_blank" title="Twitter" aria-haspopup="true"><i class="ect-icon-twitter"></i></a>';
@@ -171,9 +171,17 @@ function epta_event_schedule( $event_id, $tecset_date_format ) {
 	$tecset_ev_time        = epta_tribe_event_time( $event_id, false );
 	$tecset_event_schedule = '';
 
+	$tecset_start_date_attr = esc_attr(
+		tribe_get_start_date( $event_id, false, 'Y-m-dTg:i' )
+	);
+
+	$tecset_end_date_attr = esc_attr(
+		tribe_get_end_date( $event_id, false, 'Y-m-dTg:i' )
+	);
+
 	// $tecset_ev_time=$this->ect_tribe_event_time($event_id,false);
 	if ( $tecset_date_format == 'DM' ) {
-			$tecset_event_schedule = '<div class="tecset-date"  itemprop="startDate" content="' . tribe_get_start_date( $event_id, false, 'Y-m-dTg:i' ) . '">';
+			$tecset_event_schedule = '<div class="tecset-date"  itemprop="startDate" content="' . $tecset_start_date_attr . '">';
 		if ( ! tribe_event_is_multiday( $event_id ) ) {
 			$tecset_event_schedule .= '<span class="tecset-ev-day">' . tribe_get_start_date( $event_id, false, 'd' ) . '</span>
 				<span class="tecset-ev-mo">' . tribe_get_start_date( $event_id, false, 'M' ) . '</span>
@@ -186,9 +194,9 @@ function epta_event_schedule( $event_id, $tecset_date_format ) {
 				<span class="tecset-ev-mo">' . tribe_get_end_date( $event_id, false, 'M' ) . '</span>
 				</div>';
 		}
-			$tecset_event_schedule .= '<meta itemprop="endDate" content="' . tribe_get_end_date( $event_id, false, 'Y-m-dTg:i' ) . '">';
+			$tecset_event_schedule .= '<meta itemprop="endDate" content="' . $tecset_end_date_attr . '">';
 	} elseif ( $tecset_date_format == 'MD' ) {
-			$tecset_event_schedule = '<div class="tecset-date" itemprop="startDate" content="' . tribe_get_start_date( $event_id, false, 'Y-m-dTg:i' ) . '">';
+			$tecset_event_schedule = '<div class="tecset-date" itemprop="startDate" content="' . $tecset_start_date_attr . '">';
 		if ( ! tribe_event_is_multiday( $event_id ) ) {
 			$tecset_event_schedule .= '<span class="tecset-ev-mo">' . tribe_get_start_date( $event_id, false, 'M' ) . '</span>
 				<span class="tecset-ev-day">' . tribe_get_start_date( $event_id, false, 'd' ) . '</span>
@@ -201,9 +209,9 @@ function epta_event_schedule( $event_id, $tecset_date_format ) {
 				<span class="tecset-ev-day">' . tribe_get_end_date( $event_id, false, 'd' ) . '</span>
 				</div>';
 		}
-			$tecset_event_schedule .= '<meta itemprop="endDate" content="' . tribe_get_end_date( $event_id, false, 'Y-m-dTg:i' ) . '">';
+			$tecset_event_schedule .= '<meta itemprop="endDate" content="' . $tecset_end_date_attr . '">';
 	} elseif ( $tecset_date_format == 'FD' ) {
-			$tecset_event_schedule = '<div class="tecset-date" itemprop="startDate" content="' . tribe_get_start_date( $event_id, false, 'Y-m-dTg:i' ) . '">';
+			$tecset_event_schedule = '<div class="tecset-date" itemprop="startDate" content="' . $tecset_start_date_attr . '">';
 		if ( ! tribe_event_is_multiday( $event_id ) ) {
 			$tecset_event_schedule .= '<span class="tecset-ev-mo">' . tribe_get_start_date( $event_id, false, 'F' ) . '</span>
 				<span class="tecset-ev-day">' . tribe_get_start_date( $event_id, false, 'd' ) . '</span>
@@ -216,9 +224,9 @@ function epta_event_schedule( $event_id, $tecset_date_format ) {
 				<span class="tecset-ev-day">' . tribe_get_end_date( $event_id, false, 'd' ) . '</span>
 				</div>';
 		}
-			$tecset_event_schedule .= '<meta itemprop="endDate" content="' . tribe_get_end_date( $event_id, false, 'Y-m-dTg:i' ) . '">';
+			$tecset_event_schedule .= '<meta itemprop="endDate" content="' . $tecset_end_date_attr . '">';
 	} elseif ( $tecset_date_format == 'DF' ) {
-			$tecset_event_schedule = '<div class="tecset-date" itemprop="startDate" content="' . tribe_get_start_date( $event_id, false, 'Y-m-dTg:i' ) . '">';
+			$tecset_event_schedule = '<div class="tecset-date" itemprop="startDate" content="' . $tecset_start_date_attr . '">';
 		if ( ! tribe_event_is_multiday( $event_id ) ) {
 			$tecset_event_schedule .= '<span class="tecset-ev-day">' . tribe_get_start_date( $event_id, false, 'd' ) . '</span>
 				<span class="tecset-ev-mo">' . tribe_get_start_date( $event_id, false, 'F' ) . '</span>
@@ -231,9 +239,9 @@ function epta_event_schedule( $event_id, $tecset_date_format ) {
 				<span class="tecset-ev-mo">' . tribe_get_end_date( $event_id, false, 'F' ) . '</span>
 				</div>';
 		}
-			$tecset_event_schedule .= '<meta itemprop="endDate" content="' . tribe_get_end_date( $event_id, false, 'Y-m-dTg:i' ) . '">';
+			$tecset_event_schedule .= '<meta itemprop="endDate" content="' . $tecset_end_date_attr . '">';
 	} elseif ( $tecset_date_format == 'FD,Y' ) {
-			$tecset_event_schedule = '<div class="tecset-date"  itemprop="startDate" content="' . tribe_get_start_date( $event_id, false, 'Y-m-dTg:i' ) . '">';
+			$tecset_event_schedule = '<div class="tecset-date"  itemprop="startDate" content="' .$tecset_start_date_attr . '">';
 		if ( ! tribe_event_is_multiday( $event_id ) ) {
 			$tecset_event_schedule .= '<span class="tecset-ev-mo">' . tribe_get_start_date( $event_id, false, 'F' ) . '</span>
 				<span class="tecset-ev-day">' . tribe_get_start_date( $event_id, false, 'd' ) . ', </span>
@@ -249,9 +257,9 @@ function epta_event_schedule( $event_id, $tecset_date_format ) {
 				<span class="tecset-ev-yr">' . tribe_get_end_date( $event_id, false, 'Y' ) . '</span>
 				</div>';
 		}
-			$tecset_event_schedule .= '<meta itemprop="endDate" content="' . tribe_get_end_date( $event_id, false, 'Y-m-dTg:i' ) . '">';
+			$tecset_event_schedule .= '<meta itemprop="endDate" content="' . $tecset_end_date_attr . '">';
 	} elseif ( $tecset_date_format == 'MD,Y' ) {
-			$tecset_event_schedule = '<div class="tecset-date"  itemprop="startDate" content="' . tribe_get_start_date( $event_id, false, 'Y-m-dTg:i' ) . '">';
+			$tecset_event_schedule = '<div class="tecset-date"  itemprop="startDate" content="' . $tecset_start_date_attr . '">';
 		if ( ! tribe_event_is_multiday( $event_id ) ) {
 			$tecset_event_schedule .= '<span class="tecset-ev-mo">' . tribe_get_start_date( $event_id, false, 'M' ) . '</span>
 				<span class="tecset-ev-day">' . tribe_get_start_date( $event_id, false, 'd' ) . ', </span>
@@ -267,9 +275,9 @@ function epta_event_schedule( $event_id, $tecset_date_format ) {
 				<span class="tecset-ev-yr">' . tribe_get_end_date( $event_id, false, 'Y' ) . '</span>
 				</div>';
 		}
-			$tecset_event_schedule .= '<meta itemprop="endDate" content="' . tribe_get_end_date( $event_id, false, 'Y-m-dTg:i' ) . '">';
+			$tecset_event_schedule .= '<meta itemprop="endDate" content="' . $tecset_end_date_attr . '">';
 	} elseif ( $tecset_date_format == 'MD,YT' ) {
-			$tecset_event_schedule = '<div class="tecset-date" itemprop="startDate" content="' . tribe_get_start_date( $event_id, false, 'Y-m-dTg:i' ) . '">';
+			$tecset_event_schedule = '<div class="tecset-date" itemprop="startDate" content="' . $tecset_start_date_attr . '">';
 		if ( ! tribe_event_is_multiday( $event_id ) ) {
 			$tecset_event_schedule .= '<span class="tecset-ev-mo">' . tribe_get_start_date( $event_id, false, 'M' ) . '</span>
 				<span class="tecset-ev-day">' . tribe_get_start_date( $event_id, false, 'd' ) . ', </span>
@@ -288,9 +296,9 @@ function epta_event_schedule( $event_id, $tecset_date_format ) {
 				<span class="tecset-ev-time">(' . tribe_get_end_date( $event_id, false, 'g:i A' ) . ')</span>
 				</div>';
 		}
-			$tecset_event_schedule .= '<meta itemprop="endDate" content="' . tribe_get_end_date( $event_id, false, 'Y-m-dTg:i' ) . '">';
+			$tecset_event_schedule .= '<meta itemprop="endDate" content="' . $tecset_end_date_attr . '">';
 	} elseif ( $tecset_date_format == 'full' ) {
-			$tecset_event_schedule = '<div class="tecset-date" itemprop="startDate" content="' . tribe_get_start_date( $event_id, false, 'Y-m-dTg:i' ) . '">';
+			$tecset_event_schedule = '<div class="tecset-date" itemprop="startDate" content="' . $tecset_start_date_attr . '">';
 		if ( ! tribe_event_is_multiday( $event_id ) ) {
 			$tecset_event_schedule .= '<span class="tecset-ev-day">' . tribe_get_start_date( $event_id, false, 'd' ) . '</span>
 					<span class="tecset-ev-mo">' . tribe_get_start_date( $event_id, false, 'F' ) . '</span>
@@ -310,9 +318,9 @@ function epta_event_schedule( $event_id, $tecset_date_format ) {
 					<span class="tecset-ev-time">(' . tribe_get_end_date( $event_id, false, 'g:i A' ) . ')</span>
 					</div>';
 		}
-				$tecset_event_schedule .= '<meta itemprop="endDate" content="' . tribe_get_end_date( $event_id, false, 'Y-m-dTg:i' ) . '">';
+				$tecset_event_schedule .= '<meta itemprop="endDate" content="' . $tecset_end_date_attr . '">';
 	} elseif ( $tecset_date_format == 'dFY' ) {
-			$tecset_event_schedule = '<div class="tecset-date" itemprop="startDate" content="' . tribe_get_start_date( $event_id, false, 'Y-m-dTg:i' ) . '">';
+			$tecset_event_schedule = '<div class="tecset-date" itemprop="startDate" content="' . $tecset_start_date_attr . '">';
 		if ( ! tribe_event_is_multiday( $event_id ) ) {
 			$tecset_event_schedule .= '<span class="tecset-ev-day">' . tribe_get_start_date( $event_id, false, 'd' ) . '</span>
 				<span class="tecset-ev-mo">' . tribe_get_start_date( $event_id, false, 'F' ) . '</span>
@@ -328,9 +336,9 @@ function epta_event_schedule( $event_id, $tecset_date_format ) {
 				<span class="tecset-ev-yr">' . tribe_get_end_date( $event_id, false, 'Y' ) . '</span>
 				</div>';
 		}
-			$tecset_event_schedule .= '<meta itemprop="endDate" content="' . tribe_get_end_date( $event_id, false, 'Y-m-dTg:i' ) . '">';
+			$tecset_event_schedule .= '<meta itemprop="endDate" content="' . $tecset_end_date_attr . '">';
 	} elseif ( $tecset_date_format == 'dMY' ) {
-			$tecset_event_schedule = '<div class="tecset-date" itemprop="startDate" content="' . tribe_get_start_date( $event_id, false, 'Y-m-dTg:i' ) . '">';
+			$tecset_event_schedule = '<div class="tecset-date" itemprop="startDate" content="' . $tecset_start_date_attr . '">';
 		if ( ! tribe_event_is_multiday( $event_id ) ) {
 			$tecset_event_schedule .= '<span class="tecset-ev-day">' . tribe_get_start_date( $event_id, false, 'd' ) . '</span>
 				<span class="tecset-ev-mo">' . tribe_get_start_date( $event_id, false, 'M' ) . '</span>
@@ -346,7 +354,7 @@ function epta_event_schedule( $event_id, $tecset_date_format ) {
 				<span class="tecset-ev-yr">' . tribe_get_end_date( $event_id, false, 'Y' ) . '</span>
 				</div>';
 		}
-			$tecset_event_schedule .= '<meta itemprop="endDate" content="' . tribe_get_end_date( $event_id, false, 'Y-m-dTg:i' ) . '">';
+			$tecset_event_schedule .= '<meta itemprop="endDate" content="' . $tecset_end_date_attr . '">';
 	} else {
 			 $tecset_event_schedule = '<div class="tecset-date">' . tribe_events_event_schedule_details( $event_id ) . '</div>';
 	}

@@ -105,7 +105,7 @@
     function showMessage($element, message, timeout = 5000) {
         if (!$element.length) return;
     
-        $element.html(message).show();
+        $element.text(message).show();
     
         setTimeout(function () {
             $element.fadeOut(500, function () {

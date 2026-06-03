@@ -257,17 +257,25 @@ if (!class_exists('epta_admin_notices')):
         * This is called by a wordpress ajax hook
         */
         public function epta_admin_review_notice_dismiss(){
+             // Capability check
+             if ( ! current_user_can( 'manage_options' ) ) {
+                wp_send_json_error( array(
+                    'error' => 'Unauthorized access!'
+                ) );
+            }
             $id = isset($_REQUEST['id'])?sanitize_text_field(wp_unslash($_REQUEST['id'])):'';
             $nonce_key = $id . '_review_nonce' ;
 
-            if (!check_ajax_referer($nonce_key, '_nonce', false)) {
-                echo wp_json_encode(array("error" => "nonce verification failed!"));
-                die();
-               
-            }else{
+            if ( ! check_ajax_referer( $nonce_key, '_nonce', false ) ) {
+                wp_send_json_error( array(
+                    'error' => 'Nonce verification failed!',
+                ) );
+            } else{
                 update_option( 'tecset-ratingDiv','yes' );
-                echo wp_json_encode( array("success"=>"true"));
-                die();
+
+                wp_send_json_success( array(
+                    'success' => true,
+                ) );
             }
         }
 

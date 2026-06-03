@@ -3,7 +3,7 @@
 Plugin Name: Event Single Page Builder For The Events Calendar
 Plugin URI: https://eventscalendaraddons.com/plugin/event-single-page-builder-pro/?utm_source=epta_plugin&utm_medium=inside&utm_campaign=get_pro&utm_content=plugin_uri
 Description: <a href="http://wordpress.org/plugins/the-events-calendar/"><b>📅 The Events Calendar Addon</b></a> - Design The Event Calendar plugin event single page template with custom colors and fonts.
-Version: 1.8.1
+Version: 1.8.3
 Author:  Cool Plugins
 Author URI: https://coolplugins.net/?utm_source=epta_plugin&utm_medium=inside&utm_campaign=author_page&utm_content=plugins_list
 License:GPL2
@@ -18,7 +18,7 @@ if (!defined('ABSPATH')) {
     exit();
 }
 if (!defined('EPTA_PLUGIN_CURRENT_VERSION')) {
-    define('EPTA_PLUGIN_CURRENT_VERSION', '1.8.1');
+    define('EPTA_PLUGIN_CURRENT_VERSION', '1.8.3');
 }
 define('EPTA_PLUGIN_FILE', __FILE__);
 define('EPTA_PLUGIN_URL', plugin_dir_url(EPTA_PLUGIN_FILE));
@@ -448,9 +448,14 @@ if (!class_exists('EventPageTemplatesAddon')) {
             }
 
             // Check the post being saved == the $post_id to prevent triggering this call for other save_post events
-            if (empty($_POST['post_ID']) || $_POST['post_ID'] != $post_id) {
+            $posted_id = isset( $_POST['post_ID'] )
+              ? absint( wp_unslash( $_POST['post_ID']) )
+              : 0;
+
+            if ( empty( $posted_id ) || $posted_id !== (int) $post_id ) {
                 return;
             }
+        
 
             // Check user has permission to edit
             if (!current_user_can('edit_post', $post_id)) {
@@ -711,9 +716,9 @@ if (!class_exists('EventPageTemplatesAddon')) {
             } elseif ($current_screen && $current_screen->post_type) {
                 return $current_screen->post_type;
             } elseif (isset($_REQUEST['page'])) {
-                return sanitize_key($_REQUEST['page']);
+                return sanitize_key(wp_unslash($_REQUEST['page']));
             } elseif (isset($_REQUEST['post_type'])) {
-                return sanitize_key($_REQUEST['post_type']);
+                return sanitize_key(wp_unslash($_REQUEST['post_type']));
             } elseif (isset($_REQUEST['post'])) {
                 return get_post_type(sanitize_text_field(wp_unslash($_REQUEST['post'])));
             }

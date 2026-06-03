@@ -184,66 +184,70 @@ class epta_feedback {
 	
 
 	function submit_deactivation_response() {
-		if ( ! isset( $_POST['_wpnonce'] ) || ! wp_verify_nonce( sanitize_text_field(wp_unslash($_POST['_wpnonce'])), '_cool-plugins_deactivate_feedback_nonce' ) ) {
-			wp_send_json_error();
-		} else {
-			$reason             = isset( $_POST['reason'] ) ? sanitize_text_field( wp_unslash($_POST['reason']) ) : '';
-			$deactivate_reasons = array(
-				'didnt_work_as_expected'         => array(
-					'title'             => __( 'The plugin didn\'t work as expected', 'event-page-templates-addon-for-the-events-calendar' ),
-					'input_placeholder' => 'What did you expect?',
-				),
-				'found_a_better_plugin'          => array(
-					'title'             => __( 'I found a better plugin', 'event-page-templates-addon-for-the-events-calendar' ),
-					'input_placeholder' => __( 'Please share which plugin.', 'event-page-templates-addon-for-the-events-calendar' ),
-				),
-				'couldnt_get_the_plugin_to_work' => array(
-					'title'             => __( 'The plugin is not working', 'event-page-templates-addon-for-the-events-calendar' ),
-					'input_placeholder' => 'Please share your issue. So we can fix that for other users.',
-				),
-				'temporary_deactivation'         => array(
-					'title'             => __( 'It\'s a temporary deactivation.', 'event-page-templates-addon-for-the-events-calendar' ),
-					'input_placeholder' => '',
-				),
-				'other'                          => array(
-					'title'             => __( 'Other', 'event-page-templates-addon-for-the-events-calendar' ),
-					'input_placeholder' => __( 'Please share the reason.', 'event-page-templates-addon-for-the-events-calendar' ),
-				),
-			);
-
-			$plugin_initial =  get_option( 'epta_initial_save_version' );
-			$deativation_reason = array_key_exists( $reason, $deactivate_reasons ) ? $reason : 'other';
-
-			$sanitized_message = empty($_POST['message']) || sanitize_text_field(wp_unslash($_POST['message'])) == '' ? 'N/A' : sanitize_text_field(wp_unslash($_POST['message']));
-			$admin_email       = sanitize_email( get_option( 'admin_email' ) );
-			$site_url          = esc_url( site_url() );
-			$install_date 		= get_option('epta-install-date');
-			$unique_key     	= '22';  // Ensure this key is unique per plugin to prevent collisions when site URL and install date are the same across plugins
-            $site_id        	= $site_url . '-' . $install_date . '-' . $unique_key;
-			$feedback_url      = EPTA_FEEDBACK_API .'wp-json/coolplugins-feedback/v1/feedback';
-			$response          = wp_remote_post(
-				$feedback_url,
-				array(
-					'timeout' => 15,
-					'redirection' => 3,
-					'sslverify' => true,
-					'body'    => array(
-						'server_info' => serialize($this->cpfm_get_user_info()['server_info']), 
-						'extra_details' => serialize($this->cpfm_get_user_info()['extra_details']),
-						'plugin_initial'  => isset($plugin_initial) ? sanitize_text_field($plugin_initial) : 'N/A',
-						'plugin_version' => sanitize_text_field($this->plugin_version),
-						'plugin_name'    => sanitize_text_field($this->plugin_name),
-						'reason'         => sanitize_text_field($deativation_reason),
-						'review'         => $sanitized_message,
-						'email'          => $admin_email,
-						'domain'         => $site_url,
-						'site_id'    	 => md5($site_id),
-					),
-				)
-			);
-
-			die( json_encode( array( 'response' => $response ) ) );
+		if ( ! current_user_can( 'activate_plugins' ) ) {
+			wp_send_json_error( 'Unauthorized' );
 		}
+		check_ajax_referer( '_cool-plugins_deactivate_feedback_nonce' );
+		$reason             = isset( $_POST['reason'] ) ? sanitize_text_field( wp_unslash($_POST['reason']) ) : '';
+		$deactivate_reasons = array(
+			'didnt_work_as_expected'         => array(
+				'title'             => __( 'The plugin didn\'t work as expected', 'event-page-templates-addon-for-the-events-calendar' ),
+				'input_placeholder' => 'What did you expect?',
+			),
+			'found_a_better_plugin'          => array(
+				'title'             => __( 'I found a better plugin', 'event-page-templates-addon-for-the-events-calendar' ),
+				'input_placeholder' => __( 'Please share which plugin.', 'event-page-templates-addon-for-the-events-calendar' ),
+			),
+			'couldnt_get_the_plugin_to_work' => array(
+				'title'             => __( 'The plugin is not working', 'event-page-templates-addon-for-the-events-calendar' ),
+				'input_placeholder' => 'Please share your issue. So we can fix that for other users.',
+			),
+			'temporary_deactivation'         => array(
+				'title'             => __( 'It\'s a temporary deactivation.', 'event-page-templates-addon-for-the-events-calendar' ),
+				'input_placeholder' => '',
+			),
+			'other'                          => array(
+				'title'             => __( 'Other', 'event-page-templates-addon-for-the-events-calendar' ),
+				'input_placeholder' => __( 'Please share the reason.', 'event-page-templates-addon-for-the-events-calendar' ),
+			),
+		);
+
+		$plugin_initial     = get_option( 'epta_initial_save_version' );
+		$deativation_reason = array_key_exists( $reason, $deactivate_reasons ) ? $reason : 'other';
+
+		$sanitized_message = empty($_POST['message']) || sanitize_text_field(wp_unslash($_POST['message'])) == '' ? 'N/A' : sanitize_text_field(wp_unslash($_POST['message']));
+		$admin_email       = sanitize_email( get_option( 'admin_email' ) );
+		$site_url          = esc_url( site_url() );
+		$install_date      = get_option('epta-install-date');
+		$unique_key        = '22';  // Ensure this key is unique per plugin to prevent collisions when site URL and install date are the same across plugins
+		$site_id           = $site_url . '-' . $install_date . '-' . $unique_key;
+		$feedback_url      = EPTA_FEEDBACK_API .'wp-json/coolplugins-feedback/v1/feedback';
+		$response          = wp_remote_post(
+			$feedback_url,
+			array(
+				'timeout' => 15,
+				'redirection' => 3,
+				'sslverify' => true,
+				'body'    => array(
+					'server_info'     => wp_json_encode($this->cpfm_get_user_info()['server_info']),
+					'extra_details'   => wp_json_encode($this->cpfm_get_user_info()['extra_details']),
+					'plugin_initial'  => isset($plugin_initial) ? sanitize_text_field($plugin_initial) : 'N/A',
+					'plugin_version'  => sanitize_text_field($this->plugin_version),
+					'plugin_name'     => sanitize_text_field($this->plugin_name),
+					'reason'          => sanitize_text_field($deativation_reason),
+					'review'          => $sanitized_message,
+					'email'           => $admin_email,
+					'domain'          => $site_url,
+					'site_id'         => md5($site_id),
+				),
+			)
+		);
+
+		if ( is_wp_error( $response ) ) {
+			wp_send_json_error( 'Feedback submission failed' );
+		}
+
+		wp_send_json_success( 'Feedback submitted successfully' );
 
 	}
 }
