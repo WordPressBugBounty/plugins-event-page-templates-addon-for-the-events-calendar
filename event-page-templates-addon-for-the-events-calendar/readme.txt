@@ -3,9 +3,9 @@ Contributors: satindersingh, narinder-singh, coolplugins, eventscalendaraddons
 Donate link: https://donate.stripe.com/5kQdR92iBevO75WbPm6c00i
 Tags: the events calendar, event calendar, events, single page, page template
 Requires at least: 5.0
-Tested up to: 6.9
+Tested up to: 7.0
 Requires PHP: 7.2
-Stable tag: 1.8.3
+Stable tag: 1.8.4
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
@@ -171,12 +171,16 @@ You can report security bugs through the Patchstack Vulnerability Disclosure Pro
 
 
 == Screenshots ==
+
 1. Single Event Page Template
 2. Event Single Page Template Settings
 3. Compare Layout - The Events Calendar (Default) vs This Addon
 
 
 == Changelog ==
+
+= 1.8.4 | Jun 3, 2026 =
+* Fixed: Minor dashboard rendering improvements.
 
 = 1.8.3 | Jun 3, 2026 =
 * Improved: Code Improvements & Optimization
