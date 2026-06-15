@@ -5,7 +5,7 @@ Tags: the events calendar, event calendar, events, single page, page template
 Requires at least: 5.0
 Tested up to: 7.0
 Requires PHP: 7.2
-Stable tag: 1.8.4
+Stable tag: 1.8.5
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
@@ -178,6 +178,9 @@ You can report security bugs through the Patchstack Vulnerability Disclosure Pro
 
 
 == Changelog ==
+
+= 1.8.5 | Jun 15, 2026 =
+* Improved: Cleaned up the notice registration logic for better readability.
 
 = 1.8.4 | Jun 3, 2026 =
 * Fixed: Minor dashboard rendering improvements.
