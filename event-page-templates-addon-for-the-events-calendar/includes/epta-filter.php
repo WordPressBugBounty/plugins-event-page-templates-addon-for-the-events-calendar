@@ -38,6 +38,7 @@ if ( ! defined( 'ABSPATH' ) ) exit;
             if ($EPTA_get_all_event == 'specific-tag' || $EPTA_get_all_event == 'specific-cate') {
                 $EPTA_get_cat = $this->epta_get_single_event_categoery($EPTA_event_id);
                 $EPTA_get_tag = $this->epta_get_single_event_tag($EPTA_event_id);
+                $EPTA_comp_cat_result = array();
 
                 if (!empty($EPTA_get_cat) || !empty($EPTA_get_tag)) {
                     if (!empty($EPTA_get_cat) && $EPTA_get_all_event != 'specific-tag') {
@@ -55,7 +56,7 @@ if ( ! defined( 'ABSPATH' ) ) exit;
             } elseif ($EPTA_get_all_event == 'all-event') {
                 return $custom_event_page;
             } elseif ($EPTA_get_all_event == 'specific-event') {
-                $specific_event = $this->EPTA_get_event($EPTA_event_id);
+                $specific_event = $this->epta_get_event($EPTA_event_id);
                 $EPTA_get_selected_event = array_map('sanitize_text_field', get_post_meta($get_temp_id, 'epta-specific-event', true));
                 $EPTA_comp_specific_result = array_intersect($specific_event, $EPTA_get_selected_event);
 
@@ -89,7 +90,7 @@ if ( ! defined( 'ABSPATH' ) ) exit;
         /**
          * Get event
          */
-        function EPTA_get_event($EPTA_event_id){
+        public function epta_get_event($EPTA_event_id){
             
             $EPTA_events = get_post($EPTA_event_id);
             $EPTA_etslugs_arr = array();

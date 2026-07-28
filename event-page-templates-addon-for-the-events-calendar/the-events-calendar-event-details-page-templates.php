@@ -3,7 +3,7 @@
 Plugin Name: Event Single Page Builder For The Events Calendar
 Plugin URI: https://eventscalendaraddons.com/plugin/event-single-page-builder-pro/?utm_source=epta_plugin&utm_medium=inside&utm_campaign=get_pro&utm_content=plugin_uri
 Description: <a href="http://wordpress.org/plugins/the-events-calendar/"><b>📅 The Events Calendar Addon</b></a> - Design The Event Calendar plugin event single page template with custom colors and fonts.
-Version: 1.8.5
+Version: 1.8.6
 Author:  Cool Plugins
 Author URI: https://coolplugins.net/?utm_source=epta_plugin&utm_medium=inside&utm_campaign=author_page&utm_content=plugins_list
 License:GPL2
@@ -18,7 +18,7 @@ if (!defined('ABSPATH')) {
     exit();
 }
 if (!defined('EPTA_PLUGIN_CURRENT_VERSION')) {
-    define('EPTA_PLUGIN_CURRENT_VERSION', '1.8.5');
+    define('EPTA_PLUGIN_CURRENT_VERSION', '1.8.6');
 }
 define('EPTA_PLUGIN_FILE', __FILE__);
 define('EPTA_PLUGIN_URL', plugin_dir_url(EPTA_PLUGIN_FILE));
@@ -37,6 +37,14 @@ if (!class_exists('EventPageTemplatesAddon')) {
          */
         public function __construct()
         {
+            $this->register_hooks();
+        }
+
+        /**
+         * Register plugin hooks and bootstrap includes.
+         */
+        private function register_hooks()
+        {
             register_activation_hook(__FILE__, array($this, 'epta_single_page_builder_activate'));
             register_deactivation_hook(__FILE__, array($this, 'epta_single_page_builder_deactivate'));
             add_filter('plugin_action_links_' . plugin_basename(__FILE__), array($this, 'epta_add_action_links'));
@@ -49,7 +57,7 @@ if (!class_exists('EventPageTemplatesAddon')) {
                 add_action('admin_menu', array($this, 'epta_reorder_cool_plugins_submenu'), 99);
             }
             add_action('plugins_loaded', array($this, 'epta_init'));
-          
+
             $this->epta_page_include_files();
             add_action('init', array($this, 'epta_add_text_domain'));
             add_action('init', array($this, 'epta_notice_required_plugin'));

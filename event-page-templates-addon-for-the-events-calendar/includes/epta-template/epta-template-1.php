@@ -22,7 +22,6 @@ $tecset_share_button   = \eptafunctions\epta_share_button( $event_id );
 $tecset_date_format    = sanitize_text_field( get_post_meta( $get_temp_id, 'tecset-date-format', true ) );
 $tecset_event_schedule = \eptafunctions\epta_event_schedule( $event_id, $tecset_date_format );
 
-$post_content      = \eptafunctions\epta_get_content( $event_id );
 $tribe_all_events  = esc_url( tribe_get_events_link() );
 $tecset_all_events = isset( $tecset_url ) && ! empty( $tecset_url ) ? esc_url( $tecset_url ) : $tribe_all_events;
 
@@ -120,7 +119,7 @@ wp_enqueue_script( 'epta-events-countdown-widget' );
 			$start_date = tribe_get_start_date( get_the_ID(), false, 'Y/m/d H:i:s' );
 			// Get the number of seconds remaining until the date in question.
 			$seconds = strtotime( $start_date ) - current_time( 'timestamp' );
-			if ( $seconds > 0 ) {
+			if ( \eptafunctions\epta_should_show_countdown( get_the_ID(), $seconds ) ) {
 				?>
 					<?php ob_start(); ?>
 					<div class="epta-countdown-timer">

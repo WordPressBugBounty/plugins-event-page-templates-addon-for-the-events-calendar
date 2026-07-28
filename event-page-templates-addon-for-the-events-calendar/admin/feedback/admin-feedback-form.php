@@ -164,12 +164,12 @@ class epta_feedback {
 	
 		foreach ( $active_plugins as $plugin_path ) {
 			$plugin_info = get_plugin_data(WP_PLUGIN_DIR . '/' . sanitize_text_field($plugin_path));
-			$author_url = ( isset( $plugin_info['AuthorURI'] ) && !empty( $plugin_info['AuthorURI'] ) ) ? esc_url( $plugin_info['AuthorURI'] ) : 'N/A';
-			$plugin_url = ( isset( $plugin_info['PluginURI'] ) && !empty( $plugin_info['PluginURI'] ) ) ? esc_url( $plugin_info['PluginURI'] ) : 'N/A';
+			$author_url = ( isset( $plugin_info['AuthorURI'] ) && ! empty( $plugin_info['AuthorURI'] ) ) ? esc_url( $plugin_info['AuthorURI'] ) : 'N/A';
+			$plugin_url = ( isset( $plugin_info['PluginURI'] ) && ! empty( $plugin_info['PluginURI'] ) ) ? esc_url( $plugin_info['PluginURI'] ) : '';
 			$plugin_data[] = [
 				'name'       => sanitize_text_field($plugin_info['Name']),
 				'version'    => sanitize_text_field($plugin_info['Version']),
-				'plugin_uri' => !empty($plugin_url) ? $plugin_url : $author_url,
+				'plugin_uri' => ! empty( $plugin_url ) ? $plugin_url : $author_url,
 			];
 		}
 	
@@ -222,6 +222,7 @@ class epta_feedback {
 		$unique_key        = '22';  // Ensure this key is unique per plugin to prevent collisions when site URL and install date are the same across plugins
 		$site_id           = $site_url . '-' . $install_date . '-' . $unique_key;
 		$feedback_url      = EPTA_FEEDBACK_API .'wp-json/coolplugins-feedback/v1/feedback';
+		$user_info         = $this->cpfm_get_user_info();
 		$response          = wp_remote_post(
 			$feedback_url,
 			array(
@@ -229,8 +230,8 @@ class epta_feedback {
 				'redirection' => 3,
 				'sslverify' => true,
 				'body'    => array(
-					'server_info'     => wp_json_encode($this->cpfm_get_user_info()['server_info']),
-					'extra_details'   => wp_json_encode($this->cpfm_get_user_info()['extra_details']),
+					'server_info'     => wp_json_encode( $user_info['server_info'] ),
+					'extra_details'   => wp_json_encode( $user_info['extra_details'] ),
 					'plugin_initial'  => isset($plugin_initial) ? sanitize_text_field($plugin_initial) : 'N/A',
 					'plugin_version'  => sanitize_text_field($this->plugin_version),
 					'plugin_name'     => sanitize_text_field($this->plugin_name),

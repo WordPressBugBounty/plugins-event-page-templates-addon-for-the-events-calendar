@@ -79,11 +79,6 @@ function epta_tribe_event_page_get_related_posts( $count = 3, $post = false ) {
 	}
 	return apply_filters( 'tribe_get_related_posts', $posts );
 }
-
-	$events_label_singular = tribe_get_event_label_singular();
-
-	$events_label_plural = tribe_get_event_label_plural();
-
 	$event_id      = get_the_ID();
 	$tecset_url    = '';
 	$tecset_pageid = intval( get_option( 'tec_tribe_single_event_page' ) );

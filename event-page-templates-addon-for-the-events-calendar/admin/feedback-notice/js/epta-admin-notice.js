@@ -13,21 +13,4 @@ jQuery(document).ready(function ($) {
         });
         })
   });
-
-  jQuery(document).ready(function ($) {
-    $(".epta-new-plugin_admin_notice").css("border","2px solid red");
-    
-    $(document).on("click",".epta-new-plugin_admin_notice.notice-success", function (event) {
-        var $this = $(this);
-        var wrapper=$this;
-        var ajaxURL=wrapper.data("ajax-url");
-        var id = wrapper.data("plugin-slug");
-        var wp_nonce = wrapper.data("wp-nonce");
-        $.post(ajaxURL, { "action":"epta_admin_notice","id":id,"_nonce":wp_nonce }, function( data ) {
-          wrapper.slideUp('fast', function () {
-              $(this).remove(); // completely remove from DOM
-          });
-          }, "json");
-    });
-});
 });

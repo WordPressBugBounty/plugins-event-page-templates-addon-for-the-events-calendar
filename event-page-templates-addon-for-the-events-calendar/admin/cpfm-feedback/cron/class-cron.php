@@ -71,9 +71,6 @@ if (!class_exists('EPTA_cronjob')) {
                 return;
             }
             
-            $response_body  = wp_remote_retrieve_body($response);
-            $decoded        = json_decode($response_body, true);
-            
             if (!wp_next_scheduled('epta_extra_data_update')) {
 
                 wp_schedule_event(time(), 'every_30_days', 'epta_extra_data_update');

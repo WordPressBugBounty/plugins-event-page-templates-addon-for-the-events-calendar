@@ -5,7 +5,7 @@ Tags: the events calendar, event calendar, events, single page, page template
 Requires at least: 5.0
 Tested up to: 7.0
 Requires PHP: 7.2
-Stable tag: 1.8.5
+Stable tag: 1.8.6
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
@@ -178,6 +178,11 @@ You can report security bugs through the Patchstack Vulnerability Disclosure Pro
 
 
 == Changelog ==
+
+= 1.8.6 | Jul 28, 2026 =
+* Fixed: Corrected the display of Canceled and Postponed event statuses for upcoming events.
+* Improved: Code quality and overall plugin stability.
+* Tested up to: The Events Calendar v6.17.1
 
 = 1.8.5 | Jun 15, 2026 =
 * Improved: Cleaned up the notice registration logic for better readability.

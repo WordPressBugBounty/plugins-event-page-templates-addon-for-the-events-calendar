@@ -69,16 +69,15 @@
 .epta-title-date h2 {
     margin: 0 0 5px 0;
     padding: 0;
-}
-
-.epta-title-date h2,
-.epta-title-date .tecset-date {
     z-index: 6;
     position: relative;
     color: #fff;
 }
 
 .epta-title-date .tecset-date {
+    z-index: 6;
+    position: relative;
+    color: #fff;
     opacity: 0.9;
 }
 
@@ -132,14 +131,13 @@
     border-radius: 2px;
 }
 
-.epta-sidebar-box dl dt,
-.epta-sidebar-box .tribe-venue,
-.epta-sidebar-box .tribe-organizer {
+.epta-sidebar-box dl dt {
     font-weight: bold;
 }
 
 .epta-sidebar-box .tribe-venue,
 .epta-sidebar-box .tribe-organizer {
+    font-weight: bold;
     font-size: 1.1em;
 }
 
@@ -177,6 +175,36 @@
     font-size: 0.45em;
     width: 100%;
     text-transform: uppercase;
+}
+
+.epta-past-event-notice .tribe-events-notices,
+.epta-past-event-notice .tribe-events-status-single-notice {
+    margin: 5px 0;
+}
+
+.epta-past-event-notice .tribe-events-notices ul {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+
+.epta-past-event-notice .tribe-events-notices li,
+.epta-past-event-notice .tribe-events-status-single__header--bold {
+    text-align: center;
+    font-size: 18px;
+    font-weight: 700;
+    background: #222;
+    color: #fff;
+    line-height: normal;
+    padding: 12px 8px;
+    border-radius: 2px;
+    text-transform: uppercase;
+}
+
+.epta-past-event-notice .tribe-events-status-single__description {
+    margin-top: 8px;
+    font-size: 14px;
+    line-height: 1.5;
 }
 
 .epta-addto-calendar a {
@@ -278,9 +306,13 @@
 .ept-next-prev ul {
     width: 100%;
     clear: both;
+    padding: 0;
+    margin: 0;
+    list-style: none;
+    display: inline-block;
+    vertical-align: middle;
 }
 
-.ept-next-prev ul,
 .ept-next-prev ul li {
     padding: 0;
     margin: 0;

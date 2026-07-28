@@ -26,7 +26,7 @@ function epta_get_all_temp() {
 	return $get_temp_arr;
 }
 
-$epta_get_all_temp = epta_get_all_temp();
+// $epta_get_all_temp = epta_get_all_temp();
 
 /**
  * Get all categories
@@ -68,12 +68,12 @@ $tecset_date_format = array(
 	'MD'      => 'MD(Jan 01)',
 	'FD'      => 'FD(January 01)',
 	'DF'      => 'DF(01 January)',
-	'FD,Y'    => 'FD,Y(January 01, 2019)',
-	'MD,Y'    => 'MD,Y(Jan 01, 2019)',
-	'MD,YT'   => 'MD,YT(Jan 01, 2019 8:00am-5:00pm)',
-	'full'    => 'full(01 January 2019 8:00am-5:00pm)',
-	'dFY'     => 'dFY(01 January 2019)',
-	'dMY'     => 'dMY(01 Jan 2019)',
+	'FD,Y'    => 'FD,Y(January 01, 2026)',
+	'MD,Y'    => 'MD,Y(Jan 01, 2026)',
+	'MD,YT'   => 'MD,YT(Jan 01, 2026 8:00am-5:00pm)',
+	'full'    => 'full(01 January 2026 8:00am-5:00pm)',
+	'dFY'     => 'dFY(01 January 2026)',
+	'dMY'     => 'dMY(01 Jan 2026)',
 );
 
 $tecset_tag = epta_get_tag();

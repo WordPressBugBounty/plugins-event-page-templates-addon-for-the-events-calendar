@@ -1,4 +1,5 @@
 <?php
+if ( ! defined( 'ABSPATH' ) ) exit;
 //phpcs:disable WordPress.WP.I18n.TextDomainMismatch, WordPress.NamingConventions.PrefixAllGlobals.DynamicHooknameFound
 
 if ( ! class_exists( 'WP_REST_Controller' ) ) {
