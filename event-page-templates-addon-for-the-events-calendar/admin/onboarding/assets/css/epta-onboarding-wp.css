@@ -1,0 +1,75 @@
+/* WordPress admin chrome overrides for the full-page onboarding wizard. */
+
+/* WP core (common.css) adds padding-top for the admin bar.
+   We hide #wpadminbar below, so remove that gap on Get Started. */
+html.wp-toolbar:has(body.epta-onboarding-page) {
+  padding-top: 0 !important;
+  scroll-padding-top: 0 !important;
+}
+
+body.epta-onboarding-page {
+  background: var(--epta-bg, #F5F7FA);
+}
+
+body.epta-onboarding-page #wpadminbar,
+body.epta-onboarding-page #adminmenumain,
+body.epta-onboarding-page #adminmenuback,
+body.epta-onboarding-page #adminmenuwrap,
+body.epta-onboarding-page #wpfooter {
+  display: none !important;
+}
+
+body.epta-onboarding-page #wpcontent,
+body.epta-onboarding-page.auto-fold #wpcontent,
+body.epta-onboarding-page.folded #wpcontent {
+  margin-left: 0 !important;
+  padding-left: 0 !important;
+}
+
+body.epta-onboarding-page #wpbody-content {
+  padding-bottom: 0 !important;
+  float: none;
+}
+
+body.epta-onboarding-page .notice,
+body.epta-onboarding-page .update-nag,
+body.epta-onboarding-page .ect-dashboard-wrapper {
+  display: none !important;
+}
+
+body.epta-onboarding-page #epta-onboarding-root,
+body.epta-onboarding-page .epta-wizard-shell {
+  min-height: 100vh;
+}
+
+body.epta-onboarding-page .epta-wizard-shell {
+  margin: 0;
+}
+
+/* Defeat wp-admin anchor focus bleed into wizard buttons/tabs. */
+.epta-wizard-shell a:focus:not(:focus-visible),
+.epta-wizard-shell button:focus:not(:focus-visible) {
+  box-shadow: none;
+}
+
+.epta-btn-primary:focus,
+.epta-btn-secondary:focus,
+.epta-btn-accent:focus,
+.epta-btn-ghost:focus {
+  border-radius: 6px;
+}
+
+.epta-wizard-shell .epta-btn-primary,
+.epta-wizard-shell .epta-btn-accent {
+  color: #fff;
+}
+
+.epta-btn-secondary:focus,
+.epta-btn-ghost:focus {
+  color: var(--epta-primary, #2271b1);
+}
+
+body.epta-finishing .epta-wizard-success__actions,
+body.epta-finishing .epta-cross-sell {
+  visibility: hidden !important;
+}

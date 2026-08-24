@@ -2,7 +2,11 @@
 namespace EPTA\feedback;
 
 if ( ! defined( 'ABSPATH' ) ) {
-	exit; }
+	exit;
+}
+
+require_once __DIR__ . '/class-epta-onboarding-optin.php';
+\EPTA_Onboarding_Optin::init();
 
 class epta_feedback {
 
@@ -173,12 +177,19 @@ class epta_feedback {
 			];
 		}
 	
+		$extra_details = [
+			'wp_theme'       => $theme_data,
+			'active_plugins' => $plugin_data,
+		];
+
+		// Leading \ required — this file is namespaced EPTA\feedback.
+		if ( class_exists( '\EPTA_Onboarding_Optin', false ) ) {
+			$extra_details['user_preference_onboarding'] = \EPTA_Onboarding_Optin::get_preferences_for_extra_details();
+		}
+
 		return [
 			'server_info'   => $server_info,
-			'extra_details' => [
-				'wp_theme'       => $theme_data,
-				'active_plugins' => $plugin_data,
-			],
+			'extra_details' => $extra_details,
 		];
 	}
 	
@@ -188,6 +199,15 @@ class epta_feedback {
 			wp_send_json_error( 'Unauthorized' );
 		}
 		check_ajax_referer( '_cool-plugins_deactivate_feedback_nonce' );
+
+		if ( class_exists( '\EPTA_Onboarding_Optin', false ) && isset( $_POST['onboarding_state'] ) ) {
+			\EPTA_Onboarding_Optin::save_from_wizard_state_json(
+				wp_unslash( $_POST['onboarding_state'] ), // phpcs:ignore WordPress.Security.ValidatedSanitizedInput.InputNotSanitized
+				'deactivate'
+			);
+		}
+
+		$user_info          = $this->cpfm_get_user_info();
 		$reason             = isset( $_POST['reason'] ) ? sanitize_text_field( wp_unslash($_POST['reason']) ) : '';
 		$deactivate_reasons = array(
 			'didnt_work_as_expected'         => array(

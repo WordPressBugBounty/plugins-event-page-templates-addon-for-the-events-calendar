@@ -1,0 +1,2032 @@
+/* =========================================================================
+   idea-2 â€” Wizard shell, steps, options, footer, success state.
+   All wizard pages share this CSS. Per-page step content goes in the HTML.
+
+   NOTE: The Events Shortcodes & Blocks wizard uses the "v2 shell" defined
+   at the bottom of this file (search for "STEP-1 V2 SHELL"). That variant
+   replaces the admin-header + sticky-footer combo with a header-as-progress
+   bar + inline card nav pattern.
+   ========================================================================= */
+
+/* -------------------------------------------------------------------------
+   Progress strip â€” sticky under the admin header
+   ------------------------------------------------------------------------- */
+
+
+.epta-wizard-progress {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 0;
+}
+
+.epta-wizard-progress__step {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--epta-text-soft);
+  transition: color 0.2s;
+}
+
+.epta-wizard-progress__step::after {
+  content: '';
+  width: 28px;
+  height: 2px;
+  background: var(--epta-border);
+  margin: 0 14px;
+  border-radius: 1px;
+  transition: background 0.2s;
+}
+.epta-wizard-progress__step:last-child::after { display: none; }
+
+.epta-wizard-progress__num {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  background: var(--epta-bg);
+  border: 1px solid var(--epta-border);
+  font-weight: 700;
+  font-size: 13px;
+  transition: background 0.25s, border-color 0.25s, color 0.25s, box-shadow 0.25s;
+  flex: 0 0 auto;
+}
+
+.epta-wizard-progress__step.is-current {
+  color: var(--epta-text);
+}
+.epta-wizard-progress__step.is-current .epta-wizard-progress__num {
+  background: var(--epta-primary);
+  border-color: var(--epta-primary);
+  color: #fff;
+  box-shadow: 0 0 0 4px var(--epta-primary-soft);
+}
+
+.epta-wizard-progress__step.is-done {
+  color: var(--epta-text);
+}
+.epta-wizard-progress__step.is-done .epta-wizard-progress__num {
+  background: var(--epta-success);
+  border-color: var(--epta-success);
+  color: #fff;
+}
+.epta-wizard-progress__step.is-done::after { background: var(--epta-success); }
+.epta-wizard-progress__step.is-done .epta-wizard-progress__num-label { display: none; }
+.epta-wizard-progress__step.is-done .epta-wizard-progress__num::before {
+  content: "\f147"; /* dashicons-yes */
+  font-family: dashicons;
+  font-size: 16px;
+}
+
+
+/* -------------------------------------------------------------------------
+   Step container
+   ------------------------------------------------------------------------- */
+
+
+.epta-wizard-step {
+  width: 100%;
+  max-width: 800px;
+  display: none;
+  animation: eptaWizardFade 0.32s ease;
+}
+.epta-wizard-step.is-active { display: block; }
+
+@keyframes eptaWizardFade {
+  from { opacity: 0; transform: translateY(8px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* -------------------------------------------------------------------------
+   Form fields â€” used on data-entry steps (Speakers & Sponsors).
+   ------------------------------------------------------------------------- */
+
+/* Split pair â€” used for side-by-side speaker + sponsor forms */
+
+/* -------------------------------------------------------------------------
+   Review step â€” summary card + telemetry consent
+   ------------------------------------------------------------------------- */
+
+.epta-wizard-summary__item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 16px;
+  padding: 8px 0;
+  font-size: 13.5px;
+  border-bottom: 1px solid var(--epta-border-soft);
+}
+.epta-wizard-summary__item:last-child { border-bottom: 0; }
+.epta-wizard-summary__label {
+  color: var(--epta-text-muted);
+  font-weight: 500;
+}
+.epta-wizard-summary__value {
+  color: var(--epta-text);
+  font-weight: 650;
+}
+
+
+/* -------------------------------------------------------------------------
+   Pro upsell â€” interstitial within a step when Pro option is picked
+   ------------------------------------------------------------------------- */
+
+/* -------------------------------------------------------------------------
+   Success state
+   ------------------------------------------------------------------------- */
+
+.epta-wizard-success {
+  text-align: center;
+  padding: 32px 24px;
+}
+
+.epta-wizard-success__icon {
+  width: 80px;
+  height: 80px;
+  margin: 0 auto 24px;
+  border-radius: 50%;
+  background: var(--epta-success-soft);
+  border: 2px solid var(--epta-success-border);
+  color: var(--epta-success);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+.epta-wizard-success__icon .dashicons {
+  width: 40px; height: 40px; font-size: 40px;
+}
+
+.epta-wizard-success__title {
+  margin: 0 0 12px;
+  font-size: clamp(26px, 4vw, 32px);
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  color: var(--epta-text);
+}
+
+.epta-wizard-success__lede {
+  margin: 0 auto;
+  max-width: 500px;
+  font-size: 15px;
+  line-height: 1.55;
+  color: var(--epta-text-muted);
+}
+
+
+.epta-wizard-success__actions {
+  display: flex;
+  gap: 10px;
+  justify-content: center;
+  flex-wrap: wrap;
+  margin-bottom: 32px;
+}
+
+
+/* -------------------------------------------------------------------------
+   Responsive
+   ------------------------------------------------------------------------- */
+
+@media (max-width: 980px) {
+  .epta-wizard-progress { gap: 0; }
+  .epta-wizard-progress__step { font-size: 12px; }
+  .epta-wizard-progress__step-label { display: none; }
+  .epta-wizard-progress__step::after { width: 16px; margin: 0 6px; }
+}
+
+@media (max-width: 540px) {
+  .epta-wizard-progress__num { width: 26px; height: 26px; font-size: 12px; }
+  .epta-wizard-progress__step::after { width: 12px; }
+}
+
+/* =========================================================================
+   STEP-1 V2 SHELL â€” used by wizard-shortcodes-blocks.html
+   Header-as-progress-bar + card-with-inline-nav. Rem-based sizing.
+   ========================================================================= */
+
+.epta-wizard-shell {
+  min-height: 100vh;
+  background: var(--epta-bg);
+  display: flex;
+  flex-direction: column;
+  font-size: 1rem; /* baseline: 1rem = 16px */
+}
+
+/* ----- Header (3-col: brand + steps + exit) ----- */
+
+.epta-wizard-header {
+  background: #fff;
+  border-bottom: 0.0625rem solid var(--epta-border-soft);
+  padding: 1rem 1.5rem;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto minmax(0, 1fr);
+  gap: 1.5rem;
+  align-items: center;
+  min-height: 5rem;
+}
+
+.epta-wizard-header__brand {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  min-width: 0;
+}
+.epta-wizard-header__brand-icon {
+  width: 2.5rem;
+  height: 2.5rem;
+  flex: 0 0 auto;
+  display: block;
+  object-fit: contain;
+}
+.epta-wizard-header__brand-name {
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+  line-height: 1.15;
+}
+.epta-wizard-header__brand-name strong {
+  font-size: 0.9375rem;
+  font-weight: 650;
+  color: var(--epta-text);
+}
+.epta-wizard-header__brand-name em {
+  font-style: normal;
+  font-size: 0.75rem;
+  font-weight: 500;
+  color: var(--epta-text-muted);
+  margin-top: 0.125rem;
+}
+
+.epta-wizard-header__steps {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.5rem;
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  justify-self: center;
+}
+
+.epta-wizard-header-step {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.375rem;
+  min-width: 3.5rem;
+}
+.epta-wizard-header-step__num {
+  width: 2rem;
+  height: 2rem;
+  border-radius: 50%;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.8125rem;
+  font-weight: 700;
+  border: 0.125rem solid var(--epta-border);
+  background: #fff;
+  color: var(--epta-text-soft);
+  transition: background 0.2s, border-color 0.2s, color 0.2s;
+  position: relative;
+}
+.epta-wizard-header-step__label {
+  font-size: 0.75rem;
+  font-weight: 600;
+  color: var(--epta-text-soft);
+  white-space: nowrap;
+  transition: color 0.2s;
+}
+.epta-wizard-header__connector {
+  width: 2.5rem;
+  height: 0.125rem;
+  background: var(--epta-border);
+  margin-top: 0.9375rem;
+  border-radius: 0.0625rem;
+  transition: background 0.2s;
+  flex: 0 0 auto;
+}
+
+.epta-wizard-header-step.is-done .epta-wizard-header-step__num {
+  background: var(--epta-accent);
+  border-color: var(--epta-accent);
+  color: transparent;
+  font-size: 0;
+}
+.epta-wizard-header-step.is-done .epta-wizard-header-step__num::before {
+  content: "\f147"; /* dashicons-yes */
+  font-family: dashicons;
+  font-size: 1.125rem;
+  color: #fff;
+}
+.epta-wizard-header-step.is-done .epta-wizard-header-step__label {
+  color: var(--epta-text);
+}
+.epta-wizard-header__connector.is-done {
+  background: var(--epta-accent);
+}
+.epta-wizard-header-step.is-current .epta-wizard-header-step__num {
+  border-color: var(--epta-accent);
+  color: var(--epta-accent);
+  background: #fff;
+}
+.epta-wizard-header-step.is-current .epta-wizard-header-step__label {
+  color: var(--epta-text);
+  font-weight: 700;
+}
+
+.epta-wizard-header__exit {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.375rem;
+  padding: 0.5rem 0.75rem;
+  color: var(--epta-text-muted);
+  font-size: 0.875rem;
+  font-weight: 600;
+  text-decoration: none;
+  border-radius: 0.5rem;
+  justify-self: end;
+  transition: color 0.15s, background-color 0.15s;
+}
+.epta-wizard-header__exit:hover {
+  background: var(--epta-bg);
+  color: var(--epta-text);
+  text-decoration: none;
+}
+.epta-wizard-header__exit .dashicons {
+  width: 1rem;
+  height: 1rem;
+  font-size: 1rem;
+  line-height: 1;
+}
+
+/* ----- Main + Card ----- */
+
+.epta-wizard-main {
+  flex: 1 1 auto;
+  padding: 2.5rem 1.5rem 3rem;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+}
+
+.epta-wizard-card {
+  background: #fff;
+  border: 0.0625rem solid var(--epta-border-soft);
+  border-radius: 1rem;
+  box-shadow: 0 0.25rem 1rem rgba(2, 14, 33, 0.05);
+  padding: 2rem 2.25rem;
+  width: 100%;
+  max-width: 68rem;
+}
+
+/* Reuse existing .epta-wizard-step as the step wrapper; the wizard JS
+   already toggles .is-active on it. Inside the card, we adjust its
+   padding/appearance for the new layout. */
+.epta-wizard-card .epta-wizard-step {
+  max-width: none;
+}
+
+.epta-wizard-card__heading {
+  margin-bottom: 1.75rem;
+}
+.epta-wizard-card__title {
+  margin: 0 0 0.5rem;
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: var(--epta-text);
+  letter-spacing: -0.01em;
+  line-height: 1.2;
+}
+.epta-wizard-card__desc {
+  margin: 0;
+  font-size: 0.9375rem;
+  line-height: 1.55;
+  color: var(--epta-text-muted);
+  max-width: 54rem;
+}
+
+/* Inline nav row */
+.epta-wizard-card__nav {
+  margin-top: 2rem;
+  padding-top: 1.5rem;
+  border-top: 0.0625rem solid var(--epta-border-soft);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.75rem;
+}
+
+/* Attention pulse â€” soft blue glow + expanding ring â€” on any primary CTA
+   in the wizard nav (Continue when enabled, or Install/Open in promo mode).
+   Draws the user's eye to the next action. Hover pauses it. */
+@keyframes wizardCtaPulse {
+  0%, 100% {
+    box-shadow:
+      0 0.125rem 0.375rem rgba(6, 147, 227, 0.4),
+      0 0 0 0 rgba(6, 147, 227, 0.55);
+  }
+  60% {
+    box-shadow:
+      0 0.125rem 0.375rem rgba(6, 147, 227, 0.4),
+      0 0 0 0.625rem rgba(6, 147, 227, 0);
+  }
+}
+.epta-wizard-card__nav .epta-btn-primary,
+.epta-wizard-success__actions .epta-btn-primary {
+  animation: wizardCtaPulse 2.2s ease-out infinite;
+}
+.epta-wizard-card__nav .epta-btn-primary:hover,
+.epta-wizard-card__nav .epta-btn-primary:focus,
+.epta-wizard-success__actions .epta-btn-primary:hover,
+.epta-wizard-success__actions .epta-btn-primary:focus {
+  animation-play-state: paused;
+}
+@media (prefers-reduced-motion: reduce) {
+  .epta-wizard-card__nav .epta-btn-primary,
+  .epta-wizard-success__actions .epta-btn-primary { animation: none; }
+}
+.epta-wizard-card__nav-right {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.875rem;
+  margin-left: auto;
+}
+.epta-wizard-card__nav [data-wizard-back] { visibility: hidden; }
+.epta-wizard-card__nav [data-wizard-back].is-visible { visibility: visible; }
+
+.epta-wizard-card__nav .epta-btn-ghost,
+.epta-wizard-card__nav .epta-btn-primary,
+.epta-wizard-card__nav .epta-btn-secondary {
+  min-height: 2.5rem;
+  padding: 0.5rem 1.25rem;
+  font-size: 0.9375rem;
+  border-radius: 0.5rem;
+}
+.epta-wizard-card__nav .dashicons {
+  width: 1rem; height: 1rem; font-size: 1rem;
+}
+
+
+/* ----- Editor selector video (used on the Done step of this wizard) ----- */
+
+/* Video preview column â€” YouTube thumbnail as background, injected via inline
+   background-image when an editor is picked. Fallback dark background so the
+   red play button stays visible if the thumbnail hasn't loaded yet. */
+.epta-editor-selector__video {
+  position: relative;
+  aspect-ratio: 16 / 9;
+  border-radius: 0.75rem;
+  overflow: hidden;
+  background-color: #0a0a0a;
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background-image 0.3s;
+}
+/* Whole thumbnail is clickable once a walkthrough is loaded â€” the play
+   button is now just a visual affordance. Cursor turns to default once the
+   iframe is playing (clicks inside iframe are handled by YouTube). */
+.epta-editor-selector__video[data-editor] { cursor: pointer; }
+.epta-editor-selector__video.is-playing { cursor: default; }
+
+/* Dark gradient overlay â€” top slightly darkened, bottom more so, for label
+   readability + play-button contrast against any thumbnail color. */
+.epta-editor-selector__video::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background:
+    linear-gradient(180deg, rgba(0, 0, 0, 0.20) 0%, rgba(0, 0, 0, 0) 40%, rgba(0, 0, 0, 0) 60%, rgba(0, 0, 0, 0.60) 100%);
+  pointer-events: none;
+  z-index: 1;
+}
+
+/* Editor icon watermark in top-right */
+.epta-editor-selector__video-watermark {
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+  z-index: 2;
+  width: 2.5rem;
+  height: 2.5rem;
+  opacity: 0.35;
+  object-fit: contain;
+  pointer-events: none;
+}
+
+/* YouTube-style red play button â€” pill-shaped, red by default */
+.epta-editor-selector__video-play {
+  position: relative;
+  z-index: 3;
+  width: 4.5rem;
+  height: 3.125rem;
+  border-radius: 0.75rem;
+  background: #ff0000;    /* YouTube red */
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  box-shadow: 0 0.5rem 1.5rem rgba(255, 0, 0, 0.4), 0 0.25rem 0.75rem rgba(0, 0, 0, 0.35);
+  transition: background 0.2s, transform 0.2s, box-shadow 0.2s;
+  text-decoration: none;
+}
+.epta-editor-selector__video-play:hover,
+.epta-editor-selector__video-play:focus {
+  background: #cc0000;    /* darker YouTube red on hover */
+  transform: scale(1.08);
+  text-decoration: none;
+}
+/* White triangle inside the play button */
+.epta-editor-selector__video-play::before {
+  content: "";
+  width: 0;
+  height: 0;
+  border-style: solid;
+  border-width: 0.6875rem 0 0.6875rem 1.125rem;
+  border-color: transparent transparent transparent #fff;
+  margin-left: 0.25rem;
+}
+
+/* Ripple waves around the play button â€” white for contrast on red button */
+.epta-editor-selector__video-waves {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  z-index: 2;
+  width: 4.5rem;
+  height: 3.125rem;
+  pointer-events: none;
+  transform: translate(-50%, -50%);
+}
+.epta-editor-selector__video-waves::before,
+.epta-editor-selector__video-waves::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: 0.75rem;
+  border: 0.125rem solid rgba(255, 255, 255, 0.7);
+  animation: youtubeRipple 2.4s infinite ease-out;
+}
+.epta-editor-selector__video-waves::after {
+  animation-delay: 1.2s;
+}
+@keyframes youtubeRipple {
+  0%   { transform: scale(1);   opacity: 0.9; }
+  70%  { transform: scale(1.8); opacity: 0; }
+  100% { transform: scale(1.8); opacity: 0; }
+}
+
+/* When a video is actually playing, hide the play button / waves / label /
+   watermark and let the iframe fill the box. */
+.epta-editor-selector__video-frame {
+  position: absolute;
+  inset: 0;
+  z-index: 4;
+  background: #000;
+  display: none;
+}
+.epta-editor-selector__video-frame iframe {
+  width: 100%;
+  height: 100%;
+  border: 0;
+  display: block;
+}
+.epta-editor-selector__video.is-playing .epta-editor-selector__video-frame { display: block; }
+.epta-editor-selector__video.is-playing .epta-editor-selector__video-play,
+.epta-editor-selector__video.is-playing .epta-editor-selector__video-waves,
+.epta-editor-selector__video.is-playing .epta-editor-selector__video-label,
+.epta-editor-selector__video.is-playing .epta-editor-selector__video-watermark { display: none; }
+
+.epta-editor-selector__video-label {
+  position: absolute;
+  bottom: 1rem;
+  left: 1rem;
+  z-index: 3;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.375rem;
+  padding: 0.375rem 0.75rem;
+  background: rgba(0, 0, 0, 0.65);
+  color: #fff;
+  border-radius: 0.375rem;
+  font-size: 0.75rem;
+  font-weight: 600;
+  backdrop-filter: blur(0.25rem);
+}
+.epta-editor-selector__video-label .dashicons {
+  width: 0.875rem; height: 0.875rem; font-size: 0.875rem;
+}
+
+/* Prefers-reduced-motion â€” kill the ripple */
+@media (prefers-reduced-motion: reduce) {
+  .epta-editor-selector__video-waves::before,
+  .epta-editor-selector__video-waves::after { animation: none; opacity: 0; }
+}
+
+/* ----- Sibling promotion box (compact horizontal: icon + title + desc) -----
+   No video inside (main video above swaps to that editor). No buttons
+   inside â€” action buttons live in the card's nav row via variant swap. */
+
+/* ----- Nav variants (swap Continue for promo-specific actions) ----- */
+/* Default: Continue button shown; promo variants hidden.
+   When step 1 shows Elementor/Divi promo, JS toggles data-nav-mode on
+   the nav-right container to reveal the right buttons. */
+
+.epta-wizard-card__nav-right [data-nav-variant] { display: none; }
+.epta-wizard-card__nav-right[data-nav-mode="default"] [data-nav-variant="default"] { display: inline-flex; }
+/* SPB Step 1: a Pro template is selected → hide primary Continue, show the
+   "Continue with free template" fallback (reverts to Template 1 + advances). */
+.epta-wizard-card__nav-right[data-nav-mode="upgrade-spb"] [data-nav-variant="continue-free"],
+.epta-wizard-card__nav-right[data-nav-mode="upgrade-divi"] [data-nav-variant="continue-free"] { display: inline-flex; }
+
+/* ----- 1-column layout for no-builder state ----- */
+/* When only Block + Shortcode are shown (no builder detected), stack them
+   vertically and vertically-center the group next to the video so it doesn't
+   sit lonely at the top of a tall video. */
+
+/* =========================================================================
+   STEP-2 â€” Layout & Style settings panel (row-based)
+   Each row is a 35/65 split: icon + small title + one-line description on
+   the left, the actual options on the right. No preview column â€” every
+   option carries its own "view demo" link that opens a live example in a
+   new tab.
+   ========================================================================= */
+
+.epta-settings-list {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+/* ----- "Switch to Shortcode" CTA bar ------------------------------------
+   Shown only when the user picked Block or Bricks in Step 1 â€” one click
+   swaps their Step 1 selection to Shortcode and re-renders Step 2 with the
+   fuller layout / style / filter set. Blue tint keeps it a suggestion, not
+   an interruption. */
+
+
+/* One row = one setting (Layout / Style / Filter Bar / Date Format) */
+.epta-settings-row {
+  display: grid;
+  grid-template-columns: 35fr 65fr;
+  gap: 1.5rem;
+  align-items: start;
+  padding: 1.125rem 1.25rem;
+  background: #fff;
+  border: 0.0625rem solid var(--epta-border-soft);
+  border-radius: 0.75rem;
+}
+.epta-settings-row[hidden] { display: none !important; }
+
+.epta-settings-row__info {
+  display: flex;
+  gap: 0.6875rem;
+  align-items: flex-start;
+}
+.epta-settings-row__icon {
+  width: 2rem;
+  height: 2rem;
+  flex: 0 0 auto;
+  border-radius: 0.5rem;
+  background: var(--epta-primary-soft);
+  color: var(--epta-primary);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+.epta-settings-row__icon .dashicons {
+  width: 1.125rem; height: 1.125rem; font-size: 1.125rem;
+}
+.epta-settings-row__meta { min-width: 0; }
+.epta-settings-row__title {
+  margin: 0 0 0.1875rem;
+  font-size: 0.875rem;
+  font-weight: 700;
+  color: var(--epta-text);
+  display: inline-flex;
+  align-items: center;
+  gap: 0.375rem;
+  line-height: 1.25;
+}
+/* Inline Pro pill in a settings row title â€” same 4px tab style as the
+   layout / style card Pro pills so all upsell markers look identical. */
+.epta-settings-row__desc {
+  margin: 0;
+  font-size: 0.75rem;
+  line-height: 1.5;
+  color: var(--epta-text-muted);
+}
+.epta-settings-row__body { min-width: 0; }
+
+/* =========================================================================
+   STEP-3 â€” Events Query settings
+   Reuses .epta-settings-row / .epta-style-row / .epta-toggle-row from Step 2.
+   New primitives: multiselect widget + 3-column style-row variant +
+   a per-section footer for one shared demo link.
+   ========================================================================= */
+
+/* 3-column variant for the Events Status row (Upcoming / Past / Both) */
+
+/* Section-level demo link sitting under the row's small description text,
+   inside the left-hand meta column (e.g. Load Events by Date Range). Small
+   top offset keeps it clearly separated from the desc without wasting
+   vertical space. Negative left offset makes the icon flush with the desc. */
+
+/* ----- Multiselect (Select2-style) --------------------------------------
+   The visible control is a click-to-open target with chips inside; the
+   dropdown holds the option anchors. Values persist to a hidden input as
+   a comma-separated list so wizard.js state persistence works with zero
+   extra plumbing. WP integration point: populate .epta-multiselect__option
+   entries dynamically from Events categories. */
+.epta-multiselect {
+  position: relative;
+  width: 100%;
+}
+.epta-multiselect__control {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  min-height: 2.375rem;
+  padding: 0.3125rem 0.5rem;
+  background: #fff;
+  border: 0.0625rem solid var(--epta-border);
+  border-radius: 0.5rem;
+  cursor: pointer;
+  transition: border-color 0.15s, box-shadow 0.15s;
+}
+.epta-multiselect__control:hover { border-color: var(--epta-primary-border); }
+.epta-multiselect.is-open .epta-multiselect__control,
+.epta-multiselect__control:focus-visible {
+  outline: none;
+  border-color: var(--epta-primary);
+  box-shadow: 0 0 0 0.1875rem var(--epta-primary-soft);
+}
+.epta-multiselect__chips {
+  flex: 1 1 auto;
+  min-width: 0;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.3125rem;
+}
+.epta-multiselect__placeholder {
+  flex: 1 1 auto;
+  color: var(--epta-text-muted);
+  font-size: 0.8125rem;
+}
+.epta-multiselect__placeholder[hidden] { display: none !important; }
+.epta-multiselect__caret {
+  flex: 0 0 auto;
+  color: var(--epta-text-muted);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  transition: transform 0.15s, color 0.15s;
+}
+.epta-multiselect__caret .dashicons {
+  width: 1rem; height: 1rem; font-size: 1rem;
+}
+.epta-multiselect.is-open .epta-multiselect__caret {
+  transform: rotate(180deg);
+  color: var(--epta-primary);
+}
+
+/* Individual chip in the control */
+.epta-multiselect__chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.25rem;
+  padding: 0.1875rem 0.375rem 0.1875rem 0.5rem;
+  background: var(--epta-primary-soft);
+  color: var(--epta-primary-hover);
+  border: 0.0625rem solid var(--epta-primary-border);
+  border-radius: 0.25rem;
+  font-size: 0.75rem;
+  font-weight: 600;
+  line-height: 1.25;
+}
+.epta-multiselect__chip-remove {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 0.9375rem;
+  height: 0.9375rem;
+  border-radius: 0.1875rem;
+  color: var(--epta-primary-hover);
+  cursor: pointer;
+  transition: background-color 0.15s, color 0.15s;
+}
+.epta-multiselect__chip-remove:hover,
+.epta-multiselect__chip-remove:focus-visible {
+  background: rgba(6, 147, 227, 0.15);
+  color: var(--epta-accent-hover);
+  outline: none;
+}
+.epta-multiselect__chip-remove .dashicons {
+  width: 0.75rem; height: 0.75rem; font-size: 0.75rem;
+}
+
+/* Dropdown */
+.epta-multiselect__dropdown {
+  position: absolute;
+  top: calc(100% + 0.25rem);
+  left: 0;
+  right: 0;
+  z-index: 20;
+  padding: 0.25rem;
+  background: #fff;
+  border: 0.0625rem solid var(--epta-border);
+  border-radius: 0.5rem;
+  box-shadow: 0 0.5rem 1.5rem rgba(2, 14, 33, 0.12);
+  max-height: 15rem;
+  overflow-y: auto;
+}
+.epta-multiselect__dropdown[hidden] { display: none !important; }
+
+/* Search input pinned to the top of the dropdown. Sticky so it stays put
+   while scrolling long option lists. On the WP side, hook the input's
+   `data-multiselect-search` handler to a wp_ajax endpoint for lazy
+   loading — the current in-page filter is a client-side stand-in. */
+.epta-multiselect__search {
+  position: sticky;
+  top: 0;
+  z-index: 1;
+  padding: 0.25rem 0.25rem 0.375rem;
+  margin-bottom: 0.125rem;
+  background: #fff;
+  border-bottom: 0.0625rem solid var(--epta-border-soft);
+}
+.epta-multiselect__search-input {
+  width: 100%;
+  padding: 0.375rem 0.625rem;
+  border: 0.0625rem solid var(--epta-border);
+  border-radius: 0.375rem;
+  font: inherit;
+  font-size: 0.8125rem;
+  background: var(--epta-bg);
+  color: var(--epta-text);
+}
+.epta-multiselect__search-input:focus {
+  outline: 0.125rem solid var(--epta-focus);
+  outline-offset: 0.0625rem;
+  background: #fff;
+}
+
+/* Empty-state message shown when the search filter matches nothing. */
+.epta-multiselect__empty {
+  display: none;
+  padding: 0.5rem 0.625rem;
+  font-size: 0.75rem;
+  color: var(--epta-text-muted);
+  font-style: italic;
+}
+.epta-multiselect__empty.is-visible { display: block; }
+
+.epta-multiselect__option {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.4375rem 0.5rem;
+  border-radius: 0.375rem;
+  color: var(--epta-text);
+  text-decoration: none;
+  font-size: 0.8125rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: background-color 0.1s, color 0.1s;
+}
+.epta-multiselect__option:hover,
+.epta-multiselect__option:focus-visible {
+  background: var(--epta-bg);
+  color: var(--epta-text);
+  text-decoration: none;
+  outline: none;
+}
+.epta-multiselect__option.is-selected {
+  background: var(--epta-primary-soft);
+  color: var(--epta-primary-hover);
+}
+.epta-multiselect__check {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 1rem;
+  height: 1rem;
+  border-radius: 0.1875rem;
+  background: transparent;
+  border: 0.0625rem solid var(--epta-border);
+  color: #fff;
+  transition: background-color 0.1s, border-color 0.1s;
+}
+.epta-multiselect__check .dashicons {
+  width: 0.75rem; height: 0.75rem; font-size: 0.75rem;
+  opacity: 0;
+  transition: opacity 0.1s;
+}
+.epta-multiselect__option.is-selected .epta-multiselect__check {
+  background: var(--epta-primary);
+  border-color: var(--epta-primary);
+}
+.epta-multiselect__option.is-selected .epta-multiselect__check .dashicons { opacity: 1; }
+.epta-multiselect__label { min-width: 0; }
+
+/* =========================================================================
+   STEP-4 (Review) + STEP-5 (Done) â€” split review, shortcode code block,
+   summary list, telemetry consent, success header, cross-sell footer.
+   ========================================================================= */
+
+
+/* "Your settings" â€” split into Layout+Style / Events Query columns for
+   scannability. Two-column at desktop, single column below 48rem. */
+
+/* Dense variant used inside the review split â€” tighter rows, smaller text. */
+
+/* Step 5 recap â€” single centered card (no settings summary alongside).
+   Max-width keeps a long shortcode readable without stretching to full page. */
+
+
+/* Shortcode code block â€” light theme with soft syntax accents */
+
+/* Copy button â€” sits in the panel header on the right */
+
+/* Builder card (block / bricks "where it goes") â€” no header row: the
+   success-header above the recap already communicates "created". Panel is
+   tightened vertically and the logo is bumped up so the card carries
+   visual weight without an icon-title chrome above it. */
+
+/* Settings summary list */
+
+/* Telemetry consent bar â€” white card matching the other settings rows;
+   only the checkbox area (wrapped in a small <label>) toggles the value,
+   so clicks on the description text don't accidentally uncheck. */
+.epta-telemetry {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.75rem;
+  padding: 1rem 1.125rem;
+  margin-top: 1.25rem;
+  background: #fff;
+  border: 0.0625rem solid var(--epta-border-soft);
+  border-radius: 0.75rem;
+  transition: border-color 0.15s;
+}
+.epta-telemetry__checkbox-wrap {
+  display: inline-flex;
+  align-items: flex-start;
+  cursor: pointer;
+  flex: 0 0 auto;
+  margin-top: 0.125rem;
+}
+.epta-telemetry__checkbox {
+  position: absolute;
+  width: 1px; height: 1px;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  white-space: nowrap;
+}
+.epta-telemetry__mark {
+  width: 1.125rem;
+  height: 1.125rem;
+  flex: 0 0 auto;
+  border-radius: 0.25rem;
+  background: #fff;
+  border: 0.125rem solid var(--epta-border);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  color: #fff;
+  transition: background-color 0.15s, border-color 0.15s;
+}
+.epta-telemetry__checkbox-wrap:hover .epta-telemetry__mark {
+  border-color: var(--epta-primary-border);
+}
+.epta-telemetry__mark .dashicons {
+  width: 0.875rem; height: 0.875rem; font-size: 0.875rem;
+  opacity: 0;
+  transition: opacity 0.1s;
+}
+.epta-telemetry__checkbox:checked + .epta-telemetry__mark {
+  background: var(--epta-primary);
+  border-color: var(--epta-primary);
+}
+.epta-telemetry__checkbox:checked + .epta-telemetry__mark .dashicons { opacity: 1; }
+.epta-telemetry__checkbox:focus-visible + .epta-telemetry__mark {
+  outline: 0.125rem solid var(--epta-focus);
+  outline-offset: 0.125rem;
+}
+.epta-telemetry__body {
+  display: flex;
+  flex-direction: column;
+  gap: 0.1875rem;
+  min-width: 0;
+}
+.epta-telemetry__title {
+  display: block;
+  font-size: 0.875rem;
+  font-weight: 700;
+  color: var(--epta-text);
+}
+.epta-telemetry__desc {
+  font-size: 0.75rem;
+  color: var(--epta-text-muted);
+  line-height: 1.5;
+}
+.epta-telemetry__policy {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.1875rem;
+  margin-left: 0.25rem;
+  color: var(--epta-primary);
+  text-decoration: underline;
+  font-weight: 600;
+  white-space: nowrap;
+}
+.epta-telemetry__policy:hover,
+.epta-telemetry__policy:focus-visible {
+  color: var(--epta-primary-hover);
+  outline: none;
+}
+.epta-telemetry__policy .dashicons {
+  width: 0.75rem; height: 0.75rem; font-size: 0.75rem;
+}
+
+/* ---------- STEP 5 â€” Success header + success nav + cross-sell -------- */
+.epta-wizard-success__icon--lg {
+  width: 4.5rem;
+  height: 4.5rem;
+  background: linear-gradient(135deg, var(--epta-success) 0%, #2a9c60 100%);
+  color: #fff;
+  border-radius: 50%;
+  box-shadow: 0 0.5rem 1.5rem rgba(53, 181, 114, 0.35);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto 1rem;
+  animation: eptaSuccessPop 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.epta-wizard-success__icon--lg .dashicons {
+  width: 2.5rem; height: 2.5rem; font-size: 2.5rem;
+}
+@keyframes eptaSuccessPop {
+  0%   { transform: scale(0.4); opacity: 0; }
+  60%  { transform: scale(1.08); opacity: 1; }
+  100% { transform: scale(1); }
+}
+@media (prefers-reduced-motion: reduce) {
+  .epta-wizard-success__icon--lg { animation: none; }
+}
+
+/* Success actions row â€” Create / Preview / Edit / Change / Recreate / Finish.
+   Reuses the shared .epta-wizard-success__actions primitive (already flex +
+   wrap + centered); this override adds the divider above and the space
+   needed after the recap card. */
+.epta-wizard-success__actions {
+  margin-top: 1.5rem;
+  padding-top: 1.25rem;
+  border-top: 0.0625rem solid var(--epta-border-soft);
+}
+
+/* Small builder-aware hint to the left of the Step 3 primary CTA when
+   Block or Bricks is picked. Reads like "Insert Events Block in Block Editor". */
+
+/* Finish button â€” success green (#35B572 = --epta-success). Distinct from
+   the primary blue so users can tell "exit the wizard" apart from
+   "preview my new page". */
+.epta-btn-success {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.375rem;
+  padding: 0.5625rem 1rem;
+  background: var(--epta-success);
+  color: #fff;
+  border: 0.125rem solid var(--epta-success);
+  border-radius: 0.5rem;
+  font-weight: 600;
+  font-size: 0.875rem;
+  text-decoration: none;
+  cursor: pointer;
+  transition: background-color 0.15s, border-color 0.15s, transform 0.15s, box-shadow 0.15s;
+}
+.epta-btn-success:hover,
+.epta-btn-success:focus-visible {
+  background: #2a9c60;
+  border-color: #2a9c60;
+  color: #fff;
+  text-decoration: none;
+  transform: translateY(-0.0625rem);
+  box-shadow: 0 0.25rem 0.75rem rgba(53, 181, 114, 0.3);
+  outline: none;
+}
+
+/* Cross-sell footer â€” Single Page Builder promo */
+.epta-cross-sell {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  padding: 1rem 1.25rem;
+  margin-top: 1.5rem;
+  background: linear-gradient(135deg, #fff5e8 0%, var(--epta-accent-soft) 100%);
+  border: 0.0625rem solid var(--epta-accent-border);
+  border-radius: 0.75rem;
+}
+/* The plugin brand SVGs already ship with a rounded-frame border and
+   internal padding â€” the outer container is just a flex slot, no chrome. */
+.epta-cross-sell__icon {
+  width: 2.75rem;
+  height: 2.75rem;
+  flex: 0 0 auto;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+.epta-cross-sell__icon img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  display: block;
+}
+/* Chip modifier â€” applied when the icon slot holds a Dashicons glyph
+   (e.g. the bundle promo) instead of a pre-framed plugin SVG. Adds the
+   white rounded frame back so the glyph doesn't sit bare on the orange
+   promo background. Mirrors the same rule used on Dashboard bundle icons. */
+.epta-cross-sell__icon--chip {
+  background: #fff;
+  border: 0.0625rem solid var(--epta-accent-border);
+  border-radius: 0.5rem;
+  color: var(--epta-accent);
+}
+.epta-cross-sell__icon--chip .dashicons {
+  font-size: 1.5rem;
+  width: 1.5rem;
+  height: 1.5rem;
+  line-height: 1;
+}
+
+/* Bundle-promo variant â€” slightly richer than a regular sibling cross-sell
+   because the bundle CTA is doing the work of several per-addon cards. */
+.epta-cross-sell--bundle {
+  border-color: var(--epta-accent);
+  box-shadow: 0 0.125rem 0.5rem rgba(227, 104, 11, 0.12);
+}
+.epta-cross-sell--bundle .epta-cross-sell__title {
+  font-size: 0.9375rem;
+}
+.epta-cross-sell__body {
+  flex: 1 1 auto;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.125rem;
+}
+.epta-cross-sell__title {
+  font-size: 0.875rem;
+  font-weight: 700;
+  color: var(--epta-text);
+}
+.epta-cross-sell__desc {
+  font-size: 0.75rem;
+  color: var(--epta-text-muted);
+  line-height: 1.5;
+}
+.epta-cross-sell__actions {
+  display: flex;
+  gap: 0.5rem;
+  flex-wrap: wrap;
+}
+
+/* Responsive stacking for review split + cross-sell */
+@media (max-width: 48rem) {
+  .epta-cross-sell { flex-direction: column; align-items: stretch; text-align: center; }
+  .epta-cross-sell__actions { justify-content: center; }
+}
+
+/* Responsive: collapse to single-column at narrow widths */
+@media (max-width: 60rem) {
+  .epta-settings-row { grid-template-columns: 1fr; }
+}
+
+/* ----- Responsive ----- */
+
+@media (max-width: 60rem) {
+  .epta-wizard-header {
+    grid-template-columns: minmax(0, auto) minmax(0, auto);
+    grid-template-rows: auto auto;
+    row-gap: 1rem;
+    padding: 0.875rem 1rem;
+    min-height: auto;
+  }
+  .epta-wizard-header__brand { grid-column: 1; grid-row: 1; }
+  .epta-wizard-header__exit  { grid-column: 2; grid-row: 1; }
+  .epta-wizard-header__steps { grid-column: 1 / -1; grid-row: 2; justify-self: center; }
+}
+
+@media (max-width: 48rem) {
+  .epta-wizard-header-step__label { display: none; }
+  .epta-wizard-header__connector { width: 1.5rem; }
+  .epta-wizard-header-step { min-width: 2rem; }
+  .epta-wizard-card { padding: 1.5rem; }
+  .epta-wizard-main { padding: 1.5rem 1rem 2rem; }
+}
+
+@media (max-width: 32rem) {
+  .epta-wizard-card__nav {
+    flex-wrap: wrap;
+    gap: 0.5rem;
+  }
+  .epta-wizard-card__nav-right { width: 100%; justify-content: flex-end; }
+}
+
+/* ============================================================================
+   SINGLE PAGE BUILDER — Step 1: Template picker + Colors panel
+   ============================================================================
+
+   Layout: 60/40 split. Left = 2-column grid of "browser-frame" template cards.
+   Each card renders a condensed CSS-only skeleton of that template's layout.
+   Right = live color picker (3 rows) OR a Pro/cross-sell promo panel,
+   depending on which template is selected.
+
+   Skeletons consume 3 CSS variables set on the picker container so every
+   card re-tints live as the user drags the color inputs:
+
+     --epta-tpl-primary      dark surface + button + dark heading bars
+     --epta-tpl-alt          foreground color on top of primary surfaces
+     --epta-tpl-secondary    light muted background (sidebars / cards)
+
+   Defaults are set on `.epta-template-picker` so cards render even if no
+   inline vars are present.
+   ============================================================================ */
+
+.epta-template-picker {
+  display: grid;
+  grid-template-columns: minmax(0, 3fr) minmax(0, 2fr);
+  gap: 1.5rem;
+  align-items: start;
+  /* Skeleton palette defaults — overridden inline by the JS color pickers */
+  --epta-tpl-primary: #020E21;
+  --epta-tpl-alt: #FFFFFF;
+  --epta-tpl-secondary: #EDEEF0;
+}
+
+.epta-template-picker__left,
+.epta-template-picker__right {
+  min-width: 0;
+}
+/* Colors panel + promo scroll with the template grid on the left. Sticky so
+   they stay in view while a user scrolls through the 5-card grid. `top`
+   accounts for the fixed admin header. */
+.epta-template-picker__right {
+  position: sticky;
+  top: 5.5rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+
+/* Grid of template cards — 2 columns, wraps to 3rd row when 5 cards show
+   (both Elementor + Divi detected). */
+.epta-template-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 0.875rem;
+}
+
+/* --- Template card = browser-frame mockup --------------------------------
+   min-height ensures the card is tall enough for the skeleton content
+   regardless of how narrow the 2-column grid squeezes each column. The
+   skeleton fills the remaining height via `flex: 1`, and internal overflow
+   is clipped so nothing spills out of the browser frame. */
+.epta-template-card {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  background: #fff;
+  border: 0.125rem solid var(--epta-border);
+  border-radius: 0.625rem;
+  overflow: hidden;
+  cursor: pointer;
+  min-height: 15rem;
+  transition: border-color 120ms ease, box-shadow 120ms ease, transform 120ms ease;
+}
+.epta-template-card:hover {
+  border-color: var(--epta-primary);
+  box-shadow: 0 0.125rem 0.5rem rgba(6, 147, 227, 0.08);
+}
+.epta-template-card.is-selected {
+  border-color: var(--epta-primary);
+  box-shadow: 0 0 0 0.1875rem rgba(6, 147, 227, 0.18);
+}
+.epta-template-card:focus-visible {
+  outline: 0.125rem solid var(--epta-focus);
+  outline-offset: 0.125rem;
+}
+
+/* Browser top bar: 3 dots left + demo link icon right */
+.epta-template-card__bar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.5rem;
+  padding: 0.375rem 0.5rem;
+  background: #f0f2f4;
+  border-bottom: 0.0625rem solid var(--epta-border-soft);
+}
+.epta-template-card__dots {
+  display: inline-flex;
+  gap: 0.25rem;
+}
+.epta-template-card__dots span {
+  width: 0.4375rem;
+  height: 0.4375rem;
+  border-radius: 50%;
+  background: #cfd6dd;
+}
+.epta-template-card__dots span:nth-child(1) { background: #ff5f57; }
+.epta-template-card__dots span:nth-child(2) { background: #ffbd2e; }
+.epta-template-card__dots span:nth-child(3) { background: #28c840; }
+
+/* Demo link icon — external link. Only shows on cards that have a real
+   demo URL (all 3 free-tier + the Elementor/Divi Pro demo pages). */
+.epta-template-card__demo {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.25rem;
+  padding: 0.125rem 0.5rem;
+  border-radius: 0.25rem;
+  color: var(--epta-primary);
+  background: transparent;
+  text-decoration: none;
+  font-size: 0.6875rem;
+  font-weight: 600;
+  transition: color 120ms ease, background 120ms ease;
+}
+.epta-template-card__demo:hover,
+.epta-template-card__demo:focus {
+  color: var(--epta-primary-hover);
+  background: rgba(6, 147, 227, 0.1);
+}
+.epta-template-card__demo .dashicons {
+  font-size: 0.75rem;
+  width: 0.75rem;
+  height: 0.75rem;
+  line-height: 1;
+}
+
+/* Pro pill in the browser bar — replaces the demo icon slot for Pro
+   cards where the "brand" of the card is more useful than a demo link. */
+
+/* Skeleton canvas — the "inside the browser" area. Fills the remaining
+   card height (flex: 1) and clips anything that would overflow so a dense
+   layout never spills past the browser frame. */
+.epta-template-skeleton {
+  position: relative;
+  padding: 0.5rem;
+  flex: 1;
+  min-height: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.375rem;
+  background: #fff;
+  font-size: 0.5rem;
+  overflow: hidden;
+  border-bottom: 0.0625rem solid var(--epta-border-soft);
+}
+/* All skeleton primitives share these base shapes; variants combine them.
+   Sizes are tuned to look clean at small card widths (~140–200px). */
+.epta-tpl-line {
+  height: 0.1875rem;
+  background: var(--epta-border);
+  border-radius: 0.125rem;
+}
+.epta-tpl-line--sm { height: 0.125rem; opacity: 0.6; }
+.epta-tpl-line--w75 { width: 75%; }
+.epta-tpl-line--w60 { width: 60%; }
+.epta-tpl-line--w40 { width: 40%; }
+.epta-tpl-image {
+  background: linear-gradient(135deg, #cfd6dd 0%, #a8b3bd 100%);
+  border-radius: 0.1875rem;
+  position: relative;
+  flex: 0 0 auto;
+}
+.epta-tpl-image--tall { aspect-ratio: 5 / 3; }
+.epta-tpl-image--hero { aspect-ratio: 16 / 5; }
+.epta-tpl-title-overlay {
+  position: absolute;
+  left: 0.1875rem;
+  right: 0.1875rem;
+  bottom: 0.1875rem;
+  padding: 0.1875rem 0.25rem;
+  background: rgba(0, 0, 0, 0.65);
+  border-radius: 0.125rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.125rem;
+}
+.epta-tpl-title-overlay .epta-tpl-line { background: rgba(255, 255, 255, 0.9); }
+.epta-tpl-countdown {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 0.125rem;
+  flex: 0 0 auto;
+}
+.epta-tpl-countdown span {
+  height: 0.5rem;
+  border-radius: 0.125rem;
+  background: var(--epta-tpl-primary);
+}
+.epta-tpl-sidebar-heading {
+  padding: 0.125rem 0.25rem;
+  background: var(--epta-tpl-primary);
+  color: var(--epta-tpl-alt);
+  font-size: 0.4375rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  border-radius: 0.125rem;
+  flex: 0 0 auto;
+}
+.epta-tpl-tag {
+  display: inline-block;
+  width: 0.875rem;
+  height: 0.375rem;
+  background: var(--epta-tpl-primary);
+  border-radius: 0.125rem;
+}
+.epta-tpl-tags {
+  display: inline-flex;
+  gap: 0.1875rem;
+  margin: 0.0625rem 0;
+  flex: 0 0 auto;
+}
+.epta-tpl-back {
+  color: var(--epta-primary);
+  font-size: 0.4375rem;
+  font-weight: 600;
+  margin-bottom: 0.0625rem;
+  flex: 0 0 auto;
+}
+
+/* ----- Classic Sidebar (Template 1) skeleton -----------------------------
+   Image with title overlay on the left, Countdown + Details / Venue /
+   Organizer chip stack on the right sidebar. Simplified from the original:
+   no extra text lines under the image to keep the frame from overflowing
+   at narrow widths. */
+.epta-tpl--classic .epta-tpl-body {
+  display: grid;
+  grid-template-columns: minmax(0, 1.4fr) minmax(0, 1fr);
+  gap: 0.25rem;
+  flex: 1;
+  min-height: 0;
+}
+.epta-tpl--classic .epta-tpl-left,
+.epta-tpl--classic .epta-tpl-right {
+  display: flex;
+  flex-direction: column;
+  gap: 0.1875rem;
+  min-width: 0;
+  min-height: 0;
+}
+.epta-tpl--classic .epta-tpl-right {
+  padding: 0.1875rem;
+  background: var(--epta-tpl-secondary);
+  border-radius: 0.1875rem;
+}
+.epta-tpl--classic .epta-tpl-block {
+  display: flex;
+  flex-direction: column;
+  gap: 0.125rem;
+}
+
+/* ----- Hero (Template 2) skeleton ----------------------------------------
+   Full-width image, countdown strip, title + tags, description. */
+.epta-tpl--hero .epta-tpl-body {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+  flex: 1;
+  min-height: 0;
+}
+
+/* ----- Split (Template 3) skeleton ---------------------------------------
+   Big image, then two-column organizer sidebar + date/time/cost cards +
+   countdown. `min-height: 0` on grid children so overflow clipping works. */
+.epta-tpl--split .epta-tpl-body {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+  flex: 1;
+  min-height: 0;
+}
+.epta-tpl--split .epta-tpl-split-row {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1.8fr);
+  gap: 0.25rem;
+  flex: 1;
+  min-height: 0;
+}
+.epta-tpl--split .epta-tpl-split-row > * { min-width: 0; min-height: 0; }
+.epta-tpl--split .epta-tpl-organizer {
+  padding: 0.1875rem;
+  background: var(--epta-tpl-secondary);
+  border-radius: 0.1875rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.125rem;
+}
+.epta-tpl--split .epta-tpl-info-cards {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 0.125rem;
+  margin-bottom: 0.125rem;
+}
+.epta-tpl--split .epta-tpl-info-card {
+  background: var(--epta-tpl-secondary);
+  border-radius: 0.125rem;
+  padding: 0.125rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.0625rem;
+}
+
+/* ----- Elementor / Divi builder-branded skeleton --------------------------
+   These are Pro placeholders — the skeleton is intentionally lighter so
+   it reads as "you'd design this in a builder" rather than a fixed layout.
+   A center wordmark makes the intent obvious. */
+.epta-tpl--builder .epta-tpl-body {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.5rem;
+  background: repeating-linear-gradient(
+    135deg,
+    #f5f7fa 0 0.375rem,
+    #eef1f5 0.375rem 0.75rem
+  );
+  border-radius: 0.25rem;
+}
+.epta-tpl--builder .epta-tpl-wordmark {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.25rem;
+  font-size: 0.625rem;
+  font-weight: 700;
+  color: var(--epta-text-muted);
+}
+.epta-tpl--builder .epta-tpl-wordmark img {
+  width: 1.5rem;
+  height: 1.5rem;
+  object-fit: contain;
+}
+
+/* Card footer bar — template name (left) + radio dot (right). Sits below
+   the skeleton as a real browser-window "status bar", giving each card a
+   clear label. Selected state tints the whole bar so the pick reads at a
+   glance even before you spot the filled radio. */
+.epta-template-card__footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.5rem;
+  padding: 0.5rem 0.625rem;
+  background: #fff;
+  transition: background 120ms ease;
+}
+.epta-template-card.is-selected .epta-template-card__footer {
+  background: var(--epta-primary-soft);
+}
+/* Name + badge grouped on the left; the radio sits at the far right. */
+.epta-template-card__label {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.375rem;
+  min-width: 0;
+}
+.epta-template-card__name {
+  font-size: 0.75rem;
+  font-weight: 600;
+  color: var(--epta-text);
+  line-height: 1.2;
+  min-width: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+.epta-template-card.is-selected .epta-template-card__name {
+  color: var(--epta-primary-hover);
+}
+/* Small Free / Pro badge next to the template name. Compact — sized for the
+   footer bar, smaller than the shared .epta-pill. Orange = Pro (the reserved
+   upsell color); blue = Free. */
+.epta-template-card__badge {
+  flex: 0 0 auto;
+  padding: 0.0625rem 0.3125rem;
+  font-size: 0.5625rem;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  border-radius: 0.1875rem;
+  line-height: 1.5;
+}
+.epta-template-card__badge--pro {
+  background: var(--epta-accent-soft);
+  color: var(--epta-accent-hover);
+  border: 0.0625rem solid var(--epta-accent-border);
+}
+.epta-template-card__badge--free {
+  background: var(--epta-primary-soft);
+  color: var(--epta-primary-hover);
+  border: 0.0625rem solid var(--epta-primary-border);
+}
+
+/* Radio dot — inline in the footer bar. Hollow → filled on select. */
+.epta-template-card__check {
+  flex: 0 0 auto;
+  width: 1.125rem;
+  height: 1.125rem;
+  border-radius: 50%;
+  border: 0.125rem solid var(--epta-border);
+  background: #fff;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  color: transparent;
+  transition: background 120ms ease, border-color 120ms ease, color 120ms ease;
+}
+.epta-template-card:hover .epta-template-card__check {
+  border-color: var(--epta-primary);
+}
+.epta-template-card.is-selected .epta-template-card__check {
+  background: var(--epta-primary);
+  border-color: var(--epta-primary);
+  color: #fff;
+}
+.epta-template-card__check .dashicons {
+  font-size: 0.75rem;
+  width: 0.75rem;
+  height: 0.75rem;
+  line-height: 1;
+}
+
+/* --- Right column: Colors panel ------------------------------------------ */
+.epta-color-panel {
+  border: 0.0625rem solid var(--epta-border);
+  border-radius: 0.625rem;
+  background: var(--epta-card-bg);
+  padding: 1rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+.epta-color-panel__title {
+  font-size: 0.8125rem;
+  font-weight: 700;
+  color: var(--epta-text);
+  text-transform: uppercase;
+  letter-spacing: 0.03em;
+  margin: 0;
+}
+.epta-color-panel__desc {
+  font-size: 0.75rem;
+  color: var(--epta-text-muted);
+  margin: 0;
+  line-height: 1.5;
+}
+.epta-color-row {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  gap: 0.5rem 0.625rem;
+  align-items: center;
+}
+.epta-color-row + .epta-color-row { border-top: 0.0625rem solid var(--epta-border-soft); padding-top: 0.625rem; }
+.epta-color-row__swatch {
+  grid-row: 1 / span 2;
+  width: 2rem;
+  height: 2rem;
+  padding: 0;
+  border: 0.125rem solid var(--epta-border);
+  border-radius: 0.375rem;
+  cursor: pointer;
+  background: transparent;
+  overflow: hidden;
+}
+.epta-color-row__swatch::-webkit-color-swatch-wrapper { padding: 0; }
+.epta-color-row__swatch::-webkit-color-swatch { border: 0; border-radius: 0.25rem; }
+.epta-color-row__meta {
+  display: flex;
+  flex-direction: column;
+  gap: 0.0625rem;
+  min-width: 0;
+}
+.epta-color-row__label {
+  font-size: 0.8125rem;
+  font-weight: 700;
+  color: var(--epta-text);
+}
+.epta-color-row__desc {
+  font-size: 0.6875rem;
+  color: var(--epta-text-muted);
+  line-height: 1.4;
+}
+.epta-color-row__hex {
+  grid-column: 2;
+  font-family: ui-monospace, "SF Mono", Menlo, Consolas, monospace;
+  font-size: 0.75rem;
+  padding: 0.25rem 0.5rem;
+  border: 0.0625rem solid var(--epta-border);
+  border-radius: 0.25rem;
+  background: #fff;
+  color: var(--epta-text);
+  text-transform: uppercase;
+  width: 5.5rem;
+}
+
+/* Wizard nav footer right-aligned when there's no Back/Cancel on the left
+   (Step 1 uses this — Exit is in the header). */
+.epta-wizard-card__nav--end { justify-content: flex-end; }
+
+/* --- Right column: cross-sell / Pro promo panel -------------------------- */
+.epta-template-promo {
+  border: 0.0625rem solid var(--epta-accent);
+  border-radius: 0.625rem;
+  background: linear-gradient(135deg, #fff5e8 0%, var(--epta-accent-soft) 100%);
+  padding: 1rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+/* Each tier's promo body lives inside the same `.epta-template-promo`
+   shell and is toggled by CSS based on body[data-selected-template]. */
+.epta-template-promo [data-promo-for] {
+  flex-direction: column;
+  gap: 0.625rem;
+}
+.epta-template-promo__kicker {
+  font-size: 0.625rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: var(--epta-accent);
+}
+.epta-template-promo__head {
+  display: flex;
+  align-items: center;
+  gap: 0.625rem;
+  margin-top: 0.375rem;
+}
+.epta-template-promo__title {
+  font-size: 0.9375rem;
+  font-weight: 700;
+  color: var(--epta-text);
+  margin: 0;
+  line-height: 1.2;
+}
+.epta-template-promo__desc {
+  font-size: 0.75rem;
+  color: var(--epta-text-muted);
+  line-height: 1.5;
+  margin: 0.375rem 0 0;
+}
+.epta-template-promo__icon {
+  width: 2.25rem;
+  height: 2.25rem;
+  flex: 0 0 auto;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+.epta-template-promo__icon img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+/* Give the promo CTA some breathing room from the description */
+.epta-template-promo .epta-btn-accent {
+  margin-top: 0.5rem;
+  align-self: flex-start;
+}
+.epta-template-promo__owned-note {
+  margin: 0.65rem 0 0;
+  font-size: 12px;
+  line-height: 1.4;
+  color: #646970;
+  font-style: italic;
+}
+.epta-template-promo [data-spb-activate-pro][hidden],
+.epta-template-promo [data-spb-upgrade][hidden],
+.epta-template-promo [data-spb-owned-note][hidden],
+.epta-template-promo [data-divi-activate][hidden],
+.epta-template-promo [data-divi-upgrade][hidden],
+.epta-template-promo [data-divi-owned-note][hidden] {
+  display: none !important;
+}
+
+/* ============================================================================
+   STEP 2 — "Apply template to" compact radio cards + native <select> style
+   ============================================================================
+   4 cards side-by-side. No icon. Text on the left, hollow radio dot on the
+   right (fills blue when selected). Collapses to a 2-column grid under
+   40rem, then a single column under 25rem. */
+
+.epta-target-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 0.625rem;
+}
+@media (max-width: 40rem) {
+  .epta-target-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+}
+@media (max-width: 25rem) {
+  .epta-target-grid { grid-template-columns: 1fr; }
+}
+
+.epta-target-card {
+  position: relative;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 0.625rem;
+  padding: 0.6875rem 0.875rem;
+  min-height: 2.5rem;
+  background: #fff;
+  border: 0.125rem solid var(--epta-border);
+  border-radius: 0.5rem;
+  cursor: pointer;
+  font: inherit;
+  color: inherit;
+  text-align: left;
+  text-decoration: none;
+  transition: border-color 0.15s, background-color 0.15s;
+}
+.epta-target-card:hover {
+  border-color: var(--epta-primary-border);
+  text-decoration: none;
+  color: inherit;
+}
+.epta-target-card:focus-visible {
+  outline: 0.125rem solid var(--epta-focus);
+  outline-offset: 0.125rem;
+}
+.epta-target-card.is-selected {
+  border-color: var(--epta-primary);
+  background: var(--epta-primary-soft);
+  box-shadow: 0 0 0 0.125rem rgba(6, 147, 227, 0.15);
+}
+.epta-target-card__name {
+  flex: 1 1 auto;
+  min-width: 0;
+  font-size: 0.8125rem;
+  font-weight: 600;
+  color: var(--epta-text);
+  line-height: 1.25;
+  text-align: left;
+  /* Let long labels wrap to a second line instead of clipping with ellipsis
+     — "Specific categories" would otherwise render as "Specific cate…" */
+}
+/* Check indicator — right edge, ALWAYS visible. Hollow gray ring when
+   unselected; filled brand-blue circle with a white dashicons-yes when the
+   card is selected. The glyph is always in the DOM, revealed via opacity. */
+.epta-target-card__radio {
+  flex: 0 0 auto;
+  width: 1.125rem;
+  height: 1.125rem;
+  border-radius: 50%;
+  border: 0.125rem solid var(--epta-border);
+  background: transparent;
+  color: transparent;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  transition: background-color 0.15s, border-color 0.15s, color 0.15s;
+}
+.epta-target-card:hover .epta-target-card__radio {
+  border-color: var(--epta-primary-border);
+}
+.epta-target-card.is-selected .epta-target-card__radio {
+  background: var(--epta-primary);
+  border-color: var(--epta-primary);
+  color: #fff;
+}
+.epta-target-card__radio .dashicons {
+  width: 0.75rem; height: 0.75rem; font-size: 0.75rem; line-height: 1;
+  opacity: 0;
+  transition: opacity 0.15s;
+}
+.epta-target-card.is-selected .epta-target-card__radio .dashicons { opacity: 1; }
+@media (prefers-reduced-motion: reduce) {
+  .epta-target-card, .epta-target-card *, .epta-target-card *::before, .epta-target-card *::after {
+    transition-duration: 0.01ms !important;
+  }
+}
+
+/* Multiselect slot appears below the target row when a specific option is
+   picked; give it top-margin for breathing room. */
+.epta-target-picker { margin-top: 0.875rem; }
+
+/* Themed native <select> so the Date Format row doesn't look like default
+   browser chrome. */
+.epta-native-select {
+  width: 100%;
+  max-width: 26rem;
+  padding: 0.5rem 0.75rem;
+  border: 0.0625rem solid var(--epta-border);
+  border-radius: 0.375rem;
+  font: inherit;
+  font-size: 0.875rem;
+  background: #fff;
+  color: var(--epta-text);
+  cursor: pointer;
+}
+.epta-native-select:focus-visible {
+  border-color: var(--epta-primary);
+  outline: none;
+  box-shadow: 0 0 0 0.125rem rgba(6, 147, 227, 0.15);
+}
+
+/* Stack-conditional cards. Elementor/Divi Pro cards only appear when the
+   matching builder is detected (prototype: preview-state toggle). */
+.epta-template-card[data-conditional="elementor"],
+.epta-template-card[data-conditional="divi"] {
+  display: none;
+}
+body[data-preview-state="elementor"] .epta-template-card[data-conditional="elementor"],
+body[data-preview-state="both"]      .epta-template-card[data-conditional="elementor"] {
+  display: flex;
+}
+body[data-preview-state="divi"] .epta-template-card[data-conditional="divi"],
+body[data-preview-state="both"] .epta-template-card[data-conditional="divi"] {
+  display: flex;
+}
+
+/* Right-column composition depends on which template is selected:
+   - Free (classic)              → Colors only, no promo
+   - Same-plugin Pro (hero/split)→ Colors + SPB Pro promo below
+   - Elementor (SPB Pro)         → NO Colors (Elementor manages its own),
+                                   only SPB Pro promo
+   - Divi (different plugin)     → NO Colors (Divi has its own styling),
+                                   only Divi Modules Pro promo
+   Promo has 2 tier-specific bodies (`[data-promo-for="spb"]` and
+   `[data-promo-for="divi"]`) — the JS toggles which one is visible via
+   a body attribute. */
+.epta-template-picker__right [data-tpl-panel="promo"] { display: none; }
+.epta-template-picker__right [data-promo-for] { display: none; }
+
+/* Hero/Split = same-plugin Pro → colors visible + SPB promo below */
+body[data-selected-template="hero"]  .epta-template-picker__right [data-tpl-panel="promo"],
+body[data-selected-template="split"] .epta-template-picker__right [data-tpl-panel="promo"] {
+  display: flex;
+}
+body[data-selected-template="hero"]  .epta-template-picker__right [data-promo-for="spb"],
+body[data-selected-template="split"] .epta-template-picker__right [data-promo-for="spb"] {
+  display: flex;
+}
+
+/* Elementor = same-plugin Pro but a builder template → colors HIDDEN +
+   SPB promo. */
+body[data-selected-template="elementor"] .epta-template-picker__right [data-tpl-panel="colors"] { display: none; }
+body[data-selected-template="elementor"] .epta-template-picker__right [data-tpl-panel="promo"]  { display: flex; }
+body[data-selected-template="elementor"] .epta-template-picker__right [data-promo-for="spb"]    { display: flex; }
+
+/* Divi = different plugin → colors HIDDEN + Divi Modules promo. */
+body[data-selected-template="divi"] .epta-template-picker__right [data-tpl-panel="colors"] { display: none; }
+body[data-selected-template="divi"] .epta-template-picker__right [data-tpl-panel="promo"]  { display: flex; }
+body[data-selected-template="divi"] .epta-template-picker__right [data-promo-for="divi"]   { display: flex; }
+
+/* Responsive stacking */
+@media (max-width: 60rem) {
+  .epta-template-picker { grid-template-columns: 1fr; }
+}
+@media (max-width: 40rem) {
+  .epta-template-grid { grid-template-columns: 1fr; }
+}
+
+/* AJAX busy / spinner on wizard CTAs */
+.epta-btn-primary.is-busy,
+.epta-btn-secondary.is-busy,
+.epta-btn-accent.is-busy,
+.epta-btn-ghost.is-busy,
+[data-epta-busy="1"] {
+  opacity: 0.7;
+  pointer-events: none;
+  cursor: wait;
+}
+
+@keyframes epta-spin {
+  to { transform: rotate(360deg); }
+}
+
+[data-epta-busy="1"] .dashicons,
+.epta-btn-primary.is-busy .dashicons,
+.epta-btn-accent.is-busy .dashicons {
+  animation: epta-spin 0.8s linear infinite;
+}

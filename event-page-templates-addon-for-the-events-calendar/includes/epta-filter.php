@@ -40,14 +40,12 @@ if ( ! defined( 'ABSPATH' ) ) exit;
                 $EPTA_get_tag = $this->epta_get_single_event_tag($EPTA_event_id);
                 $EPTA_comp_cat_result = array();
 
-                if (!empty($EPTA_get_cat) || !empty($EPTA_get_tag)) {
-                    if (!empty($EPTA_get_cat) && $EPTA_get_all_event != 'specific-tag') {
-                        $EPTA_get_selected_cat = array_map('sanitize_text_field', get_post_meta($get_temp_id, 'epta-categoery', true));
-                        $EPTA_comp_cat_result = array_intersect($EPTA_get_cat, $EPTA_get_selected_cat);
-                    } elseif (!empty($EPTA_get_tag) && $EPTA_get_all_event != 'specific-cate') {
-                        $EPTA_get_selected_tag = array_map('sanitize_text_field', get_post_meta($get_temp_id, 'epta-tag', true));
-                        $EPTA_comp_cat_result = array_intersect($EPTA_get_tag, $EPTA_get_selected_tag);
-                    }
+                if ($EPTA_get_all_event == 'specific-cate' && !empty($EPTA_get_cat)) {
+                    $EPTA_get_selected_cat = $this->epta_meta_slug_list($get_temp_id, 'epta-categoery');
+                    $EPTA_comp_cat_result = array_intersect($EPTA_get_cat, $EPTA_get_selected_cat);
+                } elseif ($EPTA_get_all_event == 'specific-tag' && !empty($EPTA_get_tag)) {
+                    $EPTA_get_selected_tag = $this->epta_meta_slug_list($get_temp_id, 'epta-tag');
+                    $EPTA_comp_cat_result = array_intersect($EPTA_get_tag, $EPTA_get_selected_tag);
                 }
 
                 if (!empty($EPTA_comp_cat_result)) {
@@ -66,6 +64,30 @@ if ( ! defined( 'ABSPATH' ) ) exit;
             }
 
             return $tec_file;
+        }
+
+        /**
+         * Normalize stored multiselect meta to a flat slug list.
+         *
+         * @param int    $post_id Post ID.
+         * @param string $key     Meta key.
+         * @return array
+         */
+        private function epta_meta_slug_list( $post_id, $key ) {
+            $raw = get_post_meta( $post_id, $key, true );
+            if ( empty( $raw ) ) {
+                return array();
+            }
+            if ( ! is_array( $raw ) ) {
+                $raw = array( $raw );
+            }
+            $out = array();
+            foreach ( $raw as $slug ) {
+                if ( is_string( $slug ) || is_numeric( $slug ) ) {
+                    $out[] = sanitize_text_field( (string) $slug );
+                }
+            }
+            return array_values( array_filter( $out ) );
         }
 
        

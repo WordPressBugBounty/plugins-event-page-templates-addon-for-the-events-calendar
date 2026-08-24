@@ -62,7 +62,6 @@ if (!class_exists('EPTA_TEC_Notice')) {
                     'edit-tribe_events',
                     'tribe_events',
                     'tribe_events_page_tec-events-settings',
-                    'toplevel_page_cool-plugins-events-addon',
                     'plugins'
                 ];
 

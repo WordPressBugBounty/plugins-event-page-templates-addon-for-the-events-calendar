@@ -1,0 +1,463 @@
+﻿/* =========================================================================
+   Events Calendar Addons â€” Admin UI base styles
+   Design system tokens + shell + primitives.
+   Class prefix: epta-
+   ========================================================================= */
+
+:root {
+  /* Brand â€” primary blue */
+  --epta-primary: #0693E3;
+  --epta-primary-hover: #0072B3;
+  --epta-primary-active: #005F95;
+  --epta-primary-soft: #E6F4FC;
+  --epta-primary-soft-hover: #D1EAF8;
+  --epta-primary-border: #BBE0F4;
+
+  /* Brand â€” orange accent (RESERVED for Pro / upgrade CTAs only) */
+  --epta-accent: #E3680B;
+  --epta-accent-hover: #BC580B;
+  --epta-accent-active: #9C490A;
+  --epta-accent-soft: #FCEFE0;
+  --epta-accent-soft-hover: #F7E1C8;
+  --epta-accent-border: #F2D2B0;
+
+  /* Brand â€” success (activated / installed) */
+  --epta-success: #35B572;
+  --epta-success-soft: #E6F7EE;
+  --epta-success-border: #B6E5CC;
+
+  /* Text */
+  --epta-text: #020E21;
+  --epta-text-muted: #4B5563;
+  --epta-text-soft: #6B7280;
+
+  /* Surfaces */
+  --epta-bg: #F5F7FA;
+  --epta-card-bg: #FFFFFF;
+  --epta-border: #D7DEE5;
+  --epta-border-soft: #E6EBF0;
+
+  /* Disabled */
+  --epta-disabled-bg: #F3F4F6;
+  --epta-disabled-text: #667085;
+  --epta-disabled-border: #E5E7EB;
+
+  /* Focus â€” do not change */
+  --epta-focus: #F59E0B;
+
+  /* Radius */
+  --epta-radius-sm: 8px;
+  --epta-radius-md: 12px;
+  --epta-radius-lg: 16px;
+
+  /* Shadow */
+  --epta-shadow-sm: 0 1px 2px rgba(2, 14, 33, 0.06);
+  --epta-shadow-md: 0 12px 28px rgba(2, 14, 33, 0.08);
+  --epta-shadow-header: 0 2px 14px rgba(2, 14, 33, 0.06);
+
+  /* Spacing scale (use numbers; do not bake into tokens for everything) */
+  --epta-space-1: 4px;
+  --epta-space-2: 8px;
+  --epta-space-3: 12px;
+  --epta-space-4: 16px;
+  --epta-space-5: 20px;
+  --epta-space-6: 24px;
+  --epta-space-8: 32px;
+}
+
+/* -------------------------------------------------------------------------
+   Reset + base
+   ------------------------------------------------------------------------- */
+
+.epta-wizard-shell, .epta-wizard-shell * { box-sizing: border-box; }
+.epta-wizard-shell {
+  min-height: 100vh;
+  background: var(--epta-bg);
+  color: var(--epta-text);
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen-Sans, Ubuntu, Cantarell, "Helvetica Neue", sans-serif;
+  font-size: 14px;
+  line-height: 1.5;
+}
+
+/* Ensure HTML [hidden] always wins over author display rules
+   (Dashicons, our inline-flex pills, grid containers, etc).
+   Per HTML spec recommendation. */
+.epta-wizard-shell [hidden] { display: none !important; }
+
+
+/* -------------------------------------------------------------------------
+   Admin header (sticky)
+   ------------------------------------------------------------------------- */
+
+/* -------------------------------------------------------------------------
+   Main + hero
+   ------------------------------------------------------------------------- */
+
+/* Setup Progress widget â€” small card that sits in hero right slot */
+
+/* -------------------------------------------------------------------------
+   Sections + cards (shared chrome)
+   ------------------------------------------------------------------------- */
+
+.epta-cross-sell {
+  background: var(--epta-card-bg);
+  border: 1px solid var(--epta-border-soft);
+  border-radius: var(--epta-radius-lg);
+  box-shadow: var(--epta-shadow-sm);
+}
+
+.epta-cross-sell__title {
+  margin: 0;
+  font-size: 19px;
+  line-height: 1.35;
+  font-weight: 650;
+  letter-spacing: -0.01em;
+}
+
+/* -------------------------------------------------------------------------
+   Buttons
+   ------------------------------------------------------------------------- */
+
+/* Base button styles â€” use plain class selectors so variant rules
+   below match specificity (0,1,0) and their border-color etc. wins. */
+.epta-btn-primary,
+.epta-btn-secondary,
+.epta-btn-accent,
+.epta-btn-ghost,
+.epta-btn-disabled {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  min-height: 42px;
+  padding: 10px 18px;
+  border: 1px solid transparent;
+  border-radius: 6px;
+  cursor: pointer;
+  font: inherit;
+  font-size: 14px;
+  line-height: 1.35;
+  font-weight: 600;
+  text-align: center;
+  text-decoration: none;
+  white-space: nowrap;
+  transition: background-color 0.15s ease, border-color 0.15s ease, color 0.15s ease, box-shadow 0.15s ease, transform 0.05s ease;
+}
+
+.epta-btn-primary {
+  background: var(--epta-primary);
+  border-color: var(--epta-primary);
+  color: #fff;
+  box-shadow: 0 1px 2px rgba(6, 147, 227, 0.22);
+}
+.epta-btn-primary:hover,
+.epta-btn-primary:visited { color: #fff; text-decoration: none; }
+.epta-btn-primary:hover { background: var(--epta-primary-hover); border-color: var(--epta-primary-hover); }
+.epta-btn-primary:active { background: var(--epta-primary-active); border-color: var(--epta-primary-active); transform: translateY(1px); }
+
+.epta-btn-secondary {
+  background: #fff;
+  border-color: var(--epta-primary);
+  color: var(--epta-primary);
+  box-shadow: 0 1px 2px rgba(6, 147, 227, 0.10);
+}
+.epta-btn-secondary:hover,
+.epta-btn-secondary:visited { text-decoration: none; }
+.epta-btn-secondary:hover { background: var(--epta-primary-soft); border-color: var(--epta-primary-hover); color: var(--epta-primary-hover); }
+.epta-btn-secondary:active { background: var(--epta-primary-soft-hover); border-color: var(--epta-primary-active); color: var(--epta-primary-active); transform: translateY(1px); }
+
+/* Accent â€” Pro / upgrade only */
+.epta-btn-accent {
+  background: var(--epta-accent);
+  border-color: var(--epta-accent);
+  color: #fff;
+  box-shadow: 0 1px 2px rgba(227, 104, 11, 0.25);
+}
+.epta-btn-accent:hover,
+.epta-btn-accent:visited { color: #fff; text-decoration: none; }
+.epta-btn-accent:hover { background: var(--epta-accent-hover); border-color: var(--epta-accent-hover); }
+.epta-btn-accent:active { background: var(--epta-accent-active); border-color: var(--epta-accent-active); transform: translateY(1px); }
+
+/* Ghost â€” quiet bordered action, often inside a card */
+.epta-btn-ghost {
+  background: #fff;
+  border-color: var(--epta-border);
+  color: var(--epta-text);
+  box-shadow: 0 1px 2px rgba(2, 14, 33, 0.04);
+}
+.epta-btn-ghost:hover {
+  background: var(--epta-bg);
+  border-color: var(--epta-text-soft);
+  color: var(--epta-text);
+  text-decoration: none;
+}
+.epta-btn-ghost:active { transform: translateY(1px); }
+
+/* Disabled */
+.epta-btn-disabled,
+.epta-btn-disabled:hover,
+.epta-btn-disabled:active,
+.epta-btn-disabled:visited {
+  background: var(--epta-disabled-bg);
+  border-color: var(--epta-disabled-border);
+  color: var(--epta-disabled-text);
+  cursor: not-allowed;
+  pointer-events: none;
+  text-decoration: none;
+  box-shadow: none;
+  transform: none;
+}
+
+/* Button-with-icon */
+.epta-btn-primary .dashicons,
+.epta-btn-secondary .dashicons,
+.epta-btn-accent .dashicons,
+.epta-btn-ghost .dashicons,
+.epta-btn-disabled .dashicons {
+  width: 16px; height: 16px; font-size: 16px; line-height: 1; color: currentColor;
+}
+
+/* -------------------------------------------------------------------------
+   Status pills (Active / Free / Pro / Pro Only / New / Beta)
+   ------------------------------------------------------------------------- */
+
+/* -------------------------------------------------------------------------
+   Workflow card â€” 40/60 split layout.
+   Left side: purpose (icon + title + lede + video thumbnail).
+   Right side: tabbed editor selector with plugin source row + create button.
+   ------------------------------------------------------------------------- */
+
+/* ----- Left column: intro ----- */
+
+
+/* Video preview placeholder â€” gradient + play button overlay.
+   Real video thumbnails / Loom embeds drop in later. */
+
+/* ----- Right column: editor / tabs ----- */
+
+
+/* Connected tab strip â€” classic browser tab style.
+   Selected tab's TOP BORDER becomes 3px primary blue (the accent IS the
+   border, so it curves naturally with the corner radius â€” no straight bar
+   clashing with curved tab top). Selected tab's bottom border matches the
+   panel background so the two visually merge into one continuous shape.
+
+   Default size = compact (used in Dashboard workflow cards).
+   Add .epta-workflow-tabs--lg modifier for full-page Getting Started tabs. */
+
+/* Larger variant â€” Getting Started page top-level tab navigation.
+   Bigger padding, font and icons; same 3px accent (constant across sizes). */
+
+/* Tab status pill â€” only "Pro" badge in current design. */
+
+/* Tab panel â€” sits in its own bordered container. The connected-tab
+   illusion comes from the selected tab's bottom border matching this bg. */
+
+
+/* Plugin source strip â€” shows which addon powers this method.
+   Primary CTA sits in the same row on the right; secondary actions
+   sit below as quiet text links. */
+
+/* Secondary action strip â€” quiet text links under the source row */
+
+/* Legacy actions row kept for any panels that need a row of full buttons */
+
+/* Smaller buttons inside the source row primary CTA slot â€” they sit
+   alongside name + pills and shouldn't dominate vertically. */
+
+/* -------------------------------------------------------------------------
+   Addon catalog cards (compact rows on Dashboard catalog section)
+   ------------------------------------------------------------------------- */
+
+
+/* -------------------------------------------------------------------------
+   Catalog â€” collapsible "All addons" section on the Dashboard
+   ------------------------------------------------------------------------- */
+
+
+/* -------------------------------------------------------------------------
+   Getting Started detail â€” used inside per-addon Getting Started pages.
+   Two-column layout: video preview (left) + numbered setup guide (right).
+   ------------------------------------------------------------------------- */
+
+
+/* Reuses .epta-workflow-card__video for the video preview placeholder.
+   The container width here is much larger so it renders bigger naturally. */
+
+/* -------------------------------------------------------------------------
+   Template picker grid â€” used on Event Single Page Builder Getting Started.
+   Inline thumbnail cards with "Apply" or "Upgrade" CTA. Pro templates are
+   shown alongside free with a subtle locked overlay so users can browse
+   what they'd get with Pro before committing.
+   ------------------------------------------------------------------------- */
+
+
+.epta-template-card {
+  display: flex;
+  flex-direction: column;
+  background: var(--epta-card-bg);
+  border: 1px solid var(--epta-border-soft);
+  border-radius: 14px;
+  overflow: hidden;
+  box-shadow: var(--epta-shadow-sm);
+  transition: transform 0.15s ease, box-shadow 0.15s ease, border-color 0.15s ease;
+  position: relative;
+}
+.epta-template-card:hover {
+  transform: translateY(-2px);
+  box-shadow: var(--epta-shadow-md);
+  border-color: var(--epta-primary-border);
+}
+
+/* Row variant for layouts like Sidebar (content + sidebar) */
+
+/* Hero variant â€” solid colored top block */
+
+/* Per-template background gradients (visual differentiation only) */
+
+
+.epta-template-card__name {
+  margin: 0;
+  font-size: 15px;
+  font-weight: 650;
+  color: var(--epta-text);
+  line-height: 1.3;
+}
+
+/* Locked Pro template (when user is on Free version) */
+
+/* -------------------------------------------------------------------------
+   Workflow ribbon â€” used on Speakers & Sponsors Getting Started.
+   Three-step horizontal flow (1 â†’ 2 â†’ 3) with chevron arrows.
+   Collapses to vertical stack on narrow screens (arrows rotate down).
+   ------------------------------------------------------------------------- */
+
+/* -------------------------------------------------------------------------
+   Sample creator pair â€” 2-up cards for "Create sample speaker" /
+   "Create sample sponsor" CTAs that scaffold data with one click.
+   ------------------------------------------------------------------------- */
+
+/* -------------------------------------------------------------------------
+   Compatibility matrix â€” used on Speakers & Sponsors Getting Started.
+   Each card represents one sibling addon that can display speakers/sponsors,
+   shows WHERE they appear via a small page-mockup illustration, and the
+   sibling's current state (Active / Free installed / Not installed) plus CTA.
+   ------------------------------------------------------------------------- */
+
+/* -------------------------------------------------------------------------
+   Quick utilities â€” compact 2-up rows. Small, intentionally lightweight.
+   ------------------------------------------------------------------------- */
+
+
+/* -------------------------------------------------------------------------
+   Premium + Bundle section â€” replaces the old All Addons catalog.
+   Two columns: 5 Pro cards on the left, a Bundle CTA sidecar on the right.
+   The whole section hides if the user has any Pro addon active.
+   ------------------------------------------------------------------------- */
+
+/* Floating "Free installed" badge â€” top-right of the card.
+   Replaces the old pill row so cards stay short. */
+
+/* Bundle CTA â€” orange theme, vertical layout */
+
+/* -------------------------------------------------------------------------
+   Promo box â€” Tier-3 Pro pitch (orange by default)
+   Variant via local --promo-* vars on the element.
+   ------------------------------------------------------------------------- */
+
+
+/* Modifier â€” use when the icon slot contains a Dashicons glyph
+   instead of a branded addon SVG. Adds back the white-chip frame. */
+.epta-cross-sell__icon--chip {
+  background: #fff;
+  border: 1px solid var(--epta-border-soft);
+  border-radius: 12px;
+}
+
+/* When promo box is used as accent (Pro upsell) the buttons take accent color */
+
+/* -------------------------------------------------------------------------
+   Cross-sell sidecar â€” Tier-2 promotion of a sibling FREE addon
+   Blue/neutral tinted so orange stays Pro-only.
+   ------------------------------------------------------------------------- */
+
+.epta-cross-sell {
+  margin-top: 20px;
+  padding: 18px 22px;
+  display: grid;
+  grid-template-columns: 52px minmax(0, 1fr) auto;
+  gap: 18px;
+  align-items: center;
+  background: var(--epta-primary-soft);
+  border-color: var(--epta-primary-border);
+}
+.epta-cross-sell__icon {
+  width: 52px; height: 52px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+.epta-cross-sell__icon img { width: 52px; height: 52px; object-fit: contain; display: block; }
+.epta-cross-sell__title { font-size: 16px; }
+.epta-cross-sell__desc {
+  margin: 4px 0 0;
+  font-size: 13px;
+  line-height: 1.55;
+  color: var(--epta-text-muted);
+}
+.epta-cross-sell__actions { display: flex; gap: 8px; flex-wrap: wrap; }
+
+/* -------------------------------------------------------------------------
+   Pro tip sidecar â€” Tier-2 inline Pro hint (small, orange tint)
+   ------------------------------------------------------------------------- */
+
+
+/* -------------------------------------------------------------------------
+   Info cards â€” Support / Docs / Review trio (same as timeline pattern)
+   ------------------------------------------------------------------------- */
+
+/* -------------------------------------------------------------------------
+   Builder-aware banner â€” soft tinted strip at top of dashboard
+   ------------------------------------------------------------------------- */
+
+
+/* The old .epta-preview-toggle / prototype simulator chrome was removed. */
+
+/* -------------------------------------------------------------------------
+   Responsive
+   ------------------------------------------------------------------------- */
+
+@media (max-width: 1140px) and (min-width: 781px) {
+  .epta-btn-primary, .epta-btn-secondary, .epta-btn-accent, .epta-btn-ghost { min-height: 38px; padding: 8px 12px; font-size: 13px; }
+}
+
+@media (max-width: 980px) {
+  .epta-cross-sell { grid-template-columns: 44px 1fr; row-gap: 12px; }
+  .epta-cross-sell__actions { grid-column: 1 / -1; }
+}
+
+/* =========================================================================
+   WordPress-admin a:focus shield.
+   wp-admin core CSS sets, on EVERY focused <a>:
+     a:focus { color:#043959; border-radius:2px;
+               box-shadow:0 0 0 1.5px #3858e9; outline:2px solid transparent; }
+   which recolours our buttons, squares their corners, drops their shadow and
+   paints a blue ring. Neutralise it INSIDE our surface only. Our sheet enqueues
+   AFTER core admin CSS, so :where() (same 0,1,1 specificity as core's rule)
+   wins by source order without out-ranking our own component states
+   (:hover / .is-selected / :focus-visible are 0,2,0).
+   ========================================================================= */
+:where(.epta-wizard-shell) a:focus { box-shadow: none; }
+:where(.epta-wizard-shell) a:focus:not(:focus-visible) { outline: none; }
+:where(.epta-wizard-shell) a:focus-visible { outline: 2px solid var(--epta-focus, #3858e9); outline-offset: 2px; }
+/* Keep buttons their own text colour + 6px radius on focus (0,2,0 beats core). */
+.epta-btn-primary:focus, .epta-btn-accent:focus, .epta-btn-success:focus { color: #fff; }
+.epta-btn-secondary:focus { color: var(--epta-primary); }
+.epta-btn-ghost:focus { color: var(--epta-text); }
+.epta-btn-primary:focus, .epta-btn-secondary:focus, .epta-btn-accent:focus,
+.epta-btn-ghost:focus, .epta-btn-disabled:focus, .epta-btn-success:focus { border-radius: 6px; }
+/* Preserve card radii against core a:focus { border-radius:2px }. */
+.epta-template-card:focus,
+.epta-target-card:focus { border-radius: 0.75rem; }
+.epta-color-swatch:focus,
+.epta-toggle-option:focus { border-radius: 0.5rem; }

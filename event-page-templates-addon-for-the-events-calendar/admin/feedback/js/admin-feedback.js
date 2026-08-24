@@ -6,6 +6,35 @@
         $target = $('#the-list').find('[data-slug="'+plugin_name+'"] span.deactivate a');
         var plugin_deactivate_link = $target.attr('href');
 
+        function getOnboardingState() {
+            try {
+                return localStorage.getItem('epta:wizard:single-page-builder:state') || '';
+            } catch (_) {
+                return '';
+            }
+        }
+
+        function persistOnboardingBeforeDeactivate(nonce, done) {
+            var state = getOnboardingState();
+            if (!state) {
+                if (typeof done === 'function') done();
+                return;
+            }
+
+            $.ajax({
+                url: ajaxurl,
+                method: 'POST',
+                data: {
+                    action: 'epta_onboarding_save_on_deactivate',
+                    _wpnonce: nonce,
+                    onboarding_state: state
+                },
+                complete: function () {
+                    if (typeof done === 'function') done();
+                }
+            });
+        }
+
         $($target).on('click', function(event){
             event.preventDefault();
             $('#wpwrap').css('opacity','0.4');
@@ -67,6 +96,7 @@
                         '_wpnonce':nonce,
                         'reason':reason,
                         'message':message,
+                        'onboarding_state': getOnboardingState(),
                     },
                     beforeSend:function(data){
                         $('#cool-plugin-submitNdeactivate').text('Deactivating...');
@@ -93,8 +123,11 @@
         });
 
         $(document).on('click', '#cool-plugin-skipNdeactivate.'+plugin_slug, function(){
+            var nonce = $('#_wpnonce').val();
             $('#cool-plugin-skipNdeactivate').attr('id','deactivating-plugin');
-            window.location = plugin_deactivate_link;
+            persistOnboardingBeforeDeactivate(nonce, function () {
+                window.location = plugin_deactivate_link;
+            });
         });
 
     });
