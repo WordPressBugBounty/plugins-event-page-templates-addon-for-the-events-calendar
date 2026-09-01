@@ -3,7 +3,7 @@
 Plugin Name: Event Single Page Builder For The Events Calendar
 Plugin URI: https://eventscalendaraddons.com/plugin/event-single-page-builder-pro/?utm_source=epta_plugin&utm_medium=inside&utm_campaign=get_pro&utm_content=plugin_uri
 Description: <a href="http://wordpress.org/plugins/the-events-calendar/"><b>📅 The Events Calendar Addon</b></a> - Design The Event Calendar plugin event single page template with custom colors and fonts.
-Version: 1.9.0
+Version: 1.9.1
 Author:  Cool Plugins
 Author URI: https://coolplugins.net/?utm_source=epta_plugin&utm_medium=inside&utm_campaign=author_page&utm_content=plugins_list
 License:GPL2
@@ -18,7 +18,7 @@ if (!defined('ABSPATH')) {
     exit();
 }
 if (!defined('EPTA_PLUGIN_CURRENT_VERSION')) {
-    define('EPTA_PLUGIN_CURRENT_VERSION', '1.9.0');
+    define('EPTA_PLUGIN_CURRENT_VERSION', '1.9.1');
 }
 define('EPTA_PLUGIN_FILE', __FILE__);
 define('EPTA_PLUGIN_URL', plugin_dir_url(EPTA_PLUGIN_FILE));
@@ -855,6 +855,16 @@ if (!class_exists('EventPageTemplatesAddon')) {
                         ),
                     )
                 );
+
+                add_action(
+                    'ect_display_admin_notices',
+                    static function () {
+                        if ( class_exists( '\CPFM_Review_Notice' ) ) {
+                            \CPFM_Review_Notice::cpfm_maybe_render( false );
+                        }
+                    }
+                );
+
             }
             if (class_exists('CPFM_Deactivation_Feedback')) {
 
